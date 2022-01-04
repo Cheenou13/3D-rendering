@@ -12,9 +12,12 @@ This project uses vanila js and three js to model 3 dimension model(s) of manufa
 
 
 ## Motivation
+
 This project will allow client to have an idea of the manufacture line is doing 
 without going to the building.
+
 ## Code Style
+
 This project uses none Object Oriented Programming (OOP). 
 Rather it uses basic Functional Programming
 
@@ -27,13 +30,28 @@ Rather it uses basic Functional Programming
 
 ```
 .
-└── soq3D
-    ├── favicon.svg
-    ├── index.html
-    ├── main.js
-    ├── package-lock.json
-    ├── package.json
-    └── style.css
+├── README.md
+├── favicon.svg
+├── index.html
+├── main.js
+├── models
+│   ├── Flamingo.glb
+│   ├── license.txt
+│   ├── model.gltf
+│   ├── scene.bin
+│   ├── screenBackground
+│   │   └── techBackground.jpg
+│   └── textures
+│       ├── CENTENARIO_baseColor.jpeg
+│       ├── CRBN_JANTE_baseColor.jpeg
+│       ├── CUIR.001_baseColor.jpeg
+│       ├── Material.003_baseColor.jpeg
+│       ├── PLAS_baseColor.jpeg
+│       └── material_0_baseColor.jpeg
+├── package-lock.json
+├── package.json
+└── style.css
+
 ```
 ## Environment setup
 
@@ -52,3 +70,7 @@ Install <my-project> with npm
 ## Git help
 
  - [More git commands](https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html)
+
+## Source
+
+- [TechBackground](https://www.shutterstock.com/search/hi+tech+show)
