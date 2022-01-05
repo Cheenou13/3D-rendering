@@ -27,14 +27,15 @@ import * as THREE from 'three';
 
 function planeObject(){
     const texture_loader = new THREE.TextureLoader()
-    const planeGeometry = new THREE.PlaneBufferGeometry(1, 1, 1)
+    const planeGeometry = new THREE.PlaneBufferGeometry(9, 12, 1, 1)
     const normalTexture = texture_loader.load('models/screenBackground/NormalMap.png')
-    const planeMaterial = new THREE.MeshStandardMaterial({
-        metalness: 0.7,
-        roughness: 0.2,
+    const planeMaterial = new THREE.MeshPhongMaterial({
+        metalness: 0.7, //-> MeshStandardMaterial
+        roughness: 0.2, //-> MeshStandardMaterial
         side: THREE.DoubleSide,
         flatShading: THREE.FlatShading,
-        color: new THREE.Color(0xD6ECEA),
+        color: new THREE.Color(0x4D585A),
+        // vertexColors: true,
         normalMap: normalTexture
     })
     const plane = new THREE.Mesh(planeGeometry, planeMaterial)

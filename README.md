@@ -4,12 +4,6 @@
 This project uses vanila js and three js to model 3 dimension model(s) of manufacture line.
 
 
-## Three js and dat
-
- - [THREE JS](https://threejs.org/)
- - [dat gui](https://github.com/dataarts/dat.gui)
-
-
 ## Motivation
 
 This project will allow one to have an idea of the manufacture line is look like (in 3D view)
@@ -77,6 +71,9 @@ Install <my-project> with npm
 
  - [More git commands](https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html)
 
-## Source
+## Sources
 
 - [TechBackground](https://www.shutterstock.com/search/hi+tech+show)
+- [THREE JS](https://threejs.org/)
+- [dat gui](https://github.com/dataarts/dat.gui)
+- [three js textBook and codes examples](https://discoverthreejs.com/book/first-steps/load-models/)
