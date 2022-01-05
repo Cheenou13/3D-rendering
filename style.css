@@ -10,7 +10,12 @@
 body {
   margin: 0;
   background-color: rgb(220, 220, 235);
+  -webkit-font-smoothing: antialiased;
 }
 .absolute {
   position: absolute;
+}
+
+canvas {
+  display: block;
 }
