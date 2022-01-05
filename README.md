@@ -29,6 +29,8 @@ Rather, it uses basic Functional Programming
 ```
 .
 ├── README.md
+├── examples
+│   └── lambo_codes.png
 ├── favicon.svg
 ├── index.html
 ├── main.js
@@ -38,6 +40,7 @@ Rather, it uses basic Functional Programming
 │   ├── model.gltf
 │   ├── scene.bin
 │   ├── screenBackground
+│   │   ├── NormalMap.png
 │   │   └── techBackground.jpg
 │   └── textures
 │       ├── CENTENARIO_baseColor.jpeg
@@ -48,6 +51,9 @@ Rather, it uses basic Functional Programming
 │       └── material_0_baseColor.jpeg
 ├── package-lock.json
 ├── package.json
+├── src
+│   ├── light.js
+│   └── plane.js
 └── style.css
 
 ```
