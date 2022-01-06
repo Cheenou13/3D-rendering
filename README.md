@@ -6,7 +6,8 @@ This project uses vanila js and three js to model 3 dimension model(s) of manufa
 
 ## Motivation
 
-This project will allow one to have an idea of the manufacture line is look like (in 3D view)
+This project will allow one to have an idea of the manufacture line is look like (in 3D view). the model will be able
+to display the current time status or any data directly from the manufacture line
 
 ## Code Style
 
@@ -15,7 +16,7 @@ Rather, it uses basic Functional Programming
 
 ## webserver should look like
 
-![App Screenshot](examples/lambo_codes.png)
+![App Screenshot](examples/updatedLambo.png)
 
 
 ## Build Structure
@@ -51,9 +52,8 @@ Rather, it uses basic Functional Programming
 └── style.css
 
 ```
-## Environment setup
-
-Install <my-project> with npm
+## Environment setup with new project
+Install with npm
 
 ```bash
   npm install @vitejs/app
@@ -66,6 +66,10 @@ Install <my-project> with npm
     - npm install --save three
     - npm install --save dat
 ```
+## clone repo
+
+- git clone git@gitlab.com:foxconn-iai-soq/soq-3d.git
+- npm install for dependencies
     
 ## Git help
 

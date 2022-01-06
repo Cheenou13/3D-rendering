@@ -1,16 +1,21 @@
 import './style.css'
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as dat from 'dat.gui'
-import { planeObject } from './src/plane';
-import { createLights } from './src/light';
+import { planeObject } from './src/plateForm/models/plane';
+import { createLights } from './src/plateForm/components/light';
 
 // document.querySelector('#app').innerHTML = `
 //   <h1>Hello Vite!</h1>
 //   <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
 // `
-
+async function main(){
+  /*
+  TODO
+  will need to fix this later so any async functions will runs in main with problem
+  */
+}
 const scene = new THREE.Scene()
 const bgLoader = new THREE.TextureLoader()
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
@@ -26,8 +31,8 @@ const { topLight, bottomLight, ambientLight } = createLights()
 const footing = planeObject()
 
 const cameraFolder = guiControl.addFolder('Camera angle')
-const model = 'models/model.gltf'
-const custBackground = 'models/screenBackground/techBackground.jpg'
+const model = 'importedModels/model.gltf'
+const custBackground = 'importedModels/screenBackground/techBackground.jpg'
 
 camera.position.setZ(5);
 scene.add(footing)
