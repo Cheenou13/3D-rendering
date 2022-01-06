@@ -25,11 +25,10 @@ Rather, it uses basic Functional Programming
 .
 ├── README.md
 ├── examples
-│   └── lambo_codes.png
+│   ├── lambo_codes.png
+│   └── updatedLambo.png
 ├── favicon.svg
-├── index.html
-├── main.js
-├── models
+├── importedModels
 │   ├── Flamingo.glb
 │   ├── license.txt
 │   ├── model.gltf
@@ -44,11 +43,26 @@ Rather, it uses basic Functional Programming
 │       ├── Material.003_baseColor.jpeg
 │       ├── PLAS_baseColor.jpeg
 │       └── material_0_baseColor.jpeg
+├── index.html
+├── main.js
 ├── package-lock.json
 ├── package.json
 ├── src
-│   ├── light.js
-│   └── plane.js
+│   ├── cloneMain.js
+│   └── plateForm
+│       ├── components
+│       │   ├── camera.js
+│       │   ├── light.js
+│       │   └── scene.js
+│       ├── models
+│       │   ├── model.js
+│       │   ├── plane.js
+│       │   └── setUp.js
+│       └── systemControls
+│           ├── Control.js
+│           ├── Loop.js
+│           ├── Renderer.js
+│           └── Resizer.js
 └── style.css
 
 ```
