@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as dat from 'dat.gui'
-import { planeObject } from './src/plateForm/models/plane';
+import { planeObject, CreatePlanes } from './src/plateForm/models/plane';
 import { createLights } from './src/plateForm/components/light';
 
 // document.querySelector('#app').innerHTML = `
@@ -19,7 +19,7 @@ async function main(){
 const scene = new THREE.Scene()
 const bgLoader = new THREE.TextureLoader()
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
-const renderer = new THREE.WebGL1Renderer()
+const renderer = new THREE.WebGLRenderer()
 const model_loader = new GLTFLoader()
 const control = new OrbitControls(camera, renderer.domElement)
 const guiControl = new dat.GUI()
@@ -27,19 +27,23 @@ const locationFolder = guiControl.addFolder('Lambo Coordinates')
 const planePosition = guiControl.addFolder('Plane Position')
 const planeSize = guiControl.addFolder('Plane size')
 const planeDist = guiControl.addFolder('Plane Distance')
-const { topLight, bottomLight, ambientLight } = createLights()
-const footing = planeObject()
-
-const cameraFolder = guiControl.addFolder('Camera angle')
+const cameraAngle = guiControl.addFolder('Camera Angle')
+const { topLight, bottomLight, ambientLight, frontLight, backLight } = createLights()
+// const footing = planeObject('importedModels/screenBackground/NormalMap.png')
+const planeType = new CreatePlanes()
+const footing = planeType.loadTexturePlane('importedModels/screenBackground/NormalMap.png')
+console.log(footing)
+const cameraFolder = guiControl.addFolder('Lambo angle')
 const model = 'importedModels/model.gltf'
 const custBackground = 'importedModels/screenBackground/techBackground.jpg'
-
+planeType.controlFolder(footing)
 camera.position.setZ(5);
 scene.add(footing)
-scene.add(topLight)
-scene.add(bottomLight)
-scene.add(ambientLight)
-
+// scene.add(topLight)
+// scene.add(bottomLight)
+scene.add(backLight)
+// scene.add(ambientLight)
+scene.add(frontLight)
 
 renderer.setClearColor(0xcad4e3, 1)
 
@@ -106,25 +110,31 @@ planeSize.add(planeDimension.options, 'heightSegments', 0, 20, 0.01).onChange(ch
 
 
 bgLoader.load(custBackground, (bg) => {
+  
   scene.background= bg
 })
 const lambo = await model_loader.loadAsync(model)
-lambo.scene.children[0].castShadow = true
-// lambo.scene.castShadow = true
 lamboPosition()
 changeDimension()
-scene.add(lambo.scene)
+const car = lambo.scene.children[0]
+scene.add(car)
 // console.log(lambo.scene.animations[0])
-lambo.scene.children[0].castShadow = true
 control.autoRotate = true
-camera.updateProjectionMatrix
+control.maxPolarAngle = Math.PI / 2
+
+cameraAngle.add(camera.position, 'x', 0, 10, 0.01)
+cameraAngle.add(camera.position, 'y', 0, 10, 0.01)
+cameraAngle.add(camera.position, 'z', 0, 10, 0.01)
+camera.lookAt(0, )
+
 // console.log(lambo.scene.children[0].rotation)
 // lambo.scene.children[0].rotation
-lambo.scene.children[0].rotation.z = 0.86
-cameraFolder.add(lambo.scene.children[0].rotation, 'x', -Math.PI * 2, Math.PI * 2)
-cameraFolder.add(lambo.scene.children[0].rotation, 'y', -Math.PI * 2, Math.PI * 2)
-cameraFolder.add(lambo.scene.children[0].rotation, 'z', -Math.PI * 2, Math.PI * 2)
-
+// lambo.scene.children[0].rotation.z = 0.86
+car.rotation.z = 0.86
+cameraFolder.add(car.rotation, 'x', -Math.PI / 2, Math.PI / 2, 0.001)
+cameraFolder.add(car.rotation, 'y', -Math.PI / 2, Math.PI / 2, 0.001)
+cameraFolder.add(car.rotation, 'z', -Math.PI / 2, Math.PI / 2, 0.001)
+control.update()
 function anime() {
   requestAnimationFrame(anime)
   renderer.render(scene, camera)

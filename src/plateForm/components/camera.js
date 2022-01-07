@@ -1,6 +1,6 @@
 import { PerspectiveCamera } from "three"
 
-export function crateCamera(){
+export function createCamera(){
     const aspectRatio = innerWidth/innerHeight
     const far = 1000
     const near = 0.1
