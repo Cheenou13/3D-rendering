@@ -117,15 +117,13 @@ changeDimension()
 const car = lambo.scene.children[0]
 scene.add(car)
 // console.log(lambo.scene.animations[0])
-control.autoRotate = true
+
 control.maxPolarAngle = Math.PI / 2
 
 cameraAngle.add(camera.position, 'x', 0, 10, 0.01)
 cameraAngle.add(camera.position, 'y', 0, 10, 0.01)
 cameraAngle.add(camera.position, 'z', 0, 10, 0.01)
-camera.lookAt(0, )
 
-console.log(control)
 // console.log(lambo.scene.children[0].rotation)
 // lambo.scene.children[0].rotation
 // lambo.scene.children[0].rotation.z = 0.86
@@ -133,11 +131,11 @@ car.rotation.z = 0.86
 cameraFolder.add(car.rotation, 'x', -Math.PI / 2, Math.PI / 2, 0.001)
 cameraFolder.add(car.rotation, 'y', -Math.PI / 2, Math.PI / 2, 0.001)
 cameraFolder.add(car.rotation, 'z', -Math.PI / 2, Math.PI / 2, 0.001)
-control.update()
+control.autoRotate = true
 function anime() {
   requestAnimationFrame(anime)
   renderer.render(scene, camera)
-  // control.update()
+  control.update()
 }
 
 anime()
@@ -145,24 +143,6 @@ anime()
 
 //new main
 
-// import './style.css'
-// import * as THREE from 'three';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-// import * as dat from 'dat.gui'
-// import { planeObject, CreatePlanes } from './src/plateForm/models/plane';
-// import { createLights } from './src/plateForm/components/light';
-
-// // document.querySelector('#app').innerHTML = `
-// //   <h1>Hello Vite!</h1>
-// //   <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-// // `
-// async function main(){
-//   /*
-//   TODO
-//   will need to fix this later so any async functions will runs in main with problem
-//   */
-// }
 // const scene = new THREE.Scene()
 // const bgLoader = new THREE.TextureLoader()
 // const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
@@ -198,6 +178,15 @@ anime()
 // renderer.setPixelRatio(devicePixelRatio)
 // renderer.shadowMap.enabled = true
 // document.body.appendChild(renderer.domElement)
+
+// // keep canvas size constantly and not disorted
+// addEventListener ('resize', () => {
+//   renderer.setSize(innerWidth, innerHeight)
+//   camera.aspect = innerWidth/innerHeight
+//   camera.updateProjectionMatrix()
+// })
+
+
 
 // function lamboPosition() {
 //   lambo.scene.children[0].position.set(
@@ -288,4 +277,4 @@ anime()
 //   // control.update()
 // }
 
-anime()
+// anime()

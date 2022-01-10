@@ -1,13 +1,5 @@
 import * as THREE from 'three';
-import * as dat from 'dat.gui'
-// const dimension = {
-//     options: {
-//         width: 1,
-//         height: 1,
-//         widthSegments: 1,
-//         heightSegments: 1
-//     }
-// }
+import { GUI } from 'dat.gui';
 
 
 export function planeObject(texture){
@@ -37,17 +29,36 @@ const dimension = {
     }
 }
 
+const coordinates = {
+    options: {
+        x : 0, 
+        y : 0,
+        z : 0
+    }
+}
+
+// const rotation = {
+//     options: {
+//         x : 0,
+//         y : 0,
+//         z : 0
+//     }
+// }
+
 export class CreatePlanes {
     constructor (){
         this.material = new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(0xe0f4ff)
         })
-        this.geometry = new THREE.PlaneGeometry(10, 10, 1 , 1)
-        this.plane = new THREE.Mesh(this.material, this.geometry)
+        this.geometry = new THREE.PlaneGeometry(5, 5, 1 , 1)
+        this.plane = new THREE.Mesh(this.geometry, this.material)
         this.texture_loader = new THREE.TextureLoader()
     }
 
+    getPlane(){
+        return this.plane
+    }
     seeThroughPlane(){
         //TODO
     }
@@ -73,23 +84,53 @@ export class CreatePlanes {
         return this.plane
     }
 
-    #chageDimension(object){
-        object.geometry.dispose()
-        object.geometry = new THREE.PlaneBufferGeometry(
-            dimension.options.width,
-            dimension.options.height,
-            dimension.widthSegments,
-            dimension.options.heightSegments
-        )
+    controlSize(object, controls){
+        
+        function changeDimension (){
+            object.geometry.dispose()
+            object.geometry = new THREE.PlaneBufferGeometry(
+                dimension.options.width,
+                dimension.options.height,
+                dimension.widthSegments,
+                dimension.options.heightSegments
+            )
+        }
+        const control = controls.addFolder('Plane Dimension')
+        control.add(dimension.options, 'width', 0, 50, 0.01).onChange(changeDimension)
+        control.add(dimension.options, 'height', 0, 50, 0.01).onChange(changeDimension)
+        control.add(dimension.options, 'widthSegments', 0, 50, 0.01).onChange(changeDimension)
+        control.add(dimension.options, 'heightSegments', 0, 50, 0.01).onChange(changeDimension)
     }
 
-    controlFolder(object){
-        const controls = new dat.GUI()
-        const planeControl = controls.addFolder('Plane Dimension')
-        planeControl.add(dimension.options, 'width', 0, 50, 0.1).onChange(object, this.#chageDimension)
-        planeControl.add(dimension.options, 'height', 0, 50, 0.1).onChange(object, this.#chageDimension)
-        planeControl.add(dimension.options, 'widthSegments', 0, 50, 0.1).onChange(object, this.#chageDimension)
-        planeControl.add(dimension.options, 'heightSegments', 0, 50, 0.1).onChange(object, this.#chageDimension)
+    controlLocation(object, controls){
+
+        function planePosition(){
+            object.position.set(
+                coordinates.options.x,
+                coordinates.options.y,
+                coordinates.options.z
+            )
+        }
+        const control = controls.addFolder('Plane Position')
+        control.add(coordinates.options, 'x', -50, 50, 0.001).onChange(planePosition)
+        control.add(coordinates.options, 'y', -50, 50, 0.001).onChange(planePosition)
+        control.add(coordinates.options, 'z', -50, 50, 0.001).onChange(planePosition)
+
+    }
+
+    controlRotation(object, controls){
+
+        function planeRotation() {
+            object.rotation.set (
+                coordinates.options.x,
+                coordinates.options.y,
+                coordinates.options.z
+            )
+        }
+        const control = controls.addFolder('Plane Rotation')
+        control.add(coordinates.options, 'x', -50, 50, 0.001).onChange(planeRotation)
+        control.add(coordinates.options, 'y', -50, 50, 0.001).onChange(planeRotation)
+        control.add(coordinates.options, 'z', -50, 50, 0.001).onChange(planeRotation)
     }
 
     copyPlane(){

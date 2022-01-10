@@ -6,6 +6,5 @@ export function createCamera(){
     const near = 0.1
     const camera = new PerspectiveCamera(75, aspectRatio, near, far)
     camera.position.setZ(5)
-
     return camera
 }

@@ -1,7 +1,7 @@
 
 # Stream Of Quality (SOQ) - 3 Dimension
 
-This project uses vanila js and three js to model 3 dimension model(s) of manufacture line.
+This project uses vanila js and light weight three js to load model 3 dimension model(s) of manufacture line.
 
 
 ## Motivation
@@ -11,8 +11,7 @@ to display the current time status or any data directly from the manufacture lin
 
 ## Code Style
 
-This project uses none Object Oriented Programming (OOP). 
-Rather, it uses basic Functional Programming
+This project uses both Object Oriented Programming (OOP) and Functional Programming to organization unit codes
 
 ## webserver should look like
 
@@ -48,21 +47,23 @@ Rather, it uses basic Functional Programming
 ├── package-lock.json
 ├── package.json
 ├── src
+│   ├── Display.js
 │   ├── cloneMain.js
-│   └── plateForm
-│       ├── components
-│       │   ├── camera.js
-│       │   ├── light.js
-│       │   └── scene.js
-│       ├── models
-│       │   ├── model.js
-│       │   ├── plane.js
-│       │   └── setUp.js
-│       └── systemControls
-│           ├── Control.js
-│           ├── Loop.js
-│           ├── Renderer.js
-│           └── Resizer.js
+│   ├── plateForm
+│   │   ├── components
+│   │   │   ├── camera.js
+│   │   │   ├── light.js
+│   │   │   └── scene.js
+│   │   ├── models
+│   │   │   ├── model.js
+│   │   │   ├── plane.js
+│   │   │   └── setUp.js
+│   │   └── systemControls
+│   │       ├── Control.js
+│   │       ├── Loop.js
+│   │       ├── Renderer.js
+│   │       └── Resizer.js
+│   └── simpleMain.js
 └── style.css
 
 ```

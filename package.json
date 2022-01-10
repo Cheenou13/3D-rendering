@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dat.gui": "^0.7.7",
+    "lodash-es": "^4.17.21",
     "three": "^0.136.0"
   }
 }
