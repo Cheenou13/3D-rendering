@@ -15,7 +15,7 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 
 ## webserver should look like
 
-![App Screenshot](examples/updatedLambo.png)
+![App Screenshot](examples/UpdatedScreen.png)
 
 
 ## Build Structure

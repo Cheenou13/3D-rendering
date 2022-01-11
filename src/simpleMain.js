@@ -5,13 +5,20 @@ const model = 'importedModels/model.gltf'
 const guiControl = new GUI()
 async function main(){
 
-  const play = new DisplayModels(document)
-  const model3D = await play.loadnig(model)
-  play.addModelPosition(model3D, guiControl)
-  play.addModelRotation(model3D, guiControl)
-  play.addToScene(model3D)
+  const device = new DisplayModels(document)
+  const planexGenerator = new CreatePlanes()
+  const texturePlane = planexGenerator.loadTexturePlane('importedModels/screenBackground/techBackground.jpg')
+  
+  const model3D = await device.loadnig(model)
+  device.addModelRotation(model3D, guiControl)
+  device.addModelPosition(model3D, guiControl)
+  planexGenerator.controlLocation(texturePlane, guiControl)
+  planexGenerator.controlRotation(texturePlane, guiControl)
+  planexGenerator.controlSize(texturePlane, guiControl)
+  device.addToScene(model3D)
+  // device.addToScene(texturePlane)
 
-  play.display ()
+  device.display ()
 
   
 }

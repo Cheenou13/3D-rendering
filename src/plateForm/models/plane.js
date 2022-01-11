@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { GUI } from 'dat.gui';
 
 
 export function planeObject(texture){
@@ -29,21 +28,6 @@ const dimension = {
     }
 }
 
-const coordinates = {
-    options: {
-        x : 0, 
-        y : 0,
-        z : 0
-    }
-}
-
-// const rotation = {
-//     options: {
-//         x : 0,
-//         y : 0,
-//         z : 0
-//     }
-// }
 
 export class CreatePlanes {
     constructor (){
@@ -51,7 +35,7 @@ export class CreatePlanes {
             side: THREE.DoubleSide,
             color: new THREE.Color(0xe0f4ff)
         })
-        this.geometry = new THREE.PlaneGeometry(5, 5, 1 , 1)
+        this.geometry = new THREE.PlaneGeometry(11, 8.5, 1 , 1)
         this.plane = new THREE.Mesh(this.geometry, this.material)
         this.texture_loader = new THREE.TextureLoader()
     }
@@ -81,6 +65,9 @@ export class CreatePlanes {
             normalMap: normalTexture
         })
         this.plane = new THREE.Mesh(this.geometry, this.material)
+        this.plane.position.set(0, -1.5, 0)
+        this.plane.rotation.set(-1.571, 0, 0.86)
+    
         return this.plane
     }
 
@@ -96,41 +83,27 @@ export class CreatePlanes {
             )
         }
         const control = controls.addFolder('Plane Dimension')
-        control.add(dimension.options, 'width', 0, 50, 0.01).onChange(changeDimension)
-        control.add(dimension.options, 'height', 0, 50, 0.01).onChange(changeDimension)
-        control.add(dimension.options, 'widthSegments', 0, 50, 0.01).onChange(changeDimension)
-        control.add(dimension.options, 'heightSegments', 0, 50, 0.01).onChange(changeDimension)
+        control.add(dimension.options, 'width', 0, 50, 0.001).onChange(changeDimension)
+        control.add(dimension.options, 'height', 0, 50, 0.001).onChange(changeDimension)
+        control.add(dimension.options, 'widthSegments', 0, 50, 0.001).onChange(changeDimension)
+        control.add(dimension.options, 'heightSegments', 0, 50, 0.001).onChange(changeDimension)
     }
 
     controlLocation(object, controls){
 
-        function planePosition(){
-            object.position.set(
-                coordinates.options.x,
-                coordinates.options.y,
-                coordinates.options.z
-            )
-        }
         const control = controls.addFolder('Plane Position')
-        control.add(coordinates.options, 'x', -50, 50, 0.001).onChange(planePosition)
-        control.add(coordinates.options, 'y', -50, 50, 0.001).onChange(planePosition)
-        control.add(coordinates.options, 'z', -50, 50, 0.001).onChange(planePosition)
+        control.add(object.position, 'x', -Math.PI, Math.PI, 0.001)
+        control.add(object.position, 'y', -Math.PI, Math.PI, 0.001)
+        control.add(object.position, 'z', -Math.PI, Math.PI, 0.001)
 
     }
 
     controlRotation(object, controls){
 
-        function planeRotation() {
-            object.rotation.set (
-                coordinates.options.x,
-                coordinates.options.y,
-                coordinates.options.z
-            )
-        }
         const control = controls.addFolder('Plane Rotation')
-        control.add(coordinates.options, 'x', -50, 50, 0.001).onChange(planeRotation)
-        control.add(coordinates.options, 'y', -50, 50, 0.001).onChange(planeRotation)
-        control.add(coordinates.options, 'z', -50, 50, 0.001).onChange(planeRotation)
+        control.add(object.rotation, 'x', -Math.PI, Math.PI, 0.001)
+        control.add(object.rotation, 'y', -Math.PI, Math.PI, 0.001)
+        control.add(object.rotation, 'z', -Math.PI, Math.PI, 0.001)
     }
 
     copyPlane(){

@@ -6,81 +6,63 @@ import { createRenderer } from "./plateForm/systemControls/Renderer"
 import { loadModel } from "./plateForm/models/model"
 import { Loop } from "./plateForm/systemControls/Loop"
 import { Resizer } from "./plateForm/systemControls/Resizer"
+import { GUI } from 'dat.gui';
 
+let camera, renderer, scene, control, loop
 
-const coordinates = {
-    options : {
-        x : -1.571,
-        y : 0,
-        z : 0.86
-    }
-}
 export class DisplayModels {
     constructor(document){
-        this.camera = createCamera()
-        this.renderer = createRenderer()
-        this.scene = createScene()
-        this.loop = new Loop(this.camera, this.scene, this.renderer)
-        document.body.appendChild(this.renderer.domElement)
+        camera = createCamera()
+        renderer = createRenderer()
+        scene = createScene()
+        loop = new Loop(camera, scene, renderer)
+        control = createControl(camera, renderer)
+        const {frontLight, backLight, topLight, bottomLight} = createLights()
+        control.autoRotate = true
+        loop.updatables.push(control)
+        scene.add(frontLight, backLight, topLight, bottomLight)
+        camera.position.set(6, 2.4297, 6)
 
-        const control = createControl(this.camera, this.renderer.domElement)
-        const {frontLight, backLight, ambientLight} = createLights()
-
-        this.loop.updatables.push(control)
-        this.scene.add(frontLight, backLight, ambientLight)
         
-        new Resizer(this.camera, this.renderer)
+        new Resizer(camera, renderer)
+        document.body.appendChild(renderer.domElement)
         
     }
 
     async loadnig(file){
         const model = await loadModel(file)
-        // this.scene.add(model)
         return model
     }
 
-    addModelRotation(model, controls){
-        function rotation() {
-            model.rotation.set (
-                coordinates.options.x,
-                coordinates.options.y,
-                coordinates.options.z
-            )
-        }
-       
-        const control = controls.addFolder('Model Rotation')
-        control.add(coordinates.options, 'x', -Math.PI, Math.PI, 0.001).onChange(rotation)
-        control.add(coordinates.options, 'y', -Math.PI, Math.PI, 0.001).onChange(rotation)
-        control.add(coordinates.options, 'x', -Math.PI, Math.PI, 0.001).onChange(rotation)
+    addModelRotation(model, controls, name){
+        
+        const control = controls.addFolder(name)
+        control.add(model.rotation, 'x', -Math.PI/2, Math.PI, 0.001)
+        control.add(model.rotation, 'y', -Math.PI/2, Math.PI, 0.001)
+        control.add(model.rotation, 'z', -Math.PI/2, Math.PI, 0.001)
     }
 
-    addModelPosition(model, controls){
-        function position() {
-            model.position.set(
-                coordinates.options.x,
-                coordinates.options.y,
-                coordinates.options.z
-            )
-        }
-        const control = controls.addFolder('Model Position')
-        control.add(coordinates.options, 'x', -Math.PI, Math.PI, 0.01).onChange(position)
-        control.add(coordinates.options, 'y', -Math.PI, Math.PI, 0.01).onChange(position)
-        control.add(coordinates.options, 'z', -Math.PI, Math.PI, 0.01).onChange(position)
+    addModelPosition(model, controls, name){
+       
+        const control = controls.addFolder(name)
+        control.add(model.position, 'x', -Math.PI, Math.PI, 0.01)
+        control.add(model.position, 'y', -Math.PI, Math.PI, 0.01)
+        control.add(model.position, 'z', -Math.PI, Math.PI, 0.01)
     }
 
     addToScene(model){
-        this.scene.add(model)
+        scene.add(model)
     }
 
     render(){
-        this.renderer.render(this.scene, this.camera)
+        renderer.render(scene, camera)
     }
 
     display() {
-        this.loop.start()
+        loop.start()
     }
     stop(){
-        this.loop.stop()
+        loop.stop()
     }
 
 

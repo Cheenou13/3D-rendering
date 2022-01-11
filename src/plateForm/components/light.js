@@ -11,7 +11,7 @@ function createLights (){
     backLight.position.set(10, 10, -10)
 
     bottomLight.position.set(0, -1, 0)
-    topLight.position.set(0.5, 1, 0.5)
+    topLight.position.set(0, 1, 0)
 
 
     return {ambientLight, topLight, bottomLight, frontLight, backLight}

@@ -7,8 +7,10 @@ export async function loadModel() {
     const loader = new GLTFLoader()
     const loadedData = await loader.loadAsync('importedModels/model.gltf')
     const model = extractModel(loadedData)
-    model.position.set(0, -1.03, -0.97)
-    model.rotation.set(-1.176, 0, -1.173)
+
+    model.rotation.z = 0.86
+    model.position.set(0, -1.5, 0)
+
     return model
 }
 
