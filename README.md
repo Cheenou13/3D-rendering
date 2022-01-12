@@ -24,6 +24,7 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 .
 ├── README.md
 ├── examples
+│   ├── UpdatedScreen.png
 │   ├── lambo_codes.png
 │   └── updatedLambo.png
 ├── favicon.svg
@@ -34,6 +35,8 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   ├── scene.bin
 │   ├── screenBackground
 │   │   ├── NormalMap.png
+│   │   ├── floorMetal.jpeg
+│   │   ├── metalMapping.jpeg
 │   │   └── techBackground.jpg
 │   └── textures
 │       ├── CENTENARIO_baseColor.jpeg
@@ -63,6 +66,8 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │       ├── Loop.js
 │   │       ├── Renderer.js
 │   │       └── Resizer.js
+│   ├── shader
+│   │   └── VertexShader.glsl
 │   └── simpleMain.js
 └── style.css
 
