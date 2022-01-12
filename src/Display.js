@@ -18,7 +18,7 @@ export class DisplayModels {
         loop = new Loop(camera, scene, renderer)
         control = createControl(camera, renderer)
         const {frontLight, backLight, topLight, bottomLight} = createLights()
-        control.autoRotate = true
+        // control.autoRotate = true
         loop.updatables.push(control)
         scene.add(frontLight, backLight, topLight, bottomLight)
         camera.position.set(6, 2.4297, 6)

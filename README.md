@@ -82,8 +82,9 @@ Install with npm
     - npm install --save dat
 ```
 ## clone repo
-
-- git clone git@gitlab.com:foxconn-iai-soq/soq-3d.git
+```sh
+git clone git@gitlab.com:foxconn-iai-soq/soq-3d.git
+```
 - npm install for dependencies
     
 ## Git help

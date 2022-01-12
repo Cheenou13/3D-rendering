@@ -9,7 +9,7 @@ export async function loadModel() {
     const model = extractModel(loadedData)
 
     model.rotation.z = 0.86
-    model.position.set(0, -1.5, 0)
+    model.position.set(0, -1.38, 0)
 
     return model
 }
