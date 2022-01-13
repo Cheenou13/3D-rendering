@@ -51,6 +51,7 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ├── package.json
 ├── src
 │   ├── Display.js
+│   ├── TestFile.js
 │   ├── cloneMain.js
 │   ├── plateForm
 │   │   ├── components
@@ -58,6 +59,7 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │   │   ├── light.js
 │   │   │   └── scene.js
 │   │   ├── models
+│   │   │   ├── LineGenerator.js
 │   │   │   ├── model.js
 │   │   │   ├── plane.js
 │   │   │   └── setUp.js
