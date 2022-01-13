@@ -2,6 +2,7 @@
 import TextPlane from '@seregpie/three.text-plane';
 import * as THREE from 'three';
 import { BoxGeometry } from 'three';
+import chroma from "chroma-js"
 
 
 
@@ -16,10 +17,10 @@ const dimension = {
 
 let data = {
     options: {
-      data1: 'data1: ',
-      data2: 'data2: ',
-      data3: 'data3: ',
-      data4: 'data4: '
+      data1: undefined,
+      data2: undefined,
+      data3: undefined,
+      data4: undefined
     }
   }
 
@@ -47,17 +48,22 @@ export class CreatePlanes {
         const status = this.#getSingleText(text)
         const textPlane = new TextPlane ({
             alignment: 'left',
+            // color: 'green',
             backgroundColor: chroma('#073b4c').alpha(1/3).css(),
             fontFamily: '"Times New Roman", Times, serif',
             fontSize: 0.2,
             paddingIndex: 1,
             text:[
-                data.options.data1+'testing',
-                data.options.data2+'testing',
-                data.options.data3+'testing',
-                data.options.data4+'testing' 
+                text == 'undefined' ? 'data1: testing' : 'data1: '+status.text,
+                text == 'undefined' ? 'data2: testing' : 'data2: '+status.text,
+                text == 'undefined' ? 'data3: testing' : 'data3: '+status.text,
+                text == 'undefined' ? 'data4: testing' : 'data4: '+status.text
               ].join('\n')
-        })
+        }, new THREE.MeshBasicMaterial({
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.7
+          }))
 
         return textPlane
     }
@@ -116,18 +122,22 @@ export class CreatePlanes {
     controlLocation(object, controls, name){
 
         const control = controls.addFolder(name)
-        control.add(object.position, 'x', -Math.PI, Math.PI, 0.001)
-        control.add(object.position, 'y', -Math.PI, Math.PI, 0.001)
-        control.add(object.position, 'z', -Math.PI, Math.PI, 0.001)
+        control.add(object.position, 'x', -Math.PI*2, Math.PI*2, 0.001)
+        control.add(object.position, 'y', -Math.PI*2, Math.PI*2, 0.001)
+        control.add(object.position, 'z', -Math.PI*2, Math.PI*2, 0.001)
 
     }
 
+    changeFont (object, controls, name){
+        const control = controls.addFolder(name)
+        control.add(object, 'fontSize', 0, 5, 0.001)
+    }    
     controlRotation(object, controls, name){
 
         const control = controls.addFolder(name)
-        control.add(object.rotation, 'x', -Math.PI, Math.PI, 0.001)
-        control.add(object.rotation, 'y', -Math.PI, Math.PI, 0.001)
-        control.add(object.rotation, 'z', -Math.PI, Math.PI, 0.001)
+        control.add(object.rotation, 'x', -Math.PI*2, Math.PI*2, 0.001)
+        control.add(object.rotation, 'y', -Math.PI*2, Math.PI*2, 0.001)
+        control.add(object.rotation, 'z', -Math.PI*2, Math.PI*2, 0.001)
     }
 
     cloePlane(){

@@ -11,11 +11,11 @@ const setSize = (camera, renderer) => {
 }
 
 export class Resizer {
-    constructor(container, camera, renderer) {
-        setSize(container, camera, renderer)
+    constructor(camera, renderer) {
+        setSize(camera, renderer)
 
         window.addEventListener('resize', () => {
-            setSize(container, camera, renderer)
+            setSize(camera, renderer)
             this.onResize()
         }, false)
     }
