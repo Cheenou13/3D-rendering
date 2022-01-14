@@ -45,24 +45,23 @@ export class CreatePlanes {
         return report
     }
     getTextPlane(text){
-        const status = this.#getSingleText(text)
+        // const status = this.#getSingleText(text)
         const textPlane = new TextPlane ({
             alignment: 'left',
             // color: 'green',
             backgroundColor: chroma('#073b4c').alpha(1/3).css(),
             fontFamily: '"Times New Roman", Times, serif',
             fontSize: 0.2,
-            paddingIndex: 1,
+            paddingIndex: 0.5,
             text:[
-                text == 'undefined' ? 'data1: testing' : 'data1: '+status.text,
-                text == 'undefined' ? 'data2: testing' : 'data2: '+status.text,
-                text == 'undefined' ? 'data3: testing' : 'data3: '+status.text,
-                text == 'undefined' ? 'data4: testing' : 'data4: '+status.text
+                'Testing: '+ text,
+                'Test subject: # 2'
               ].join('\n')
         }, new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
+            flatShading: true, 
             transparent: true,
-            opacity: 0.7
+            opacity: 1
           }))
 
         return textPlane

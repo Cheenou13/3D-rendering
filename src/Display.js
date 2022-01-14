@@ -7,8 +7,10 @@ import { loadModel } from "./plateForm/models/model"
 import { Loop } from "./plateForm/systemControls/Loop"
 import { Resizer } from "./plateForm/systemControls/Resizer"
 import { GUI } from 'dat.gui';
+import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
 
-let camera, renderer, scene, control, loop
+
+let camera, renderer, scene, orbit, loop, control
 
 export class DisplayModels {
     constructor(document){
@@ -16,16 +18,28 @@ export class DisplayModels {
         renderer = createRenderer()
         scene = createScene()
         loop = new Loop(camera, scene, renderer)
-        control = createControl(camera, renderer)
+        orbit = createControl(camera, renderer)
         const {frontLight, backLight, topLight, bottomLight} = createLights()
-        // control.autoRotate = true
-        loop.updatables.push(control)
+        orbit.autoRotate = true
+        orbit.addEventListener('change', this.display)
+        loop.updatables.push(orbit)
         scene.add(frontLight, backLight, topLight, bottomLight)
-        camera.position.set(6, 2.4297, 6)
+        camera.position.set(5.7, 1.95, 5)
+
+        // const camControl = new GUI().addFolder('camera view')
+        // camControl.add(camera.position, 'x', -Math.PI*2, Math.PI*2, 0.001)
+        // camControl.add(camera.position, 'y', -Math.PI*2, Math.PI*2, 0.001)
+        // camControl.add(camera.position, 'z', -Math.PI*2, Math.PI*2, 0.001)
 
         
         new Resizer(camera, renderer)
         document.body.appendChild(renderer.domElement)
+
+        control = new TransformControls (camera, renderer.domElement)
+        control.addEventListener('change', this.display)
+        control.addEventListener('dragging-changed', (event) => {
+            orbit.enabled = !event.value
+        })
         
     }
 
@@ -34,6 +48,19 @@ export class DisplayModels {
         return model
     }
 
+    getTransformControl(){
+        return control
+    }
+
+    getScene(){
+        return scene
+    }
+    getCamera(){
+        return camera
+    }
+    getRenderer(){
+        return renderer
+    }
     addModelRotation(model, controls, name){
         
         const control = controls.addFolder(name)

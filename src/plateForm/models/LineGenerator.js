@@ -30,9 +30,9 @@ let lineGeometry, linematerial, line
 
 export class CreateLine{
     constructor(){
-        points.push( new THREE.Vector3( -1, 1, 1))
-        points.push( new THREE.Vector3( 1, 1, 1))
-        points.push( new THREE.Vector3( -1, 1, 1))
+        points.push( new THREE.Vector3( 0, 0, 0))
+        points.push( new THREE.Vector3( 0, 0, 0))
+        points.push( new THREE.Vector3( 0, 0, 0))
         linematerial = new THREE.LineBasicMaterial()
         lineGeometry = new THREE.BufferGeometry().setFromPoints(points)
         line = new THREE.Line(lineGeometry, linematerial)

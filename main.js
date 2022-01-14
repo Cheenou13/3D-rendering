@@ -1,9 +1,14 @@
 import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
-import {CreatePlanes } from './src/plateForm/models/plane'
+import { CreatePlanes } from './src/plateForm/models/plane'
 import { CreateLine } from "./src/plateForm/models/LineGenerator"
-
-async function main(){
+import { transform } from "./src/plateForm/systemControls/TransformControl"
+import * as THREE from 'three'
+import { Float32BufferAttribute } from "three"
+// import DragControls from 'drag-controls'
+// import * as THREE from 'three'
+// DragControls.install({THREE: THREE})
+async function main() {
 
   const model = 'importedModels/model.gltf'
   const guiControl = new GUI()
@@ -13,15 +18,34 @@ async function main(){
   const line = lineGenerator.getLine()
   const lineControler = new GUI()
   const texturePlane = planexGenerator.loadTexturePlane('importedModels/screenBackground/metalMapping.jpeg')
-  
+
+  const starGeometry = new THREE.BufferGeometry()
+  const starMaterial = new THREE.PointsMaterial({
+    color: 0xffffff
+  })
+
+  const stars = new THREE.Points(starGeometry, starMaterial)
+  const starVertices = []
+
+  for (let index = 0; index < 10000; index++) {
+    const x = (Math.random() - 0.5) * 2000
+    const y = (Math.random() - 0.5) * 2000
+    const z = (Math.random() -0.5)* 3000
+    starVertices.push(x, y, z)
+  }
+
+  console.log(starVertices)
+  starGeometry.setAttribute('position', new Float32BufferAttribute (starVertices, 3))
+
   const car1 = await device.loadnig(model)
   const car2 = await device.loadnig(model)
   const car3 = await device.loadnig(model)
   const textPlane = planexGenerator.getTextPlane('loading')
+  const transformControls = device.getTransformControl()
   car2.position.set(-2.28, -1.38, 2.78)
   car2.rotation.set(-1.55, 0.009, 0.841)
   car3.position.set(2.28, -1.38, -2.78)
-  textPlane.position.set(-3.178, 0.841, -2.623)
+  textPlane.position.set(0, 0.426, 0)
   textPlane.rotation.set(0, 0.841, 0)
   device.addModelRotation(car1, guiControl, 'Car1 Rotation')
   device.addModelRotation(car2, guiControl, 'Car2 Rotation')
@@ -38,18 +62,22 @@ async function main(){
   lineGenerator.lengthFolder(lineControler, line, 'Line index 0', 0)
   lineGenerator.lengthFolder(lineControler, line, 'Line index 1', 1)
   lineGenerator.lengthFolder(lineControler, line, 'Line index 2', 2)
-  lineGenerator.positionFolder(lineControler, line, 'Line Position')
-  lineGenerator.rotationFolder(lineControler, line, 'Line Rotation')
+ 
+  // lineGenerator.positionFolder(lineControler, line, 'Line Position')
+  // lineGenerator.rotationFolder(lineControler, line, 'Line Rotation')
   device.addToScene(car1)
   device.addToScene(car2)
   device.addToScene(car3)
   device.addToScene(texturePlane)
   device.addToScene(textPlane)
+  device.addToScene(stars)
+  transformControls.attach(line)
+  // device.addToScene(transformControls)
   device.addToScene(line)
 
-  device.display ()
+  // transform(transformControls)
+  device.display()
 
-  
 }
 
 main().catch((err) => {
