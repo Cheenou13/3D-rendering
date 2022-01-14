@@ -67,11 +67,13 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │       ├── Control.js
 │   │       ├── Loop.js
 │   │       ├── Renderer.js
-│   │       └── Resizer.js
+│   │       ├── Resizer.js
+│   │       └── TransformControl.js
 │   ├── shader
 │   │   └── VertexShader.glsl
 │   └── simpleMain.js
 └── style.css
+
 
 ```
 ## Environment setup with new project
