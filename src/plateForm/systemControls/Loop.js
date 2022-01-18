@@ -10,12 +10,14 @@ export class Loop {
         this.renderer = renderer
         this.updatables = []
     }
-    start(){
+    start(object){
         this.renderer.setAnimationLoop( () => {
             //every animation will tick forward one frame
             this.tick();
             // render the frame
             this.renderer.render(this.scene, this.camera)
+            object.children[0].rotation.y += 0.01
+            object.children[1]. rotation.z += 0.001
         })
     }
 

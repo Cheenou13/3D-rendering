@@ -32,11 +32,21 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   ├── Flamingo.glb
 │   ├── license.txt
 │   ├── model.gltf
+│   ├── old_oil_tank_.2
+│   │   ├── scene.bin
+│   │   ├── scene.gltf
+│   │   └── textures
+│   │       ├── Material_baseColor.jpeg
+│   │       ├── Material_metallicRoughness.png
+│   │       └── Material_normal.png
 │   ├── scene.bin
 │   ├── screenBackground
 │   │   ├── NormalMap.png
 │   │   ├── floorMetal.jpeg
 │   │   ├── metalMapping.jpeg
+│   │   ├── saturnmap.jpeg
+│   │   ├── saturnmap.jpg
+│   │   ├── star.png
 │   │   └── techBackground.jpg
 │   └── textures
 │       ├── CENTENARIO_baseColor.jpeg
@@ -55,6 +65,7 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   ├── cloneMain.js
 │   ├── plateForm
 │   │   ├── components
+│   │   │   ├── CreatePlanets.js
 │   │   │   ├── camera.js
 │   │   │   ├── light.js
 │   │   │   └── scene.js

@@ -8,9 +8,11 @@ import { Loop } from "./plateForm/systemControls/Loop"
 import { Resizer } from "./plateForm/systemControls/Resizer"
 import { GUI } from 'dat.gui';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
+import { saturn, stars } from "./plateForm/components/CreatePlanets"
+import * as THREE from 'three'
 
 
-let camera, renderer, scene, orbit, loop, control
+let camera, renderer, scene, orbit, loop, control, planet, theStars
 
 export class DisplayModels {
     constructor(document){
@@ -19,21 +21,29 @@ export class DisplayModels {
         scene = createScene()
         loop = new Loop(camera, scene, renderer)
         orbit = createControl(camera, renderer)
-        const {frontLight, backLight, topLight, bottomLight} = createLights()
+        const {frontLight, backLight, topLight, bottomLight, ambientLight} = createLights()
         orbit.autoRotate = true
+        orbit.autoRotateSpeed = 0.8
         orbit.addEventListener('change', this.display)
         loop.updatables.push(orbit)
-        scene.add(frontLight, backLight, topLight, bottomLight)
+        frontLight.castShadow = true
+        
+        scene.add(frontLight, backLight)
         camera.position.set(5.7, 1.95, 5)
-
+        
+        planet = saturn()
+        theStars = stars()
         // const camControl = new GUI().addFolder('camera view')
         // camControl.add(camera.position, 'x', -Math.PI*2, Math.PI*2, 0.001)
         // camControl.add(camera.position, 'y', -Math.PI*2, Math.PI*2, 0.001)
         // camControl.add(camera.position, 'z', -Math.PI*2, Math.PI*2, 0.001)
-
+        scene.add(planet)
+        scene.add(theStars)
         
         new Resizer(camera, renderer)
         document.body.appendChild(renderer.domElement)
+        renderer.shadowMap.enabled = true
+        renderer.shadowMap.type = THREE.PCFShadowMap
 
         control = new TransformControls (camera, renderer.domElement)
         control.addEventListener('change', this.display)
@@ -72,9 +82,9 @@ export class DisplayModels {
     addModelPosition(model, controls, name){
        
         const control = controls.addFolder(name)
-        control.add(model.position, 'x', -Math.PI, Math.PI, 0.01)
-        control.add(model.position, 'y', -Math.PI, Math.PI, 0.01)
-        control.add(model.position, 'z', -Math.PI, Math.PI, 0.01)
+        control.add(model.position, 'x', -Math.PI*2, Math.PI*2, 0.01)
+        control.add(model.position, 'y', -Math.PI*2, Math.PI*2, 0.01)
+        control.add(model.position, 'z', -Math.PI*2, Math.PI*2, 0.01)
     }
 
     addToScene(model){
@@ -86,7 +96,8 @@ export class DisplayModels {
     }
 
     display() {
-        loop.start()
+    
+        loop.start(planet)
     }
     stop(){
         loop.stop()

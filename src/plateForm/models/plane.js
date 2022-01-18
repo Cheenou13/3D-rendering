@@ -10,8 +10,7 @@ const dimension = {
     options: {
         width: 15,
         height: 15,
-        widthSegments: 1,
-        heightSegments: 1
+        diameter: 0.3,
     }
 }
 
@@ -59,7 +58,6 @@ export class CreatePlanes {
               ].join('\n')
         }, new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
-            flatShading: true, 
             transparent: true,
             opacity: 1
           }))
@@ -86,11 +84,11 @@ export class CreatePlanes {
          * @default color is ocean blue
          */
         const normalTexture = this.texture_loader.load(texture)
-        this.geometry = new BoxGeometry(11, 8.5, 0.3)
-        this.material = new THREE.MeshBasicMaterial({
+        this.geometry = new BoxGeometry(15.67, 9.6, 0.224)
+        this.material = new THREE.MeshPhongMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(typeof color === 'undefined' ? 0xe0f4ff : color),
-            // flatShading: THREE.FlatShading,
+            flatShading: THREE.FlatShading,
             map: normalTexture
         })
         this.plane = new THREE.Mesh(this.geometry, this.material)
@@ -104,18 +102,16 @@ export class CreatePlanes {
         
         function changeDimension (){
             object.geometry.dispose()
-            object.geometry = new THREE.PlaneBufferGeometry(
+            object.geometry = new BoxGeometry(
                 dimension.options.width,
                 dimension.options.height,
-                dimension.widthSegments,
-                dimension.options.heightSegments
+                dimension.options.diameter
             )
         }
         const control = controls.addFolder(name)
         control.add(dimension.options, 'width', 0, 50, 0.001).onChange(changeDimension)
         control.add(dimension.options, 'height', 0, 50, 0.001).onChange(changeDimension)
-        control.add(dimension.options, 'widthSegments', 0, 50, 0.001).onChange(changeDimension)
-        control.add(dimension.options, 'heightSegments', 0, 50, 0.001).onChange(changeDimension)
+        control.add(dimension.options, 'diameter', 0, 50, 0.001).onChange(changeDimension)
     }
 
     controlLocation(object, controls, name){
