@@ -85,7 +85,7 @@ export class CreatePlanes {
          */
         const normalTexture = this.texture_loader.load(texture)
         this.geometry = new BoxGeometry(15.67, 9.6, 0.224)
-        this.material = new THREE.MeshPhongMaterial({
+        this.material = new THREE.MeshPhysicalMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(typeof color === 'undefined' ? 0xe0f4ff : color),
             flatShading: THREE.FlatShading,

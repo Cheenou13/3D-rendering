@@ -22,13 +22,12 @@ export class DisplayModels {
         loop = new Loop(camera, scene, renderer)
         orbit = createControl(camera, renderer)
         const {frontLight, backLight, topLight, bottomLight, ambientLight} = createLights()
-        orbit.autoRotate = true
+        // orbit.autoRotate = true
         orbit.autoRotateSpeed = 0.8
         orbit.addEventListener('change', this.display)
         loop.updatables.push(orbit)
-        frontLight.castShadow = true
         
-        scene.add(frontLight, backLight)
+        scene.add(frontLight, backLight, topLight)
         camera.position.set(5.7, 1.95, 5)
         
         planet = saturn()
@@ -53,9 +52,9 @@ export class DisplayModels {
         
     }
 
-    async loadnig(file){
-        const model = await loadModel(file)
-        return model
+    async loadnig(){
+        const objects = await loadModel()
+        return objects
     }
 
     getTransformControl(){
@@ -74,17 +73,18 @@ export class DisplayModels {
     addModelRotation(model, controls, name){
         
         const control = controls.addFolder(name)
-        control.add(model.rotation, 'x', -Math.PI/2, Math.PI, 0.001)
-        control.add(model.rotation, 'y', -Math.PI/2, Math.PI, 0.001)
-        control.add(model.rotation, 'z', -Math.PI/2, Math.PI, 0.001)
+        control.add(model.rotation, 'x', -Math.PI/2, Math.PI*2, 0.001)
+        control.add(model.rotation, 'y', -Math.PI/2, Math.PI*2, 0.001)
+        control.add(model.rotation, 'z', -Math.PI/2, Math.PI*2, 0.001)
     }
 
     addModelPosition(model, controls, name){
        
         const control = controls.addFolder(name)
-        control.add(model.position, 'x', -Math.PI*2, Math.PI*2, 0.01)
-        control.add(model.position, 'y', -Math.PI*2, Math.PI*2, 0.01)
-        control.add(model.position, 'z', -Math.PI*2, Math.PI*2, 0.01)
+        control.add(model.position, 'x', -(Math.PI*100), Math.PI*100, 0.001)
+        control.add(model.position, 'y', -(Math.PI*100), Math.PI*100, 0.001)
+        control.add(model.position, 'z', -(Math.PI*100), Math.PI*100, 0.001)
+        
     }
 
     addToScene(model){
