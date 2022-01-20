@@ -1,85 +1,93 @@
 import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
 import { CreatePlanes } from './src/plateForm/models/plane'
-import { CreateLine } from "./src/plateForm/models/LineGenerator"
-import { transform } from "./src/plateForm/systemControls/TransformControl"
-import * as THREE from 'three'
-// import DragControls from 'drag-controls'
-// import * as THREE from 'three'
-// DragControls.install({THREE: THREE})
+
+
 async function main() {
-  const guiControl = new GUI()
-  // const oilTankFolder = new GUI()
+  // const guiControl = new GUI()
   const device = new DisplayModels(document)
   const planexGenerator = new CreatePlanes()
-  const lineGenerator = new CreateLine()
-  const line = lineGenerator.getLine()
-  // const lineControler = new GUI()
   const texturePlane = planexGenerator.loadTexturePlane('importedModels/screenBackground/metalMapping.jpeg')
-  const objects = await device.loadnig()
-  console.log(objects)
-  // const oilMachine = await device.loadnig(oilTank)
-  // const car3 = await device.loadnig(model)
-  // const textPlane = planexGenerator.getTextPlane('loading')
-  // const textPlane2 = planexGenerator.getTextPlane('loading')
-  // const textPlane3 = planexGenerator.getTextPlane('loading')
-
-  // const oilTankSize = oilTankFolder.addFolder('oil Tank Size')
-  // const oilTankPos = oilTankFolder.addFolder('Oil Tank Position')
-  // const oilTankRot = oilTankFolder.addFolder('Oil Tank Rotation')
-
-  // oilTankPos.add(oilMachine.position, 'x', -100, 100, 0.001)
-  // oilTankPos.add(oilMachine.position, 'y', -100, 100, 0.001)
-  // oilTankPos.add(oilMachine.position, 'z', -100, 100, 0.001)
-
-  // oilMachine.scale.set(0.01, 0.01, 0.01)
-  // oilTankSize.add(oilMachine.scale, 'x', -1000, 1000, 0.01)
-  // oilTankSize.add(oilMachine.scale, 'y', -1000, 1000, 0.01)
-  // oilTankSize.add(oilMachine.scale, 'z', -1000, 1000, 0.01)
-
-  // oilMachine.position.set(-6.462, -1.38, 4.17)
-  // oilMachine.rotation.set(-1.563, 0.009, 2.452)
+  const 
+  {
+    lifter1, lifter2, manualStat1, manualStat2, manualStat3,
+    manualStat4, FAN_PSU, DIMM, AOI
+  } = await device.loadnig()
   
-  // car3.position.set(2.28, -1.38, -2.78)
-  // textPlane.position.set(0, 0.426, 0)
-  // textPlane.rotation.set(0, 0.841, 0)
-  // textPlane2.position.set(-2.504, 0.426, 2.6)
-  // textPlane2.rotation.set(0, 0.841, 0)
-  // textPlane3.position.set(2.504, 0.426, -2.6)
-  // textPlane3.rotation.set(0, 0.841, 0)
-  device.addModelRotation(objects.children[0], guiControl, 'OilTank1 Rotation')
-  // device.addModelRotation(car3, guiControl, 'Car3 Rotation')
-  device.addModelPosition(objects.children[0], guiControl, 'OilTank1 position')
-  // device.addModelPosition(car3, guiControl, 'Car3 Position')
-  // planexGenerator.controlLocation(texturePlane, guiControl, 'Plane Position')
-  // planexGenerator.controlRotation(texturePlane, guiControl, 'Plane Rotation')
-  planexGenerator.controlSize(texturePlane, guiControl, 'Plane Size')
-  // planexGenerator.changeFont(textPlane, guiControl, 'text Plane')
-  // planexGenerator.controlLocation(textPlane3, guiControl, 'Text Plane Position')
-  // planexGenerator.controlRotation(textPlane3, guiControl, 'Text Plane Rotation')
-  // lineGenerator.lengthFolder(lineControler, line, 'Line index 0', 0)
-  // lineGenerator.lengthFolder(lineControler, line, 'Line index 1', 1)
-  // lineGenerator.lengthFolder(lineControler, line, 'Line index 2', 2)
-  // objects.add(
-  //   car1,
-  //    oilMachine, 
-  //    car3, 
-  //    texturePlane,
-  //    textPlane,
-  //    textPlane2,
-  //    textPlane3
-  //    )
-  objects.children[0].position.set(-4.5, -1.4, 7.5)
-  objects.children[0].rotation.set(-1.571, 0, 4.008)
-  device.addToScene(texturePlane)
-  device.addToScene(objects.children[0])
-  device.addToScene(objects.children[6])
-  device.addToScene(objects.children[2])
-  // device.addToScene(objects.children[3])
-  // transformControls.attach(line)
-  // device.addToScene(transformControls)
 
-  // transform(transformControls)
+  // device.addModelRotation(lifter1, guiControl, 'lifter1 Rotation')
+  // device.addModelPosition(lifter1, guiControl, 'lifter1 position')
+  // device.addModelRotation(manualStat1, guiControl, 'manualStat1 Rotation')
+  // device.addModelPosition(manualStat1, guiControl, 'manualStat1 position')
+  // device.addModelRotation(FAN_PSU, guiControl, 'FAN_PSU Rotation')
+  // device.addModelPosition(FAN_PSU, guiControl, 'FAN_PSU position')
+  // device.addModelRotation(DIMM, guiControl, 'DIMM Rotation')
+  // device.addModelPosition(DIMM, guiControl, 'DIMM position')
+  // device.addModelRotation(manualStat2, guiControl, 'manualStat2 Rotation')
+  // device.addModelPosition(manualStat2, guiControl, 'manualStat2 position')
+  // device.addModelRotation(manualStat3, guiControl, 'manualStat3 Rotation')
+  // device.addModelPosition(manualStat3, guiControl, 'manualStat3 position')
+  // device.addModelRotation(AOI, guiControl, 'AOI Rotation')
+  // device.addModelPosition(AOI, guiControl, 'AOI position')
+  // device.addModelRotation(manualStat4, guiControl, 'manualStat4 Rotation')
+  // device.addModelPosition(manualStat4, guiControl, 'manualStat4 position')
+  // device.addModelRotation(lifter2, guiControl, 'lifter2 Rotation')
+  // device.addModelPosition(lifter2, guiControl, 'lifter2 position')
+
+  const lift1Label = planexGenerator.getTextPlane('Lifter 1')
+  const mt1Label = planexGenerator.getTextPlane('Manual Station 1')
+  const fanLabel = planexGenerator.getTextPlane('FAN/PSU')
+  const dimmLabel = planexGenerator.getTextPlane('DIMM')
+  const mt2Label = planexGenerator.getTextPlane('Manual Station 2')
+  const mt3Label = planexGenerator.getTextPlane('Manual Station 3')
+  const aoiLabel = planexGenerator.getTextPlane('AOI')
+  const mt4Label = planexGenerator.getTextPlane('Manual Station 4')
+  const lifter2Label = planexGenerator.getTextPlane('Lifter 2')
+
+
+  lift1Label.rotation.set(0, 1.55, 0)
+  lift1Label.position.set(-7.126, 0.783, -2.278)
+  mt1Label.position.set(-5.34, 0.783, -2.278)
+  fanLabel.position.set(-3.554, 0.783, -2.278)
+  dimmLabel.position.set(-1.513, 0.783, -2.278)
+  mt2Label.position.set(0.23, 0.783, -2.278)
+  mt3Label.position.set(1.65, 0.783, -2.278)
+  aoiLabel.position.set(3.335, 0.783, -2.278)
+  mt4Label.position.set(5, 0.783, -2.278)
+  lifter2Label.position.set(7.126, 0.783, -2.278)
+  lifter2Label.rotation.set(0, -1.55, 0)
+  // device.addModelRotation(lift1Label, guiControl, 'lift1Label Rotation')
+  // device.addModelPosition(lift1Label, guiControl, 'lift1Label position')
+  // device.addModelPosition(mt1Label, guiControl, 'Manual Station 1 position')
+  // device.addModelPosition(fanLabel, guiControl, 'FAN/PSU position')
+  // device.addModelPosition(dimmLabel, guiControl, 'DIMM position')
+  // device.addModelPosition(mt2Label, guiControl, 'Manual Station 2 position')
+  // device.addModelPosition(mt3Label, guiControl, 'Manual Station 3 position')
+  // device.addModelPosition(aoiLabel, guiControl, 'AOI position')
+  // device.addModelPosition(mt4Label, guiControl, 'Manual Station 4 position')
+  // device.addModelRotation(lifter2Label, guiControl, 'lifter 2 Rotation')
+  // device.addModelPosition(lifter2Label, guiControl, 'Lifter 2 position')
+
+  device.addToScene(texturePlane)
+  device.addToScene(lifter1)
+  device.addToScene(manualStat1)
+  device.addToScene(FAN_PSU)
+  device.addToScene(DIMM)
+  device.addToScene(manualStat2)
+  device.addToScene(manualStat3)
+  device.addToScene(AOI)
+  device.addToScene(manualStat4)
+  device.addToScene(lifter2)
+  device.addToScene(lift1Label)
+  device.addToScene(mt1Label)
+  device.addToScene(fanLabel)
+  device.addToScene(dimmLabel)
+  device.addToScene(mt2Label)
+  device.addToScene(mt3Label)
+  device.addToScene(aoiLabel)
+  device.addToScene(mt4Label)
+  device.addToScene(lifter2Label)
+
   device.display()
 
 }

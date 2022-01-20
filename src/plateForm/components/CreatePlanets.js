@@ -2,6 +2,17 @@ import * as THREE from 'three'
 import { GUI } from 'dat.gui'
 import { Float32BufferAttribute } from "three"
 
+const ringsDimensions = {
+  options: {
+    innerRadius: 3,
+    outerRadius: 5,
+    roundness: 64,
+    phi: 1,
+    thetaStart: 0,
+    thetaLength: Math.PI*2
+  }
+}
+
 export function saturn (){
 
     const saturn = new THREE.Mesh(
@@ -30,27 +41,14 @@ export function saturn (){
         rings.geometry.attributes.uv.setXY(index, v3.length() < 4 ? 0 : 1, 1)
         
       }
+
+
       saturn.position.set(-20, 5, 0)
       rings.position.set(-20, 5, 0)
-      rings.rotation.set(1.53, -0.27, 0)
+      // rings.rotation.set(1.53, -0.27, 0)
       const planet = new THREE.Group()
       planet.add(saturn, rings)
 
-    //   const saturnFold = new GUI()
-    //   const saturnPosition = saturnFold.addFolder('Saturn Position')
-    //   const ringsPosition = saturnFold.addFolder('Rings Position')
-    //   const ringsRotation = saturnFold.addFolder('Rings Rotation')
-    //   saturnPosition.add(saturn.position, 'x', -100, 100, 1)
-    //   saturnPosition.add(saturn.position, 'y', -100, 100, 1)
-    //   saturnPosition.add(saturn.position, 'z', -100, 100, 1)
-
-    //   ringsPosition.add(rings.position, 'x', -100, 100, 1)
-    //   ringsPosition.add(rings.position, 'y', -100, 100, 1)
-    //   ringsPosition.add(rings.position, 'z', -100, 100, 1)
-
-    //   ringsRotation.add(rings.rotation, 'x', -Math.PI*2, Math.PI*2, 0.01)
-    //   ringsRotation.add(rings.rotation, 'y', -Math.PI*2, Math.PI*2, 0.01)
-    //   ringsRotation.add(rings.rotation, 'z', -Math.PI*2, Math.PI*2, 0.01)
       return planet
 }
 

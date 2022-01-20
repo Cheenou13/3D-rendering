@@ -25,43 +25,52 @@ export async function loadModel() {
         loader.loadAsync(productMach)
     ])
     
-    const oilTank1 = extractModel(oilTankD1)
-    const oilTank2 = extractModel(oilTankD2)
+    const lifter1 = extractModel(oilTankD1)
+    const lifter2 = extractModel(oilTankD2)
 
-    oilTank1.scale.set(0.013, 0.009, 0.013)
-    oilTank2.scale.set(0.013, 0.009, 0.013)
+    lifter1.scale.set(0.013, 0.009, 0.013)
+    lifter2.scale.set(0.013, 0.009, 0.013)
 
-    const wishMach1 = extractModel(wishMachD1)
-    const wishMach2 = extractModel(wishMachD2)
-    const wishMach3 = extractModel(wishMachD3)
-    const wishMach4 = extractModel(wishMachD4)
+    const manualStat1 = extractModel(wishMachD1)
+    const manualStat2 = extractModel(wishMachD2)
+    const manualStat3 = extractModel(wishMachD3)
+    const manualStat4 = extractModel(wishMachD4)
 
-    wishMach1.scale.set(0.13, 0.10, 0.13)
-    wishMach2.scale.set(0.13, 0.10, 0.13)
-    wishMach3.scale.set(0.13, 0.10, 0.13)
-    wishMach4.scale.set(0.13, 0.10, 0.13)
+    manualStat1.scale.set(0.13, 0.10, 0.13)
+    manualStat2.scale.set(0.13, 0.10, 0.13)
+    manualStat3.scale.set(0.13, 0.10, 0.13)
+    manualStat4.scale.set(0.13, 0.10, 0.13)
 
-    const productMach1 = extractModel(productMachD1)
-    const productMach2 = extractModel(productMachD2)
-    const productMach3 = extractModel(productMachD3)
+    const FAN_PSU = extractModel(productMachD1)
+    const DIMM = extractModel(productMachD2)
+    const AOI = extractModel(productMachD3)
 
-    productMach1.scale.set(0.38, 0.38, 0.38)
-    productMach2.scale.set(0.38, 0.38, 0.38)
-    productMach3.scale.set(0.38, 0.38, 0.38)
+    FAN_PSU.scale.set(0.38, 0.38, 0.38)
+    DIMM.scale.set(0.38, 0.38, 0.38)
+    AOI.scale.set(0.38, 0.38, 0.38)
 
-    const objects = new THREE.Group()
-    objects.add(oilTank1) // lifter 1
-    objects.add(oilTank2) // liefter 2
+    lifter1.rotation.set(-1.571, 0, 3.142)
+    lifter1.position.set(-9.932, -1.44, 1.045)
+    manualStat1.position.set(-5.085, -2.023, -2.278)
+    manualStat1.rotation.set(-1.571, 0, 4.701)
+    FAN_PSU.position.set(-3.554, -1.4, -2.278)
+    FAN_PSU.rotation.set(-1.571, 0, -1.571)
+    DIMM.position.set(-1.513, -1.4, -2.278)
+    DIMM.rotation.set(-1.571, 0, -1.571)
+    manualStat2.position.set(0.273, -2.023, -2.278)
+    manualStat2.rotation.set(-1.571, 0, 4.701)
+    manualStat3.position.set(1.77, -2.023, -2.26)
+    manualStat3.rotation.set(-1.571, 0, 4.701)
+    AOI.position.set(3.30, -1.4, -2.278)
+    AOI.rotation.set(-1.571, 0, -1.571)
+    manualStat4.position.set(5.12, -2.023, -2.26)
+    manualStat4.rotation.set(-1.571, 0, 4.701)
+    lifter2.rotation.set(-1.571, 0, 6.283)
+    lifter2.position.set(9.932, -1.44, -5.34)
 
-    objects.add(wishMach1) // manual station1
-    objects.add(wishMach2) // manual station2
-    objects.add(wishMach3) // manual station3
-    objects.add(wishMach4) // manual station4
-
-    objects.add(productMach1) // FAN/PSU
-    objects.add(productMach2) // DIMM
-    objects.add(productMach3) // AOI
-
-    return objects
+    return {
+        lifter1, lifter2, manualStat1, manualStat2, manualStat3,
+        manualStat4, FAN_PSU, DIMM, AOI
+    }
 }
 

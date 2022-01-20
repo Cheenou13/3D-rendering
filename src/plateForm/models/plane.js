@@ -50,7 +50,7 @@ export class CreatePlanes {
             // color: 'green',
             backgroundColor: chroma('#073b4c').alpha(1/3).css(),
             fontFamily: '"Times New Roman", Times, serif',
-            fontSize: 0.2,
+            fontSize: 0.1,
             paddingIndex: 0.5,
             text:[
                 'Testing: '+ text,
@@ -59,6 +59,7 @@ export class CreatePlanes {
         }, new THREE.MeshBasicMaterial({
             side: THREE.DoubleSide,
             transparent: true,
+            depthWrite: false,
             opacity: 1
           }))
 
@@ -92,8 +93,8 @@ export class CreatePlanes {
             map: normalTexture
         })
         this.plane = new THREE.Mesh(this.geometry, this.material)
-        this.plane.position.set(0, -1.5, 0)
-        this.plane.rotation.set(-1.571, 0, 0.86)
+        this.plane.position.set(0, -1.5, -2)
+        this.plane.rotation.set(-1.571, 0, 0)
     
         return this.plane
     }
