@@ -3,9 +3,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
 import * as THREE from 'three'
 
-let oilTank = 'importedModels/old_oil_tank_.2/scene.gltf'
-let wishMach = 'importedModels/factory_machine_noColor/scene.gltf'
-let productMach = 'importedModels/factory_machine/scene.gltf'
+let oilTank = 'src/importedModels/old_oil_tank_.2/scene.gltf'
+let wishMach = 'src/importedModels/factory_machine_noColor/scene.gltf'
+let productMach = 'src/importedModels/factory_machine/scene.gltf'
 export async function loadModel() {
 
     const loader = new GLTFLoader()
