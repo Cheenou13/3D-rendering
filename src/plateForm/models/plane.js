@@ -56,15 +56,24 @@ export class CreatePlanes {
         //     depthWrite: false,
         //     opacity: 1
         //   }))
+        let name = ''
+        if (
+            machine.name == 'Manual Station 1' ||
+            machine.name == 'Manual Station 2' ||
+            machine.name == 'Manual Station 3' ||
+            machine.name == 'Manual Station 4' 
+            ) name = 'MS'
+        else name = machine.name
+    
         let texture = new TextTexture({
             alignment: 'left',
-            // color: '#24ff00',
             backgroundColor: chroma('#073b4c').alpha(1/3).css(),
             fontFamily: '"Times New Roman", Times, serif',
-            fontSize: 20,
+            fontSize: 30,
             fontStyle: 'italic',
+            padding: 0.2,
             text: [
-              'Name: ' + machine.name,
+              'Name: ' + name,
               'Status: ' + machine.status,
               'Power: ' + machine.Power
         
@@ -152,9 +161,4 @@ export class CreatePlanes {
         control.add(object.rotation, 'z', -Math.PI*2, Math.PI*2, 0.001)
     }
 
-    cloePlane(){
-        // TODO, make a copy of the same plane?
-        //return this.plane.clone()
-        
-    }
 }

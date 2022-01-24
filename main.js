@@ -41,7 +41,6 @@ async function main() {
   // device.addModelPosition(lifter2, guiControl, 'lifter2 position')
   // console.log(myData['Machine_8'])
   const lift1Label = planexGenerator.getTextPlane(myData['Machine_8'])
-  
   const mt1Label = planexGenerator.getTextPlane(myData['Machine_1'])
   const fanLabel = planexGenerator.getTextPlane(myData['Machine_7'])
   const dimmLabel = planexGenerator.getTextPlane(myData['Machine_3'])
