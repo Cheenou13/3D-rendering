@@ -1,3 +1,5 @@
+
+import axios from "axios"
 import './style.css'
 import { CreatePlanes } from './src/plateForm/models/plane';
 import { DisplayModels } from "./src/Display";
@@ -6,21 +8,29 @@ import { GUI } from 'dat.gui';
 import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import TextPlane from '@seregpie/three.text-plane';
+import TextTexture from '@seregpie/three.text-texture'
 import chroma from "chroma-js"
 
+const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e' 
+const url3 = 'https://run.mocky.io/v3/79fe0bc6-8e14-4ce5-83ca-cca08cbfd0e8'
+const url2 = 'https://run.mocky.io/v3/8244ed84-0c21-41c4-becd-c3973efbcec1'
 
-// document.querySelector('#app').innerHTML = `
-// //   <h1>Hello Vite!</h1>
-//   <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-// // `
-let data = {
-  options: {
-    data1: 'data1: ',
-    data2: 'data2: ',
-    data3: 'data3: ',
-    data4: 'data4: '
-  }
+
+
+// axios.get(url)
+// .then (res => {
+//   console.log(res.data)
+// })
+
+async function getData(url){
+  const res = await axios.get(url);
+  return res.data;
 }
+
+const myData = await getData(url)
+
+console.log(myData)
+
 function  generateText() {
   let status = new TextPlane({
     color: 'green',
@@ -28,28 +38,30 @@ function  generateText() {
   }, new THREE.MeshBasicMaterial({
     color: 'green'
   }))
-  let textPlane = new TextPlane({
+ 
+  let texture = new TextTexture({
     alignment: 'left',
+    color: '#24ff00',
     backgroundColor: chroma('#073b4c').alpha(1/3).css(),
     fontFamily: '"Times New Roman", Times, serif',
-    fontSize: 0.2,
-    // color: 'green',
-    paddingIndex: 1,
-    // fontStyle: 'italic',
-    strokeColor: '#ffd166',
-    text:[
-      data.options.data1+status.text,
-      data.options.data2+'testing',
-      data.options.data3+'testing',
-      data.options.data4+'testing' 
-    ].join('\n')
-  }, new THREE.MeshPhongMaterial({
-    side: THREE.DoubleSide,
-    transparent: true,
-    opacity: 0.7
-  }));
+    fontSize: 30,
+    fontStyle: 'italic',
+    text: [
+      'Name: ' + myData['Machine_1'].name,
+      'Status: ' + myData['Machine_1'].status,
+      'Power: ' + myData['Machine_1'].Power
+
+    ].join('\n'),
+  });
+  let material = new THREE.SpriteMaterial({
+    map: texture,
+    side: THREE.DoubleSide
+  });
+  let sprite = new THREE.Sprite(material);
+  texture.redraw();
+  sprite.scale.setY(texture.height / texture.width);
   
-  return textPlane
+  return sprite
 }
 
 const scene = new THREE.Scene()
@@ -129,8 +141,6 @@ function setLineRotation(){
     coordinates.options.z
   )
 }
-// line.geometry.attributes.position.setXYZ(0, -0.02, -1, 1)
-// line.geometry.attributes.position.setXYZ(1, 0, 2, 1)
 
 const linePosition = lineFolder.addFolder('Line Position')
 
@@ -176,15 +186,15 @@ renderer.setSize(innerWidth, innerHeight)
 renderer.setPixelRatio(window.devicePixelRatio)
 document.body.appendChild(renderer.domElement)
 
-label.add(plane.position, 'x', -Math.PI*2, Math.PI*2, 0.01)
+// label.add(plane.position, 'x', -Math.PI*2, Math.PI*2, 0.01)
 
-label.add(text, 'fontSize', 0, 15, 0.01)
+// label.add(text, 'fontSize', 0, 15, 0.01)
 group.add(plane, plane2)
 // scene2.add(frontLight2, backLight2)
 scene.add(frontLight, backLight)
 // scene.add(plane)
 scene.add(text)
-scene.add(line)
+// scene.add(line)
 
 // scene.add(scene2)
 // scene.add(plane2)
@@ -194,10 +204,6 @@ function start() {
   requestAnimationFrame(start)
   renderer.render(scene, camera)
   line.geometry.attributes.position.needsUpdate =true
-  // text.rotation.y += 0.01
-  // plane.rotation.x += 0.01
-  // plane.rotation.y += 0.01
-  // plane2.rotation.y += 0.01
 }
 
 start()

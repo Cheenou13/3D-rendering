@@ -6,16 +6,15 @@ This project uses vanila js and light weight three js to load model 3 dimension 
 
 ## Motivation
 
-This project will allow one to have an idea of the manufacture line is look like (in 3D view). the model will be able
-to display the current time status or any data directly from the manufacture line
+This project will allow one get basic information from production and the model that mimic the production line (in 3D). 
 
 ## Code Style
 
-This project uses both Object Oriented Programming (OOP) and Functional Programming to organization unit codes
+This project uses both Object Oriented Programming (OOP) and Functional Programming to organized unit codes
 
 ## webserver should look like
 
-![App Screenshot](examples/UpdatedScreen.png)
+![App Screenshot](examples/lookLike.png)
 
 
 ## Build Structure
@@ -25,11 +24,24 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ├── README.md
 ├── examples
 │   ├── UpdatedScreen.png
-│   ├── lambo_codes.png
+│   ├── lookLike.png
 │   └── updatedLambo.png
 ├── favicon.svg
 ├── importedModels
-│   ├── Flamingo.glb
+│   ├── factory_machine
+│   │   ├── license.txt
+│   │   ├── scene.bin
+│   │   ├── scene.gltf
+│   │   └── textures
+│   │       ├── Bulnkostroj-mat_baseColor.png
+│   │       ├── Bulnkostroj-mat_emissive.png
+│   │       ├── Bulnkostroj-mat_metallicRoughness.png
+│   │       ├── cable.008_low__0_baseColor.png
+│   │       ├── cable.008_low__0_metallicRoughness.png
+│   │       └── cable.008_low__0_normal.png
+│   ├── factory_machine_noColor
+│   │   ├── scene.bin
+│   │   └── scene.gltf
 │   ├── license.txt
 │   ├── model.gltf
 │   ├── old_oil_tank_.2
@@ -44,17 +56,28 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │   ├── NormalMap.png
 │   │   ├── floorMetal.jpeg
 │   │   ├── metalMapping.jpeg
-│   │   ├── saturnmap.jpeg
-│   │   ├── saturnmap.jpg
-│   │   ├── star.png
 │   │   └── techBackground.jpg
-│   └── textures
-│       ├── CENTENARIO_baseColor.jpeg
-│       ├── CRBN_JANTE_baseColor.jpeg
-│       ├── CUIR.001_baseColor.jpeg
-│       ├── Material.003_baseColor.jpeg
-│       ├── PLAS_baseColor.jpeg
-│       └── material_0_baseColor.jpeg
+│   ├── textures
+│   │   ├── CENTENARIO_baseColor.jpeg
+│   │   ├── CRBN_JANTE_baseColor.jpeg
+│   │   ├── CUIR.001_baseColor.jpeg
+│   │   ├── Material.003_baseColor.jpeg
+│   │   ├── PLAS_baseColor.jpeg
+│   │   └── material_0_baseColor.jpeg
+│   └── washing_machine
+│       ├── license.txt
+│       ├── scene.bin
+│       ├── scene.gltf
+│       └── textures
+│           ├── glass_baseColor.png
+│           ├── glass_emissive.jpeg
+│           ├── glass_metallicRoughness.png
+│           ├── glass_normal.jpeg
+│           ├── ground_baseColor.png
+│           ├── washmachine_baseColor.jpeg
+│           ├── washmachine_emissive.jpeg
+│           ├── washmachine_metallicRoughness.png
+│           └── washmachine_normal.jpeg
 ├── index.html
 ├── main.js
 ├── package-lock.json
@@ -80,8 +103,6 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │       ├── Renderer.js
 │   │       ├── Resizer.js
 │   │       └── TransformControl.js
-│   ├── shader
-│   │   └── VertexShader.glsl
 │   └── simpleMain.js
 └── style.css
 

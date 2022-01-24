@@ -1,8 +1,14 @@
 import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
 import { CreatePlanes } from './src/plateForm/models/plane'
+import axios from "axios"
 
+const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
 
+async function getData(url){
+  const res = await axios.get(url);
+  return res.data;
+}
 async function main() {
   // const guiControl = new GUI()
   const device = new DisplayModels(document)
@@ -14,7 +20,7 @@ async function main() {
     manualStat4, FAN_PSU, DIMM, AOI
   } = await device.loadnig()
   
-
+  const myData = await getData(url)
   // device.addModelRotation(lifter1, guiControl, 'lifter1 Rotation')
   // device.addModelPosition(lifter1, guiControl, 'lifter1 position')
   // device.addModelRotation(manualStat1, guiControl, 'manualStat1 Rotation')
@@ -33,16 +39,17 @@ async function main() {
   // device.addModelPosition(manualStat4, guiControl, 'manualStat4 position')
   // device.addModelRotation(lifter2, guiControl, 'lifter2 Rotation')
   // device.addModelPosition(lifter2, guiControl, 'lifter2 position')
-
-  const lift1Label = planexGenerator.getTextPlane('Lifter 1')
-  const mt1Label = planexGenerator.getTextPlane('Manual Station 1')
-  const fanLabel = planexGenerator.getTextPlane('FAN/PSU')
-  const dimmLabel = planexGenerator.getTextPlane('DIMM')
-  const mt2Label = planexGenerator.getTextPlane('Manual Station 2')
-  const mt3Label = planexGenerator.getTextPlane('Manual Station 3')
-  const aoiLabel = planexGenerator.getTextPlane('AOI')
-  const mt4Label = planexGenerator.getTextPlane('Manual Station 4')
-  const lifter2Label = planexGenerator.getTextPlane('Lifter 2')
+  // console.log(myData['Machine_8'])
+  const lift1Label = planexGenerator.getTextPlane(myData['Machine_8'])
+  
+  const mt1Label = planexGenerator.getTextPlane(myData['Machine_1'])
+  const fanLabel = planexGenerator.getTextPlane(myData['Machine_7'])
+  const dimmLabel = planexGenerator.getTextPlane(myData['Machine_3'])
+  const mt2Label = planexGenerator.getTextPlane(myData['Machine_2'])
+  const mt3Label = planexGenerator.getTextPlane(myData['Machine_5'])
+  const aoiLabel = planexGenerator.getTextPlane(myData['Machine_4'])
+  const mt4Label = planexGenerator.getTextPlane(myData['Machine_6'])
+  const lifter2Label = planexGenerator.getTextPlane(myData['Machine_9'])
 
 
   lift1Label.rotation.set(0, 1.55, 0)

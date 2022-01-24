@@ -1,10 +1,12 @@
 import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
 import { CreatePlanes } from './src/plateForm/models/plane'
-import { saturn, stars } from "./src/plateForm/components/CreatePlanets"
+import axios from "axios"
+
+const url = 'https://run.mocky.io/v3/6da89ab8-ba93-4baa-8e9d-6f7c941d018b'
 
 async function main() {
-  const guiControl = new GUI()
+  // const guiControl = new GUI()
   const device = new DisplayModels(document)
   const planexGenerator = new CreatePlanes()
   const texturePlane = planexGenerator.loadTexturePlane('importedModels/screenBackground/metalMapping.jpeg')
@@ -44,9 +46,7 @@ async function main() {
   const mt4Label = planexGenerator.getTextPlane('Manual Station 4')
   const lifter2Label = planexGenerator.getTextPlane('Lifter 2')
 
-  const saturnPlanet = saturn()
-  const galaxy = stars()
-  saturnPlanet.position.set(3.965, -4.303, -17.85)
+
   lift1Label.rotation.set(0, 1.55, 0)
   lift1Label.position.set(-7.126, 0.783, -2.278)
   mt1Label.position.set(-5.34, 0.783, -2.278)
@@ -70,11 +70,6 @@ async function main() {
   // device.addModelRotation(lifter2Label, guiControl, 'lifter 2 Rotation')
   // device.addModelPosition(lifter2Label, guiControl, 'Lifter 2 position')
 
-  device.addModelRotation(saturnPlanet, guiControl, 'saturn Rotation')
-  device.addModelPosition(saturnPlanet, guiControl, 'saturn position')
-
-  device.addToScene(galaxy)
-  device.addToScene(saturnPlanet)
   device.addToScene(texturePlane)
   device.addToScene(lifter1)
   device.addToScene(manualStat1)
