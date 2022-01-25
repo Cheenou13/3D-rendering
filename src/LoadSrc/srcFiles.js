@@ -13,7 +13,7 @@ export function noColorMachine(){
 }
 
 export function talorMachine(){
-    const url = new URL('src/importedModels/factory_machine/scene.gltf', import.meta.url)
-    console.log(url)
+    // const url = new URL('src/importedModels/factory_machine/scene.gltf', import.meta.url)
+    // console.log(url)
     return 'src/importedModels/factory_machine/scene.gltf'
 }
