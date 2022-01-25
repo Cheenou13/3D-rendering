@@ -1,13 +1,13 @@
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
-import { oilTankURL, noColorMachine, talorMachine } from '../../LoadSrc/srcFiles'
+// import { oilTankURL, noColorMachine, talorMachine } from '../../LoadSrc/srcFiles'
 
 
 
-let oilTank = oilTankURL()
-let wishMach = noColorMachine()
-let productMach = talorMachine()
+let oilTank = 'old_oil_tank_.2/scene.gltf'
+let wishMach = 'old_oil_tank_.2/scene.gltf'
+let productMach = 'old_oil_tank_.2/scene.gltf'
 export async function loadModel() {
 
     const loader = new GLTFLoader()

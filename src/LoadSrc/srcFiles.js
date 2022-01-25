@@ -4,7 +4,7 @@
 
 export function oilTankURL(){
     // const url = new URL('src/importedModels/old_oil_tank_.2/scene.gltf', import.meta.url)
-    return 'src/importedModels/old_oil_tank_.2/scene.gltf'
+    return 'old_oil_tank_.2/scene.gltf'
 }
 
 export function noColorMachine(){
