@@ -22,70 +22,56 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ```
 .
 ├── README.md
+├── dist
+│   ├── assets
+│   │   ├── favicon.17e50649.svg
+│   │   ├── index.dba200dc.js
+│   │   └── vendor.c1d2e270.js
+│   └── index.html
 ├── examples
 │   ├── UpdatedScreen.png
 │   ├── lookLike.png
 │   └── updatedLambo.png
 ├── favicon.svg
-├── importedModels
-│   ├── factory_machine
-│   │   ├── license.txt
-│   │   ├── scene.bin
-│   │   ├── scene.gltf
-│   │   └── textures
-│   │       ├── Bulnkostroj-mat_baseColor.png
-│   │       ├── Bulnkostroj-mat_emissive.png
-│   │       ├── Bulnkostroj-mat_metallicRoughness.png
-│   │       ├── cable.008_low__0_baseColor.png
-│   │       ├── cable.008_low__0_metallicRoughness.png
-│   │       └── cable.008_low__0_normal.png
-│   ├── factory_machine_noColor
-│   │   ├── scene.bin
-│   │   └── scene.gltf
-│   ├── license.txt
-│   ├── model.gltf
-│   ├── old_oil_tank_.2
-│   │   ├── scene.bin
-│   │   ├── scene.gltf
-│   │   └── textures
-│   │       ├── Material_baseColor.jpeg
-│   │       ├── Material_metallicRoughness.png
-│   │       └── Material_normal.png
-│   ├── scene.bin
-│   ├── screenBackground
-│   │   ├── NormalMap.png
-│   │   ├── floorMetal.jpeg
-│   │   ├── metalMapping.jpeg
-│   │   └── techBackground.jpg
-│   ├── textures
-│   │   ├── CENTENARIO_baseColor.jpeg
-│   │   ├── CRBN_JANTE_baseColor.jpeg
-│   │   ├── CUIR.001_baseColor.jpeg
-│   │   ├── Material.003_baseColor.jpeg
-│   │   ├── PLAS_baseColor.jpeg
-│   │   └── material_0_baseColor.jpeg
-│   └── washing_machine
-│       ├── license.txt
-│       ├── scene.bin
-│       ├── scene.gltf
-│       └── textures
-│           ├── glass_baseColor.png
-│           ├── glass_emissive.jpeg
-│           ├── glass_metallicRoughness.png
-│           ├── glass_normal.jpeg
-│           ├── ground_baseColor.png
-│           ├── washmachine_baseColor.jpeg
-│           ├── washmachine_emissive.jpeg
-│           ├── washmachine_metallicRoughness.png
-│           └── washmachine_normal.jpeg
 ├── index.html
 ├── main.js
 ├── package-lock.json
 ├── package.json
+├── rollup.config.js
 ├── src
 │   ├── Display.js
+│   ├── LoadSrc
+│   │   └── srcFiles.js
 │   ├── TestFile.js
 │   ├── cloneMain.js
+│   ├── importedModels
+│   │   ├── factory_machine
+│   │   │   ├── license.txt
+│   │   │   ├── scene.bin
+│   │   │   ├── scene.gltf
+│   │   │   └── textures
+│   │   ├── factory_machine_noColor
+│   │   │   ├── scene.bin
+│   │   │   └── scene.gltf
+│   │   ├── license.txt
+│   │   ├── model.gltf
+│   │   ├── old_oil_tank_.2
+│   │   │   ├── scene.bin
+│   │   │   ├── scene.gltf
+│   │   │   └── textures
+│   │   ├── scene.bin
+│   │   ├── screenBackground
+│   │   │   ├── NormalMap.png
+│   │   │   ├── floorMetal.jpeg
+│   │   │   ├── metalMapping.jpeg
+│   │   │   └── techBackground.jpg
+│   │   └── textures
+│   │       ├── CENTENARIO_baseColor.jpeg
+│   │       ├── CRBN_JANTE_baseColor.jpeg
+│   │       ├── CUIR.001_baseColor.jpeg
+│   │       ├── Material.003_baseColor.jpeg
+│   │       ├── PLAS_baseColor.jpeg
+│   │       └── material_0_baseColor.jpeg
 │   ├── plateForm
 │   │   ├── components
 │   │   │   ├── CreatePlanets.js

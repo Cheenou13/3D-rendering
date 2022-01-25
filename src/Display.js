@@ -1,14 +1,14 @@
-import { createScene } from "./plateForm/components/scene"
-import { createLights } from "./plateForm/components/light"
-import { createCamera } from "./plateForm/components/camera"
-import { createControl } from "./plateForm/systemControls/Control"
-import { createRenderer } from "./plateForm/systemControls/Renderer"
-import { loadModel } from "./plateForm/models/model"
-import { Loop } from "./plateForm/systemControls/Loop"
-import { Resizer } from "./plateForm/systemControls/Resizer"
+import { createScene } from "./PlatForms/components/scene"
+import { createLights } from "./PlatForms/components/light"
+import { createCamera } from "./PlatForms/components/camera"
+import { createControl } from "./PlatForms/systemControls/Control"
+import { createRenderer } from "./PlatForms/systemControls/Renderer"
+import { loadModel } from "./PlatForms/models/model"
+import { Loop } from "./PlatForms/systemControls/Loop"
+import { Resizer } from "./PlatForms/systemControls/Resizer"
 import { GUI } from 'dat.gui';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
-import { saturn, stars } from "./plateForm/components/CreatePlanets"
+import { saturn, stars } from "./PlatForms/components/CreatePlanets"
 import * as THREE from 'three'
 
 

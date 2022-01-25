@@ -1,6 +1,6 @@
 import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
-import { CreatePlanes } from './src/plateForm/models/plane'
+import { CreatePlanes } from './src/PlatForms/models/plane'
 import axios from "axios"
 
 const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
