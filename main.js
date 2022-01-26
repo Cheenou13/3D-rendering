@@ -1,6 +1,7 @@
 import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
 import { CreatePlanes } from './src/PlatForms/models/plane'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import axios from "axios"
 
 const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
@@ -9,9 +10,12 @@ async function getData(url){
   const res = await axios.get(url);
   return res.data;
 }
+
+
 async function main() {
   // const guiControl = new GUI()
   const device = new DisplayModels(document)
+  const loader = new GLTFLoader()
   const planexGenerator = new CreatePlanes()
   const texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
   const 
