@@ -6,15 +6,6 @@
   color: #2c3e50;
   margin-top: 60px;
 } */
-
-body {
-  margin: 0;
-  overflow: hidden;
-  /* background-color: rgb(220, 220, 235); */
-  height: 100%;
-  -webkit-font-smoothing: antialiased;
-  
-}
 .absolute {
   position: absolute;
 }

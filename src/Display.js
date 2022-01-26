@@ -23,7 +23,6 @@ export class DisplayModels {
         orbit = createControl(camera, renderer)
         const {frontLight, backLight, topLight, bottomLight, ambientLight} = createLights()
         orbit.autoRotate = true
-        orbit.addEventListener('change', this.display)
         loop.updatables.push(orbit)
         
         scene.add(frontLight, backLight, topLight)
