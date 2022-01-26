@@ -9,10 +9,11 @@
 
 body {
   margin: 0;
+  overflow: hidden;
   /* background-color: rgb(220, 220, 235); */
   height: 100%;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden;
+  
 }
 .absolute {
   position: absolute;
