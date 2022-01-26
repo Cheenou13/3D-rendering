@@ -2,16 +2,6 @@ import * as THREE from 'three'
 import { GUI } from 'dat.gui'
 import { Float32BufferAttribute } from "three"
 
-const ringsDimensions = {
-  options: {
-    innerRadius: 3,
-    outerRadius: 5,
-    roundness: 64,
-    phi: 1,
-    thetaStart: 0,
-    thetaLength: Math.PI*2
-  }
-}
 
 export function saturn (){
 
