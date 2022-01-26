@@ -13,7 +13,7 @@ async function main() {
   // const guiControl = new GUI()
   const device = new DisplayModels(document)
   const planexGenerator = new CreatePlanes()
-  const texturePlane = planexGenerator.loadTexturePlane('src/importedModels/screenBackground/metalMapping.jpeg')
+  const texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
   const 
   {
     lifter1, lifter2, manualStat1, manualStat2, manualStat3,
