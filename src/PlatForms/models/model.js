@@ -1,21 +1,15 @@
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 // import { oilTankURL, noColorMachine, talorMachine } from '../../LoadSrc/srcFiles'
 
 
 
-let oilTank = '/compressModel/oilTankDraco.gltf'
-let wishMach = '/compressModel/noColorDraco.gltf'
-let productMach = '/compressModel/coloredDraco.gltf'
+let oilTank = '/old_oil_tank_.2/oilTank.gltf'
+let wishMach = '/factory_machine_noColor/noColor.gltf'
+let productMach = '/factory_machine/colored.gltf'
 export async function loadModel() {
-
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/static/')
-
     const loader = new GLTFLoader()
-    loader.setDRACOLoader(dracoLoader)
     const 
     [
         oilTankD1, oilTankD2, wishMachD1, wishMachD2, wishMachD3, wishMachD4,
