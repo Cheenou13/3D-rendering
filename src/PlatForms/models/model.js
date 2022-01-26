@@ -6,7 +6,7 @@ import { extractModel } from './setUp'
 
 
 let oilTank = 'src/importedModels/old_oil_tank_.2/scene.gltf'
-let wishMach = 'noColor.glb'
+let wishMach = 'src/importedModels/factory_machine_noColor/scene.gltf'
 let productMach = 'src/importedModels/factory_machine/scene.gltf'
 export async function loadModel() {
 
