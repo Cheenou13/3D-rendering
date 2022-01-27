@@ -6,9 +6,9 @@ import { createRenderer } from "./PlatForms/systemControls/Renderer"
 import { loadModel } from "./PlatForms/models/model"
 import { Loop } from "./PlatForms/systemControls/Loop"
 import { Resizer } from "./PlatForms/systemControls/Resizer"
-import { GUI } from 'dat.gui';
+// import { GUI } from 'dat.gui';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
-import * as THREE from 'three'
+import {Group} from 'three'
 import axios from "axios"
 import { CreatePlanes } from "./PlatForms/models/plane"
 
@@ -94,7 +94,7 @@ export class DisplayModels {
         lifter2Label.position.set(7.126, 0.783, -2.278)
         lifter2Label.rotation.set(0, -1.55, 0)
 
-        const objects = new THREE.Group()
+        const objects = new Group()
         objects.add(
           texturePlane,
           lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,

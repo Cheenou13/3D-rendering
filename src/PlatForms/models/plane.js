@@ -1,7 +1,6 @@
 
-import TextPlane from '@seregpie/three.text-plane';
+// import TextPlane from '@seregpie/three.text-plane';
 import * as THREE from 'three';
-import { BoxGeometry } from 'three';
 import chroma from "chroma-js"
 import TextTexture from '@seregpie/three.text-texture'
 
@@ -110,7 +109,7 @@ export class CreatePlanes {
          * @default color is ocean blue
          */
         const normalTexture = this.texture_loader.load(texture)
-        this.geometry = new BoxGeometry(15.67, 9.6, 0.224)
+        this.geometry = new THREE.BoxGeometry(15.67, 9.6, 0.224)
         this.material = new THREE.MeshPhysicalMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(typeof color === 'undefined' ? 0xe0f4ff : color),
@@ -128,7 +127,7 @@ export class CreatePlanes {
         
         function changeDimension (){
             object.geometry.dispose()
-            object.geometry = new BoxGeometry(
+            object.geometry = new THREE.BoxGeometry(
                 dimension.options.width,
                 dimension.options.height,
                 dimension.options.diameter
