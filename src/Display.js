@@ -8,7 +8,6 @@ import { Loop } from "./PlatForms/systemControls/Loop"
 import { Resizer } from "./PlatForms/systemControls/Resizer"
 import { GUI } from 'dat.gui';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
-import { saturn, stars } from "./PlatForms/components/CreatePlanets"
 import * as THREE from 'three'
 
 
@@ -22,7 +21,7 @@ export class DisplayModels {
         loop = new Loop(camera, scene, renderer)
         orbit = createControl(camera, renderer)
         const {frontLight, backLight, topLight, bottomLight, ambientLight} = createLights()
-        orbit.autoRotate = true
+        // orbit.autoRotate = true
         loop.updatables.push(orbit)
         
         scene.add(frontLight, backLight, topLight)
@@ -39,11 +38,6 @@ export class DisplayModels {
         
         new Resizer(camera, renderer)
         document.body.appendChild(renderer.domElement)
-        saturnPlanet = saturn()
-        galaxy = stars()
-        saturnPlanet.position.set(3.965, -4.303, -17.85)
-        scene.add(saturnPlanet)
-        scene.add(galaxy)
 
 
         control = new TransformControls (camera, renderer.domElement)
@@ -105,7 +99,7 @@ export class DisplayModels {
 
     display() {
     
-        loop.start(saturnPlanet)
+        loop.start()
     }
     stop(){
         loop.stop()
