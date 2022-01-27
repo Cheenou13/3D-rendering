@@ -11,7 +11,6 @@
     "vite": "^2.7.2"
   },
   "dependencies": {
-    "@seregpie/three.text-plane": "^1.1.0",
     "@seregpie/three.text-texture": "^3.2.1",
     "axios": "^0.25.0",
     "chroma-js": "^2.1.2",

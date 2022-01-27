@@ -2,6 +2,7 @@ import { GUI } from "dat.gui"
 import { DisplayModels } from "./src/Display"
 import { CreatePlanes } from './src/plateForm/models/plane'
 import axios from "axios"
+// import TextPlane from '@seregpie/three.text-plane';
 
 const url = 'https://run.mocky.io/v3/6da89ab8-ba93-4baa-8e9d-6f7c941d018b'
 
@@ -97,3 +98,24 @@ async function main() {
 main().catch((err) => {
   console.log(err)
 })
+
+
+        // const status = this.#getSingleText(text)
+        // const textPlane = new TextPlane ({
+        //     alignment: 'left',
+        //     // color: 'green',
+        //     backgroundColor: chroma('#073b4c').alpha(1/3).css(),
+        //     fontFamily: '"Times New Roman", Times, serif',
+        //     fontSize: 0.1,
+        //     paddingIndex: 0.5,
+        //     text:[
+        //         'Name: ' + machine.name,
+        //         'Status: ' + machine.status,
+        //         'Power: ' + machine.Power
+        //       ].join('\n')
+        // }, new THREE.MeshBasicMaterial({
+        //     side: THREE.DoubleSide,
+        //     transparent: true,
+        //     depthWrite: false,
+        //     opacity: 1
+        //   }))

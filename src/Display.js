@@ -7,8 +7,7 @@ import { loadModel } from "./PlatForms/models/model"
 import { Loop } from "./PlatForms/systemControls/Loop"
 import { Resizer } from "./PlatForms/systemControls/Resizer"
 // import { GUI } from 'dat.gui';
-import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
-import {Group} from 'three'
+// import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
 import axios from "axios"
 import { CreatePlanes } from "./PlatForms/models/plane"
 
@@ -46,11 +45,11 @@ export class DisplayModels {
         document.body.appendChild(renderer.domElement)
 
 
-        control = new TransformControls (camera, renderer.domElement)
-        control.addEventListener('change', this.display)
-        control.addEventListener('dragging-changed', (event) => {
-            orbit.enabled = !event.value
-        })
+        // control = new TransformControls (camera, renderer.domElement)
+        // control.addEventListener('change', this.display)
+        // control.addEventListener('dragging-changed', (event) => {
+        //     orbit.enabled = !event.value
+        // })
         
     }
 
@@ -94,13 +93,8 @@ export class DisplayModels {
         lifter2Label.position.set(7.126, 0.783, -2.278)
         lifter2Label.rotation.set(0, -1.55, 0)
 
-        const objects = new Group()
-        objects.add(
-          texturePlane,
-          lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
-          aoiLabel, mt4Label, lifter2Label, mt1Label
-          )
-        scene.add(objects)
+        scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
+            aoiLabel, mt4Label, lifter2Label, mt1Label)
         
     }
     async int(){
