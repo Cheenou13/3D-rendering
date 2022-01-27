@@ -27,7 +27,6 @@ export class DisplayModels {
         const {frontLight, backLight, topLight, bottomLight, ambientLight} = createLights()
         planexGenerator = new CreatePlanes()
         texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
-        // orbit.autoRotate = true
         orbit.addEventListener('change', this.display)
         loop.updatables.push(orbit)
         
