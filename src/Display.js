@@ -6,10 +6,10 @@ import { createRenderer } from "./PlatForms/systemControls/Renderer"
 import { loadModel } from "./PlatForms/models/model"
 import { Loop } from "./PlatForms/systemControls/Loop"
 import { Resizer } from "./PlatForms/systemControls/Resizer"
-// import { GUI } from 'dat.gui';
-// import { TransformControls } from 'three/examples/jsm/controls/TransformControls'
 import axios from "axios"
 import { CreatePlanes } from "./PlatForms/models/plane"
+
+
 
 const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
 
