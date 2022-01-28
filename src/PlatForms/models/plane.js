@@ -1,10 +1,6 @@
-
-// import TextPlane from '@seregpie/three.text-plane';
-import * as THREE from 'three';
-import { BoxGeometry } from 'three';
+import * as THREE from 'three'
 import chroma from "chroma-js"
 import TextTexture from '@seregpie/three.text-texture'
-
 
 
 const dimension = {
@@ -14,7 +10,6 @@ const dimension = {
         diameter: 0.3,
     }
 }
-
 
 export class CreatePlanes {
     constructor (){
@@ -30,32 +25,8 @@ export class CreatePlanes {
     getPlane(){
         return this.plane
     }
-    #getSingleText(status){
-        const report = new TextPlane ({
-            text: status
-        })
-        return report
-    }
+
     getTextPlane(machine){
-        // const status = this.#getSingleText(text)
-        // const textPlane = new TextPlane ({
-        //     alignment: 'left',
-        //     // color: 'green',
-        //     backgroundColor: chroma('#073b4c').alpha(1/3).css(),
-        //     fontFamily: '"Times New Roman", Times, serif',
-        //     fontSize: 0.1,
-        //     paddingIndex: 0.5,
-        //     text:[
-        //         'Name: ' + machine.name,
-        //         'Status: ' + machine.status,
-        //         'Power: ' + machine.Power
-        //       ].join('\n')
-        // }, new THREE.MeshBasicMaterial({
-        //     side: THREE.DoubleSide,
-        //     transparent: true,
-        //     depthWrite: false,
-        //     opacity: 1
-        //   }))
         let name = ''
         if (
             machine.name == 'Manual Station 1' ||
@@ -110,7 +81,7 @@ export class CreatePlanes {
          * @default color is ocean blue
          */
         const normalTexture = this.texture_loader.load(texture)
-        this.geometry = new BoxGeometry(15.67, 9.6, 0.224)
+        this.geometry = new THREE.BoxGeometry(15.67, 9.6, 0.224)
         this.material = new THREE.MeshPhysicalMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(typeof color === 'undefined' ? 0xe0f4ff : color),
@@ -128,7 +99,7 @@ export class CreatePlanes {
         
         function changeDimension (){
             object.geometry.dispose()
-            object.geometry = new BoxGeometry(
+            object.geometry = new THREE.BoxGeometry(
                 dimension.options.width,
                 dimension.options.height,
                 dimension.options.diameter
