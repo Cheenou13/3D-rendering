@@ -94,13 +94,12 @@ export class DisplayModels {
         mt4Label.position.set(5, 0.783, -2.278)
         lifter2Label.position.set(7.126, 0.783, -2.278)
         lifter2Label.rotation.set(0, -1.55, 0)
-
+        scene.add(texturePlane)
         scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
             aoiLabel, mt4Label, lifter2Label, mt1Label)
         
     }
     async int(){
-        scene.add(texturePlane)
         await this.#loadLabel()
         await this.#loadnig()
     }
