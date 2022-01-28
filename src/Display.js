@@ -23,13 +23,13 @@ export class DisplayModels {
         scene = createScene()
         loop = new Loop(camera, scene, renderer)
         orbit = createControl(camera, renderer)
-        const {frontLight, backLight, topLight, bottomLight, ambientLight} = createLights()
+        const {pointLight1, pointLight2, pointLight3, pointLight4} = createLights()
         planexGenerator = new CreatePlanes()
         texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
         orbit.addEventListener('change', this.display)
         loop.updatables.push(orbit)
         
-        scene.add(frontLight, backLight, topLight)
+        scene.add(pointLight1, pointLight2, pointLight3, pointLight4)
         camera.position.set(0, 4.167, 5.692)
         camera.lookAt(0, 0, 0)
         
