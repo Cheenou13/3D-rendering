@@ -57,7 +57,9 @@ export class DisplayModels {
         const {
             lifter1, lifter2, manualStat1, manualStat2, manualStat3,
             manualStat4, FAN_PSU, DIMM, AOI
-        } = await loadModel()
+
+        } = 
+        await loadModel()
         scene.add(lifter1, lifter2, manualStat1, manualStat2, manualStat3,
             manualStat4, FAN_PSU, DIMM, AOI)
     }
