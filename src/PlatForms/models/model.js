@@ -1,39 +1,39 @@
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 
-
-let oilTank = '/old_oil_tank_.2/oilTank.gltf'
-// let oilTank = '/GLBModels/oilTank.glb'
-let wishMach = '/factory_machine_noColor/noColor.gltf'
-// let wishMach = '/GLBModels/noColor.glb'
-let productMach = '/factory_machine/colored.gltf'
-// let productMach = '/GLBModels/colored.glb'
+// let oilTank = '/old_oil_tank_.2/oilTank.gltf'
+let oilTank = '/CompressGLB/oilTankCompressed.glb'
+// let wishMach = '/factory_machine_noColor/noColor.gltf'
+let wishMach = '/CompressGLB/noColorCompressed.glb'
+// let productMach = '/factory_machine/colored.gltf'
+let productMach = '/CompressGLB/colorCompressed.glb'
 
 export async function loadModel() {
     const loader = new GLTFLoader()
-    const 
-    [oilTankD1, wishMachD1, productMachD1] = await Promise.all([
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/static/')
+    loader.setDRACOLoader(dracoLoader)
+    const [oilTankD1, wishMachD1, productMachD1] = 
+    await Promise.all([
         loader.loadAsync(oilTank), 
         loader.loadAsync(wishMach),
         loader.loadAsync(productMach)
-    ])
-
+    ])  
     const lifter1 = extractModel(oilTankD1)
-    const oilTankD2 = oilTankD1.scene.clone()
-    const lifter2 = oilTankD2.children[0]
-
+    const lifter2 = lifter1.clone()
+ 
     lifter1.scale.set(0.013, 0.009, 0.013)
     lifter2.scale.set(0.013, 0.009, 0.013)
 
+    
+    
     const manualStat1 = extractModel(wishMachD1)
-    const wishMachD2 = wishMachD1.scene.clone()
-    const manualStat2 = wishMachD2.children[0]
-    const wishMachD3 = wishMachD1.scene.clone()
-    const manualStat3 = wishMachD3.children[0]
-    const wishMachD4 = wishMachD1.scene.clone()
-    const manualStat4 = wishMachD4.children[0]
+    const manualStat2 = manualStat1.clone()
+    const manualStat3 = manualStat1.clone()
+    const manualStat4 = manualStat1.clone()
 
     manualStat1.scale.set(0.13, 0.10, 0.13)
     manualStat2.scale.set(0.13, 0.10, 0.13)
@@ -41,10 +41,8 @@ export async function loadModel() {
     manualStat4.scale.set(0.13, 0.10, 0.13)
 
     const FAN_PSU = extractModel(productMachD1)
-    const productMachD2 = productMachD1.scene.clone()
-    const DIMM = productMachD2.children[0]
-    const productMachD3 = productMachD1.scene.clone()
-    const AOI = productMachD3.children[0]
+    const DIMM = FAN_PSU.clone()
+    const AOI = FAN_PSU.clone()
 
     FAN_PSU.scale.set(0.38, 0.38, 0.38)
     DIMM.scale.set(0.38, 0.38, 0.38)
