@@ -1,5 +1,5 @@
 
-import TextPlane from '@seregpie/three.text-plane';
+// import TextPlane from '@seregpie/three.text-plane';
 import * as THREE from 'three';
 import { BoxGeometry } from 'three';
 import chroma from "chroma-js"
