@@ -72,35 +72,35 @@ export class DisplayModels {
     async #loadLabel(){
         const myData = await this.#getData(url)
 
-        const lift1Label = planexGenerator.getTextPlane(myData['Machine_8'])
-        const mt1Label = planexGenerator.getTextPlane(myData['Machine_1'])
-        const fanLabel = planexGenerator.getTextPlane(myData['Machine_7'])
-        const dimmLabel = planexGenerator.getTextPlane(myData['Machine_3'])
-        const mt2Label = planexGenerator.getTextPlane(myData['Machine_2'])
-        const mt3Label = planexGenerator.getTextPlane(myData['Machine_5'])
-        const aoiLabel = planexGenerator.getTextPlane(myData['Machine_4'])
-        const mt4Label = planexGenerator.getTextPlane(myData['Machine_6'])
-        const lifter2Label = planexGenerator.getTextPlane(myData['Machine_9'])
+        // const lift1Label = planexGenerator.getTextPlane(myData['Machine_8'])
+        // const mt1Label = planexGenerator.getTextPlane(myData['Machine_1'])
+        // const fanLabel = planexGenerator.getTextPlane(myData['Machine_7'])
+        // const dimmLabel = planexGenerator.getTextPlane(myData['Machine_3'])
+        // const mt2Label = planexGenerator.getTextPlane(myData['Machine_2'])
+        // const mt3Label = planexGenerator.getTextPlane(myData['Machine_5'])
+        // const aoiLabel = planexGenerator.getTextPlane(myData['Machine_4'])
+        // const mt4Label = planexGenerator.getTextPlane(myData['Machine_6'])
+        // const lifter2Label = planexGenerator.getTextPlane(myData['Machine_9'])
       
       
-        lift1Label.rotation.set(0, 1.55, 0)
-        lift1Label.position.set(-7.126, 0.783, -2.278)
-        mt1Label.position.set(-5.34, 0.783, -2.278)
-        fanLabel.position.set(-3.554, 0.783, -2.278)
-        dimmLabel.position.set(-1.513, 0.783, -2.278)
-        mt2Label.position.set(0.23, 0.783, -2.278)
-        mt3Label.position.set(1.65, 0.783, -2.278)
-        aoiLabel.position.set(3.335, 0.783, -2.278)
-        mt4Label.position.set(5, 0.783, -2.278)
-        lifter2Label.position.set(7.126, 0.783, -2.278)
-        lifter2Label.rotation.set(0, -1.55, 0)
-        scene.add(texturePlane)
-        scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
-            aoiLabel, mt4Label, lifter2Label, mt1Label)
+        // lift1Label.rotation.set(0, 1.55, 0)
+        // lift1Label.position.set(-7.126, 0.783, -2.278)
+        // mt1Label.position.set(-5.34, 0.783, -2.278)
+        // fanLabel.position.set(-3.554, 0.783, -2.278)
+        // dimmLabel.position.set(-1.513, 0.783, -2.278)
+        // mt2Label.position.set(0.23, 0.783, -2.278)
+        // mt3Label.position.set(1.65, 0.783, -2.278)
+        // aoiLabel.position.set(3.335, 0.783, -2.278)
+        // mt4Label.position.set(5, 0.783, -2.278)
+        // lifter2Label.position.set(7.126, 0.783, -2.278)
+        // lifter2Label.rotation.set(0, -1.55, 0)
+        // scene.add(texturePlane)
+        // scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
+        //     aoiLabel, mt4Label, lifter2Label, mt1Label)
         
     }
     async int(){
-        await this.#loadLabel()
+        // await this.#loadLabel()
         await this.#loadnig()
     }
 
