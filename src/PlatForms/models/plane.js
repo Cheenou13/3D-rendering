@@ -1,7 +1,7 @@
 
 import * as THREE from 'three';
 import chroma from "chroma-js"
-// import TextTexture from '@seregpie/three.text-texture'
+import TextTexture from '@seregpie/three.text-texture'
 
 
 const dimension = {
@@ -27,41 +27,41 @@ export class CreatePlanes {
         return this.plane
     }
 
-    // getTextPlane(machine){
-    //     let name = ''
-    //     if (
-    //         machine.name == 'Manual Station 1' ||
-    //         machine.name == 'Manual Station 2' ||
-    //         machine.name == 'Manual Station 3' ||
-    //         machine.name == 'Manual Station 4' 
-    //         ) name = 'MS'
-    //     else name = machine.name
+    getTextPlane(machine){
+        let name = ''
+        if (
+            machine.name == 'Manual Station 1' ||
+            machine.name == 'Manual Station 2' ||
+            machine.name == 'Manual Station 3' ||
+            machine.name == 'Manual Station 4' 
+            ) name = 'MS'
+        else name = machine.name
     
-    //     let texture = new TextTexture({
-    //         alignment: 'left',
-    //         backgroundColor: chroma('#073b4c').alpha(1/3).css(),
-    //         fontFamily: '"Times New Roman", Times, serif',
-    //         fontSize: 30,
-    //         fontStyle: 'italic',
-    //         padding: 0.2,
-    //         text: [
-    //           'Name: ' + name,
-    //           'Status: ' + machine.status,
-    //           'Power: ' + machine.Power
+        let texture = new TextTexture({
+            alignment: 'left',
+            backgroundColor: chroma('#073b4c').alpha(1/3).css(),
+            fontFamily: '"Times New Roman", Times, serif',
+            fontSize: 30,
+            fontStyle: 'italic',
+            padding: 0.2,
+            text: [
+              'Name: ' + name,
+              'Status: ' + machine.status,
+              'Power: ' + machine.Power
         
-    //         ].join('\n'),
-    //       });
-    //       let material = new THREE.SpriteMaterial({
-    //         map: texture,
-    //         side: THREE.DoubleSide
-    //       });
-    //       let textPlane = new THREE.Sprite(material);
-    //       texture.redraw();
-    //       textPlane.scale.setY(texture.height / texture.width);
+            ].join('\n'),
+          });
+          let material = new THREE.SpriteMaterial({
+            map: texture,
+            side: THREE.DoubleSide
+          });
+          let textPlane = new THREE.Sprite(material);
+          texture.redraw();
+          textPlane.scale.setY(texture.height / texture.width);
 
 
-    //     return textPlane
-    // }
+        return textPlane
+    }
 
     normalPlane(){
         this.material = new THREE.MeshPhongMaterial({
