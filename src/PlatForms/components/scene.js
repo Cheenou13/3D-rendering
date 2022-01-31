@@ -8,6 +8,6 @@ export function createScene(){
     // backgroundLoder.load(background, (bg) => {
     //     scene.background = bg
     // })
-    scene.background = new Color('skyblue')
+    scene.background = new Color("rgb(201, 242, 235)")
     return scene
 }
