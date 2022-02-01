@@ -1,4 +1,4 @@
-import { DisplayModels } from "./src/Display"
+import { DisplayModels } from "./Display"
 
 async function main() {
 
