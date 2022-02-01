@@ -118,12 +118,7 @@ export class CreatePlanes {
         control.add(object.position, 'y', -Math.PI*2, Math.PI*2, 0.001)
         control.add(object.position, 'z', -Math.PI*2, Math.PI*2, 0.001)
 
-    }
-
-    changeFont (object, controls, name){
-        const control = controls.addFolder(name)
-        control.add(object, 'fontSize', 0, 5, 0.001)
-    }    
+    }  
     controlRotation(object, controls, name){
 
         const control = controls.addFolder(name)

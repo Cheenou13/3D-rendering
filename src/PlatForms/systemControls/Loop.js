@@ -16,8 +16,6 @@ export class Loop {
             this.tick();
             // render the frame
             this.renderer.render(this.scene, this.camera)
-            // object.children[0].rotation.y += 0.01
-            // object.children[1]. rotation.z += 0.001
         })
     }
 

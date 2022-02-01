@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { GUI } from 'dat.gui'
 import { Float32BufferAttribute } from "three"
 
 
@@ -35,7 +34,6 @@ export function saturn (){
 
       saturn.position.set(-20, 5, 0)
       rings.position.set(-20, 5, 0)
-      // rings.rotation.set(1.53, -0.27, 0)
       const planet = new THREE.Group()
       planet.add(saturn, rings)
 

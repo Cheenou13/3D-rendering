@@ -33,23 +33,10 @@ export class DisplayModels {
         camera.position.set(0, 4.167, 5.692)
         camera.lookAt(0, 0, 0)
         
-        // const cameraFolder = new GUI()
-        // const cameraPos = cameraFolder.addFolder('Camera Angle')
-
-        // cameraPos.add(camera.position, 'x', -Math.PI*2, Math.PI*2, 0.001)
-        // cameraPos.add(camera.position, 'y', -Math.PI*2, Math.PI*2, 0.001)
-        // cameraPos.add(camera.position, 'z', -Math.PI*2, Math.PI*2, 0.001)
 
         
         new Resizer(camera, renderer)
         document.body.appendChild(renderer.domElement)
-
-
-        // control = new TransformControls (camera, renderer.domElement)
-        // control.addEventListener('change', this.display)
-        // control.addEventListener('dragging-changed', (event) => {
-        //     orbit.enabled = !event.value
-        // })
         
     }
 
