@@ -1,6 +1,7 @@
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
+import { LoadingManager } from 'three'
 
 
 let oilTank = '/old_oil_tank_.2/oilTank.gltf'
@@ -11,7 +12,12 @@ let productMach = '/factory_machine/colored.gltf'
 // let productMach = '/CompressGLB/colorCompressed.glb'
 
 export async function loadModel() {
-    const loader = new GLTFLoader()
+    const loadingManager = new LoadingManager (() => {
+        const loadingScreen = document.getElementById('loading-screen')
+        loadingScreen.classList.add('fade-out')
+        loadingScreen.addEventListener('transitionend', onTransitionEnd)
+    })
+    const loader = new GLTFLoader(loadingManager)
     const [oilTankD1, wishMachD1, productMachD1] = 
     await Promise.all([
         loader.loadAsync(oilTank), 
@@ -69,3 +75,6 @@ export async function loadModel() {
     }
 }
 
+function onTransitionEnd (event) {
+    event.target.remove()
+}
