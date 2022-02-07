@@ -26297,22 +26297,22 @@
   ],
   "images": [
     {
-      "uri": "textures/cable.008_low__0_baseColor.png"
+      "uri": "textures/cable.008_low__0_baseColor.jpg"
     },
     {
-      "uri": "textures/cable.008_low__0_metallicRoughness.png"
+      "uri": "textures/cable.008_low__0_metallicRoughness.jpg"
     },
     {
-      "uri": "textures/cable.008_low__0_normal.png"
+      "uri": "textures/cable.008_low__0_normal.jpg"
     },
     {
-      "uri": "textures/Bulnkostroj-mat_baseColor.png"
+      "uri": "textures/Bulnkostroj-mat_baseColor.jpg"
     },
     {
-      "uri": "textures/Bulnkostroj-mat_metallicRoughness.png"
+      "uri": "textures/Bulnkostroj-mat_metallicRoughness.jpg"
     },
     {
-      "uri": "textures/Bulnkostroj-mat_emissive.png"
+      "uri": "textures/Bulnkostroj-mat_emissive.jpg"
     }
   ],
   "materials": [
