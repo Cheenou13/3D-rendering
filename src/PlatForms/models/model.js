@@ -2,13 +2,14 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
 import { LoadingManager } from 'three'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 
-// let oilTank = '/old_oil_tank_.2/oilTank.gltf'
+// let oilTank = '/CompressedGLB/oilTankCompressed.glb'
 let oilTank = '/GLBModels/oilTank.glb'
-// let wishMach = '/factory_machine_noColor/noColor.gltf'
+// let wishMach = '/CompressedGLB/noColorCompressed.glb'
 let wishMach = '/GLBModels/noColored.glb'
-// let productMach = '/factory_machine/colored.gltf'
+// let productMach = '/CompressedGLB/colorCompressed.glb'
 let productMach = '/GLBModels/colored.glb'
 
 export async function loadModel() {
@@ -18,6 +19,9 @@ export async function loadModel() {
         loadingScreen.addEventListener('transitionend', onTransitionEnd)
     })
     const loader = new GLTFLoader(loadingManager)
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/static/')
+    loader.setDRACOLoader(dracoLoader)
     const [oilTankD1, wishMachD1, productMachD1] = 
     await Promise.all([
         loader.loadAsync(oilTank), 
