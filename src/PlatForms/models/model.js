@@ -34,7 +34,7 @@ export async function loadModel() {
     lifter1.scale.set(0.013, 0.009, 0.013)
     lifter2.scale.set(0.013, 0.009, 0.013)
 
-    
+    // test files
     
     const manualStat1 = extractModel(wishMachD1)
     const manualStat2 = manualStat1.clone()
