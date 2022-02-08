@@ -34,7 +34,6 @@ export class DisplayModels {
         camera.lookAt(0, 0, 0)
         
 
-        
         new Resizer(camera, renderer)
         document.body.appendChild(renderer.domElement)
         
