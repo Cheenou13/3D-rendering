@@ -35,7 +35,6 @@ export async function loadModel() {
     lifter2.scale.set(0.013, 0.009, 0.013)
 
     
-    
     const manualStat1 = extractModel(wishMachD1)
     const manualStat2 = manualStat1.clone()
     const manualStat3 = manualStat1.clone()
