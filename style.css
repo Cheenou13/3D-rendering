@@ -19,7 +19,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: rgb(201, 242, 235);
   opacity: 1;
   transition: 1s opacity;
 }
