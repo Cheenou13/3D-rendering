@@ -41,13 +41,14 @@ export class DisplayModels {
 
     async #loadnig(){
         const {
-            lifter1, lifter2, manualStat1, manualStat2, manualStat3,
-            manualStat4, FAN_PSU, DIMM, AOI
+            lifter1, lifter2, FAN_PSU, DIMM, AOICopy, conveyor1, 
+            conveyor2, conveyor3, conveyor4, manualConveyor1, manualConveyor2,
+            manualConveyor3
 
-        } = 
-        await loadModel()
-        scene.add(lifter1, lifter2, manualStat1, manualStat2, manualStat3,
-            manualStat4, FAN_PSU, DIMM, AOI)
+        } = await loadModel()
+        scene.add(lifter1, lifter2, FAN_PSU, DIMM, AOICopy, conveyor1, 
+            conveyor2, conveyor3, conveyor4, manualConveyor1, manualConveyor2,
+            manualConveyor3)
     }
 
     async #getData(url){
