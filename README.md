@@ -24,6 +24,25 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ├── README.md
 ├── build
 │   └── main.min.js
+├── dist
+│   ├── GLBModels
+│   │   ├── colored.glb
+│   │   ├── noColored.glb
+│   │   └── oilTank.glb
+│   ├── assets
+│   │   ├── favicon.17e50649.svg
+│   │   ├── index.9c72360e.js
+│   │   ├── index.a48048fd.css
+│   │   └── vendor.e5134370.js
+│   ├── index.html
+│   ├── screenBackground
+│   │   ├── floorMetal.jpeg
+│   │   └── metalMapping.jpeg
+│   └── static
+│       ├── draco_decoder.js
+│       ├── draco_decoder.wasm
+│       ├── draco_encoder.js
+│       └── draco_wasm_wrapper.js
 ├── examples
 │   └── lookLike.png
 ├── favicon.svg
@@ -31,27 +50,14 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ├── package-lock.json
 ├── package.json
 ├── public
-│   ├── factory_machine
-│   │   ├── colored.gltf
-│   │   ├── license.txt
-│   │   ├── scene.bin
-│   │   └── textures
-│   │       ├── Bulnkostroj-mat_baseColor.png
-│   │       ├── Bulnkostroj-mat_emissive.png
-│   │       ├── Bulnkostroj-mat_metallicRoughness.png
-│   │       ├── cable.008_low__0_baseColor.png
-│   │       ├── cable.008_low__0_metallicRoughness.png
-│   │       └── cable.008_low__0_normal.png
-│   ├── factory_machine_noColor
-│   │   ├── noColor.gltf
-│   │   └── scene.bin
-│   ├── old_oil_tank_.2
-│   │   ├── oilTank.gltf
-│   │   ├── scene.bin
-│   │   └── textures
-│   │       ├── Material_baseColor.jpeg
-│   │       ├── Material_metallicRoughness.png
-│   │       └── Material_normal.png
+│   ├── GLBModels
+│   │   ├── cartStacker.glb
+│   │   ├── dracoAOI.glb
+│   │   ├── dracoConveyorV2.glb
+│   │   ├── dracoFanDim.glb
+│   │   ├── dracoLeftLoader.glb
+│   │   ├── dracoLoader.glb
+│   │   └── dracoManaulConveyorV2.glb
 │   ├── screenBackground
 │   │   ├── floorMetal.jpeg
 │   │   └── metalMapping.jpeg
