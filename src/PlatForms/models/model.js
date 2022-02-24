@@ -1,19 +1,19 @@
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
-import { LoadingManager } from 'three'
+import { LoadingManager, Object3D } from 'three'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { GUI } from 'dat.gui'
 
-let fanDIMMData = '/GLBModels/dracoFanDIMM.glb'
-let lifterData = '/GLBModels/dracoLoader.glb'
-let conveyorData = '/GLBModels/dracoConeyor.glb'
-let manual_conveyorData = '/GLBModels/dracoManualConveyor.glb'
-let loaderData = '/GLBModels/dracoLoader.glb'
+let fanDIMMData = '/GLBModels/dracoFanDim.glb'
+let lifterDataR = '/GLBModels/dracoLoader.glb'
+let lifterDataL = '/GLBModels/dracoLeftLoader.glb'
+let stackCartDataR = '/GLBModels/cartStacker.glb'
+let conveyorData = '/GLBModels/dracoConveyorV2.glb'
+let manual_conveyorData = '/GLBModels/dracoManaulConveyorV2.glb'
 let AOIData = 'GLBModels/dracoAOI.glb'
 
 export async function loadModel() {
-    const folder = new GUI ()
     const loadingManager = new LoadingManager (() => {
         const loadingScreen = document.getElementById('loading-screen')
         loadingScreen.classList.add('fade-out')
@@ -23,23 +23,29 @@ export async function loadModel() {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/static/')
     loader.setDRACOLoader(dracoLoader)
-    const [lifter, fanDIMM, conveyor, manual_conveyor, loaderD, AOI] = 
+    const [rightLifterD, leftLifterD, stackCartD, fanDIMM, conveyor, manual_conveyor, AOI] = 
     await Promise.all([
-        loader.loadAsync(lifterData), 
+        loader.loadAsync(lifterDataR),
+        loader.loadAsync(lifterDataL),
+        loader.loadAsync(stackCartDataR),
         loader.loadAsync(fanDIMMData),
         loader.loadAsync(conveyorData),
         loader.loadAsync(manual_conveyorData),
-        loader.loadAsync(loaderData),
         loader.loadAsync(AOIData)
     ])  
-    const lifter1 = extractModel(lifter)
-    const lifter2 = lifter1.clone()
- 
-    lifter1.scale.set(0.001, 0.001, 0.001) 
-    lifter2.scale.set(0.001, 0.001, 0.001) 
+    const rightLifter = extractModel(rightLifterD)
+    const leftLifter = extractModel(leftLifterD)
+    rightLifter.scale.set(0.001, 0.001, 0.001)
+    leftLifter.scale.set(0.001, 0.001, 0.001) 
 
+    const stackCartR = extractModel(stackCartD)
+    stackCartR.scale.set(0.001, 0.001, 0.001)
+    const stackCartL = stackCartR.clone()
+
+    
     const conveyor1 = extractModel(conveyor)
     conveyor1.scale.set(0.001, 0.001, 0.001)
+    conveyor1.rotation.set(-Math.PI, 0, 0)
     const conveyor2 = conveyor1.clone()
     const conveyor3 = conveyor1.clone()
     const conveyor4 = conveyor1.clone()
@@ -48,18 +54,11 @@ export async function loadModel() {
 
     const manualConveyor1 = extractModel(manual_conveyor)
     manualConveyor1.scale.set(0.001, 0.001, 0.001)
+    manualConveyor1.rotation.set(-Math.PI, 0, 0)
     const manualConveyor2 = manualConveyor1.clone()
     const manualConveyor3 = manualConveyor1.clone()
+    const manualConveyor4 = manualConveyor1.clone()
 
-    const manualStat1 = extractModel(loaderD)
-    const manualStat2 = manualStat1.clone()
-    const manualStat3 = manualStat1.clone()
-    const manualStat4 = manualStat1.clone()
-
-    manualStat1.scale.set(0.001, 0.001, 0.001)
-    manualStat2.scale.set(0.001, 0.001, 0.001)
-    manualStat3.scale.set(0.001, 0.001, 0.001)
-    manualStat4.scale.set(0.001, 0.001, 0.001)
 
     const FAN_PSU = extractModel(fanDIMM)
     const DIMM = FAN_PSU.clone()
@@ -69,46 +68,38 @@ export async function loadModel() {
     DIMM.scale.set(0.001, 0.001, 0.001)
     AOICopy.scale.set(0.001, 0.001, 0.001)
 
-    lifter1.rotation.set(0, 0, Math.PI)
-    manualStat1.position.set(-5.085, -2.023, -2.278)
-    manualStat1.rotation.set(-1.571, 0, 4.701)
-    FAN_PSU.position.set(-3.554, -1.4, -2.278)
-    FAN_PSU.rotation.set(-1.571, 0, -1.571)
+    changePosition(stackCartR, 9, -1.048, -2.272, 0, 0, Math.PI)
+    changePosition(rightLifter, 8.155, -1.275, -2.272, 0, 0, Math.PI)
+    changePosition(conveyor1, 7.075, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(manualConveyor1, 5.993, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(FAN_PSU, 3.824, 0.355, -2.282, -1.571, 1.571, 0)
+    changePosition(conveyor2, 3.695, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(DIMM, 1.537, 0.355, -2.282, -1.571, 1.571, 0)
+    changePosition(conveyor3, 1.415, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(manualConveyor2, 0.325, -0.69, -1.624, Math.PI, 0, 0)
+    changePosition(manualConveyor3, -0.76, -0.69, -1.624, Math.PI, 0, 0)
+    changePosition(conveyor4, -1.84, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(AOICopy, -3.795, -0.643, -2.272, -Math.PI, 0, 0)
+    changePosition(conveyor5, -3.925, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(manualConveyor4, -5.01, -0.69, -1.624, Math.PI, 0, 0)
+    changePosition(conveyor6, -6.09, -0.69, -1.624, -Math.PI, 0, 0)
+    changePosition(leftLifter, -7.095, -1.275, -2.272, 0, 0, Math.PI)
+    changePosition(stackCartL, -8.1, -1.048, -2.272, 0, 0, Math.PI)
 
-    changePosition(lifter1, -6, -1.275, -1.648, 0, 0, Math.PI)
-    changePosition(lifter2, 6.459, -1.275, -1.648, 0, 0, Math.PI)
-    changePosition(conveyor1, 5.38, -0.69, -1.225, -Math.PI, 0, 0)
-    changePosition(manualConveyor1, 4.305, -0.69, -1.225, -Math.PI, 0, 0)
-    changePosition(FAN_PSU, 2.149, 0.355, -1.658, -1.571, 1.571, 0)
-    changePosition(conveyor2, 2.03, -0.69, -1.225, -Math.PI, 0, 0)
-    changePosition(DIMM, -0.13, 0.355, -1.658, -1.571, 1.571, 0)
-    changePosition(conveyor3, -0.25, -0.69, -1.225, -Math.PI, 0, 0)
-    changePosition(manualConveyor2, -1.325, -0.69, -1.225, Math.PI, 0, 0)
-    changePosition(manualConveyor3, -2.4, -0.69, -1.225, Math.PI, 0, 0)
-    changePosition(conveyor4, -3.47, -0.69, -1.225, -Math.PI, 0, 0)
-    changePosition(AOICopy, -5.42, -0.643, -1.648, -Math.PI, 0, 0)
-
-    const guiPosition1 = folder.addFolder("Manual Conveyor 2 Position")
-    const guiRotation1 = folder.addFolder("Manual Conveyor 2 Rotation")
-    // const guiScale = folder.addFolder('conveyor1 scale')
-
-    guiPosition1.add(AOICopy.position, 'x',-3*Math.PI, 3*Math.PI, 0.001)
-    guiPosition1.add(AOICopy.position, 'y', -3*Math.PI, 3*Math.PI, 0.001)
-    guiPosition1.add(AOICopy.position, 'z', -3*Math.PI, 3*Math.PI, 0.001)
-
-    guiRotation1.add(AOICopy.rotation, 'x', -Math.PI, Math.PI, 0.001)
-    guiRotation1.add(AOICopy.rotation, 'y', -Math.PI, Math.PI, 0.001)
-    guiRotation1.add(AOICopy.rotation, 'z', -Math.PI, Math.PI, 0.001)
-
-    // guiScale.add(conveyor1.scale, 'x', -0.1, 0.1, 0.00001)
-    // guiScale.add(conveyor1.scale, 'y', -0.1, 0.1, 0.00001)
-    // guiScale.add(conveyor1.scale, 'x', -0.1, 0.1, 0.00001)
+    // positionAdjustment(stackCartR, "stackCartR")
+    // positionAdjustment(conveyor4, "conveyor4")
+    // positionAdjustment(AOICopy, "AOICopy")
+    // positionAdjustment(conveyor5, "conveyor5")
+    // positionAdjustment(manualConveyor4, "manualConveyor4")
+    // positionAdjustment(conveyor6, "conveyor6")
+    // positionAdjustment(leftLifter, "leftLifter")
+    // positionAdjustment(stackCartL, "stackCartL")
 
 
     return {
-        lifter1, lifter2, FAN_PSU, DIMM, AOICopy, conveyor1, 
-        conveyor2, conveyor3, conveyor4, manualConveyor1, manualConveyor2,
-        manualConveyor3
+        rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
+        conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
+        manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4
     }
 }
 
@@ -120,6 +111,15 @@ function changePosition (object, x, y, z, x1, y1, z1){
      */
     object.position.set(x, y, z)
     object.rotation.set(x1, y1, z1)
+}
+
+function positionAdjustment (object, name){
+    const folder = new GUI ()
+    const objectPosition = folder.addFolder(name +" Position")
+    objectPosition.add(object.position, 'x',-3*Math.PI, 3*Math.PI, 0.001)
+    objectPosition.add(object.position, 'y', -3*Math.PI, 3*Math.PI, 0.001)
+    objectPosition.add(object.position, 'z', -3*Math.PI, 3*Math.PI, 0.001)
+
 }
 function onTransitionEnd (event) {
     event.target.remove()

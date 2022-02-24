@@ -31,9 +31,7 @@ export class DisplayModels {
         
         scene.add(pointLight1, pointLight2, pointLight3, pointLight4)
         camera.position.set(0, 4.167, 5.692)
-        camera.lookAt(0, 0, 0)
         
-
         new Resizer(camera, renderer)
         document.body.appendChild(renderer.domElement)
         
@@ -41,14 +39,15 @@ export class DisplayModels {
 
     async #loadnig(){
         const {
-            lifter1, lifter2, FAN_PSU, DIMM, AOICopy, conveyor1, 
-            conveyor2, conveyor3, conveyor4, manualConveyor1, manualConveyor2,
-            manualConveyor3
+            rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
+            conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
+            manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4
 
         } = await loadModel()
-        scene.add(lifter1, lifter2, FAN_PSU, DIMM, AOICopy, conveyor1, 
-            conveyor2, conveyor3, conveyor4, manualConveyor1, manualConveyor2,
-            manualConveyor3)
+        scene.add(
+            rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
+            conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
+            manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4)
     }
 
     async #getData(url){

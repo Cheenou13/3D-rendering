@@ -5,8 +5,8 @@ import TextTexture from '@seregpie/three.text-texture'
 
 const dimension = {
     options: {
-        width: 15,
-        height: 15,
+        width: 19,
+        height: 9,
         diameter: 0.3,
     }
 }
@@ -81,7 +81,7 @@ export class CreatePlanes {
          * @default color is ocean blue
          */
         const normalTexture = this.texture_loader.load(texture)
-        this.geometry = new THREE.BoxGeometry(15.67, 9.6, 0.224)
+        this.geometry = new THREE.BoxGeometry(19, 9, 0.3)
         this.material = new THREE.MeshPhysicalMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(typeof color === 'undefined' ? 0xe0f4ff : color),
@@ -95,7 +95,7 @@ export class CreatePlanes {
         return this.plane
     }
 
-    controlSize(object, controls, name){
+    controlSize(object, folder, name){
         
         function changeDimension (){
             object.geometry.dispose()
@@ -105,7 +105,7 @@ export class CreatePlanes {
                 dimension.options.diameter
             )
         }
-        const control = controls.addFolder(name)
+        const control = folder.addFolder(name)
         control.add(dimension.options, 'width', 0, 50, 0.001).onChange(changeDimension)
         control.add(dimension.options, 'height', 0, 50, 0.001).onChange(changeDimension)
         control.add(dimension.options, 'diameter', 0, 50, 0.001).onChange(changeDimension)

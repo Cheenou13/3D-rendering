@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lifter v2
+* source:	https://sketchfab.com/3d-models/lifter-v2-c9f9f3406a13438a996627f0199a3116
+* author:	txiong (https://sketchfab.com/txiong)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lifter v2" (https://sketchfab.com/3d-models/lifter-v2-c9f9f3406a13438a996627f0199a3116) by txiong (https://sketchfab.com/txiong) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

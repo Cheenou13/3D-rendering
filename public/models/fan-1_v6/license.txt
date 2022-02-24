@@ -1,0 +1,11 @@
+Model Information:
+* title:	Fan-1 v6
+* source:	https://sketchfab.com/3d-models/fan-1-v6-f1bb2bbc4d254fccab29a4b4598e4c76
+* author:	txiong (https://sketchfab.com/txiong)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Fan-1 v6" (https://sketchfab.com/3d-models/fan-1-v6-f1bb2bbc4d254fccab29a4b4598e4c76) by txiong (https://sketchfab.com/txiong) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

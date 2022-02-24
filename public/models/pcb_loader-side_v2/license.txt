@@ -1,0 +1,11 @@
+Model Information:
+* title:	PCB Loader-side V2
+* source:	https://sketchfab.com/3d-models/pcb-loader-side-v2-5a16b2e1905f43e195e6cbd48af74d15
+* author:	txiong (https://sketchfab.com/txiong)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PCB Loader-side V2" (https://sketchfab.com/3d-models/pcb-loader-side-v2-5a16b2e1905f43e195e6cbd48af74d15) by txiong (https://sketchfab.com/txiong) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
