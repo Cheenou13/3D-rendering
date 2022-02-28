@@ -12,6 +12,7 @@ let stackCartDataR = '/GLBModels/cartStacker.glb'
 let conveyorData = '/GLBModels/dracoConveyorV2.glb'
 let manual_conveyorData = '/GLBModels/dracoManaulConveyorV2.glb'
 let AOIData = 'GLBModels/dracoAOI.glb'
+let employeeData = '/GLBModels/dracoPerson.glb'
 
 export async function loadModel() {
     const loadingManager = new LoadingManager (() => {
@@ -23,7 +24,7 @@ export async function loadModel() {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/static/')
     loader.setDRACOLoader(dracoLoader)
-    const [rightLifterD, leftLifterD, stackCartD, fanDIMM, conveyor, manual_conveyor, AOI] = 
+    const [rightLifterD, leftLifterD, stackCartD, fanDIMM, conveyor, manual_conveyor, AOI, employeeD] = 
     await Promise.all([
         loader.loadAsync(lifterDataR),
         loader.loadAsync(lifterDataL),
@@ -31,7 +32,8 @@ export async function loadModel() {
         loader.loadAsync(fanDIMMData),
         loader.loadAsync(conveyorData),
         loader.loadAsync(manual_conveyorData),
-        loader.loadAsync(AOIData)
+        loader.loadAsync(AOIData),
+        loader.loadAsync(employeeData)
     ])  
     const rightLifter = extractModel(rightLifterD)
     const leftLifter = extractModel(leftLifterD)
@@ -68,38 +70,51 @@ export async function loadModel() {
     DIMM.scale.set(0.001, 0.001, 0.001)
     AOICopy.scale.set(0.001, 0.001, 0.001)
 
-    changePosition(stackCartR, 9, -1.048, -2.272, 0, 0, Math.PI)
-    changePosition(rightLifter, 8.155, -1.275, -2.272, 0, 0, Math.PI)
-    changePosition(conveyor1, 7.075, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(manualConveyor1, 5.993, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(FAN_PSU, 3.824, 0.355, -2.282, -1.571, 1.571, 0)
-    changePosition(conveyor2, 3.695, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(DIMM, 1.537, 0.355, -2.282, -1.571, 1.571, 0)
-    changePosition(conveyor3, 1.415, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(manualConveyor2, 0.325, -0.69, -1.624, Math.PI, 0, 0)
-    changePosition(manualConveyor3, -0.76, -0.69, -1.624, Math.PI, 0, 0)
-    changePosition(conveyor4, -1.84, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(AOICopy, -3.795, -0.643, -2.272, -Math.PI, 0, 0)
-    changePosition(conveyor5, -3.925, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(manualConveyor4, -5.01, -0.69, -1.624, Math.PI, 0, 0)
-    changePosition(conveyor6, -6.09, -0.69, -1.624, -Math.PI, 0, 0)
-    changePosition(leftLifter, -7.095, -1.275, -2.272, 0, 0, Math.PI)
-    changePosition(stackCartL, -8.1, -1.048, -2.272, 0, 0, Math.PI)
+    const employee = extractModel(employeeD)
+    employee.scale.set(0.9, 0.9, 0.9)
+    const employee1 = employee.clone()
+    const employee2 = employee.clone()
+    const employee3 = employee.clone()
+
+    changePosition(stackCartR, 9, -1.032, -2.272, 0, 0, Math.PI)
+    changePosition(rightLifter, 8.155, -1.23, -2.272, 0, 0, Math.PI)
+    changePosition(conveyor1, 7.075, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(manualConveyor1, 5.993, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(FAN_PSU, 3.824, 0.4, -2.282, -1.571, 1.571, 0)
+    changePosition(conveyor2, 3.695, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(DIMM, 1.537, 0.4, -2.282, -1.571, 1.571, 0)
+    changePosition(conveyor3, 1.415, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(manualConveyor2, 0.325, -0.65, -1.624, Math.PI, 0, 0)
+    changePosition(manualConveyor3, -0.76, -0.65, -1.624, Math.PI, 0, 0)
+    changePosition(conveyor4, -1.84, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(AOICopy, -3.795, -0.60, -2.272, -Math.PI, 0, 0)
+    changePosition(conveyor5, -3.925, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(manualConveyor4, -5.01, -0.65, -1.624, Math.PI, 0, 0)
+    changePosition(conveyor6, -6.09, -0.65, -1.624, -Math.PI, 0, 0)
+    changePosition(leftLifter, -7.095, -1.23, -2.272, 0, 0, Math.PI)
+    changePosition(stackCartL, -8.1, -1.032, -2.272, 0, 0, Math.PI)
+
+    changePosition(employee, 0, -1.33, -1.441, 0, -1.555, 0)
+    changePosition(employee1, -5.391, -1.33, -1.441, 0, -1.555, 0)
+    changePosition(employee2, 4.379, -1.33, -1, 0, -1.555, 0)
+    changePosition(employee3, 8.536, -1.33, -1, 0, -1.555, 0)
+
 
     // positionAdjustment(stackCartR, "stackCartR")
-    // positionAdjustment(conveyor4, "conveyor4")
+    positionAdjustment(employee3, "employee3")
     // positionAdjustment(AOICopy, "AOICopy")
     // positionAdjustment(conveyor5, "conveyor5")
     // positionAdjustment(manualConveyor4, "manualConveyor4")
     // positionAdjustment(conveyor6, "conveyor6")
-    // positionAdjustment(leftLifter, "leftLifter")
+    positionAdjustment(leftLifter, "leftLifter")
     // positionAdjustment(stackCartL, "stackCartL")
 
 
     return {
         rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
         conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
-        manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4
+        manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
+        employee1, employee2, employee3
     }
 }
 
@@ -116,9 +131,14 @@ function changePosition (object, x, y, z, x1, y1, z1){
 function positionAdjustment (object, name){
     const folder = new GUI ()
     const objectPosition = folder.addFolder(name +" Position")
+    const objectRotation = folder.addFolder(name +" Rotation")
     objectPosition.add(object.position, 'x',-3*Math.PI, 3*Math.PI, 0.001)
     objectPosition.add(object.position, 'y', -3*Math.PI, 3*Math.PI, 0.001)
     objectPosition.add(object.position, 'z', -3*Math.PI, 3*Math.PI, 0.001)
+
+    objectRotation.add(object.rotation, 'x',-3*Math.PI, 3*Math.PI, 0.001)
+    objectRotation.add(object.rotation, 'y', -3*Math.PI, 3*Math.PI, 0.001)
+    objectRotation.add(object.rotation, 'z', -3*Math.PI, 3*Math.PI, 0.001)
 
 }
 function onTransitionEnd (event) {

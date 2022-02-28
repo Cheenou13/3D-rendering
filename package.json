@@ -20,10 +20,11 @@
     "@seregpie/three.text-texture": "^3.2.1",
     "axios": "^0.25.0",
     "chroma-js": "^2.1.2",
-    "dat.gui": "^0.7.7", 
+    "dat.gui": "^0.7.7",
     "drag-controls": "^1.0.4",
     "gltf-pipeline": "^3.0.4",
     "lodash-es": "^4.17.21",
+    "obj2gltf": "^3.1.4",
     "three": "^0.137.2"
   }
 }
