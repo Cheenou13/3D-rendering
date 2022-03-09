@@ -27,6 +27,7 @@ export class DisplayModels {
         planexGenerator = new CreatePlanes()
         texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
         orbit.addEventListener('change', this.display)
+        // orbit.autoRotate = true
         loop.updatables.push(orbit)
         
         scene.add(pointLight1, pointLight2, pointLight3, pointLight4)
@@ -42,14 +43,14 @@ export class DisplayModels {
             rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
             conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
             manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-            employee1, employee2, employee3
+            operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
 
         } = await loadModel()
         scene.add(
             rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
             conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
             manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-            employee1, employee2, employee3
+            operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
             )
     }
 

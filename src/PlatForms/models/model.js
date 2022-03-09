@@ -5,14 +5,17 @@ import { LoadingManager, Object3D } from 'three'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { GUI } from 'dat.gui'
 
-let fanDIMMData = '/GLBModels/dracoFanDim.glb'
-let lifterDataR = '/GLBModels/dracoLoader.glb'
-let lifterDataL = '/GLBModels/dracoLeftLoader.glb'
-let stackCartDataR = '/GLBModels/cartStacker.glb'
-let conveyorData = '/GLBModels/dracoConveyorV2.glb'
-let manual_conveyorData = '/GLBModels/dracoManaulConveyorV2.glb'
-let AOIData = 'GLBModels/dracoAOI.glb'
+let fanDIMMFile = '/GLBModels/Machines/dracoFanDim.glb'
+let lifterRightFile = '/GLBModels/Machines/dracoLoader.glb'
+let lifterLeftFile = '/GLBModels/Machines/dracoLeftLoader.glb'
+let stackCartFile = '/GLBModels/Machines/cartStacker.glb'
+let conveyorFile = '/GLBModels/Machines/dracoConveyorV2.glb'
+let manualConveyorFile = '/GLBModels/Machines/dracoManaulConveyorV2.glb'
+let AOIFile = 'GLBModels/Machines/dracoAOI.glb'
 let employeeData = '/GLBModels/dracoPerson.glb'
+let carryingPoseFile = '/GLBModels/EmployeePoses/carryingPoseDraco.glb'
+let grabPoseFile = '/GLBModels/EmployeePoses/grabPoseDraco.glb'
+let workingPose = '/GLBModels/EmployeePoses/workingPoseDraco.glb'
 
 export async function loadModel() {
     const loadingManager = new LoadingManager (() => {
@@ -24,16 +27,21 @@ export async function loadModel() {
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/static/')
     loader.setDRACOLoader(dracoLoader)
-    const [rightLifterD, leftLifterD, stackCartD, fanDIMM, conveyor, manual_conveyor, AOI, employeeD] = 
-    await Promise.all([
-        loader.loadAsync(lifterDataR),
-        loader.loadAsync(lifterDataL),
-        loader.loadAsync(stackCartDataR),
-        loader.loadAsync(fanDIMMData),
-        loader.loadAsync(conveyorData),
-        loader.loadAsync(manual_conveyorData),
-        loader.loadAsync(AOIData),
-        loader.loadAsync(employeeData)
+    const [rightLifterD, leftLifterD, stackCartD, fanDIMM, 
+           conveyor, manual_conveyor, AOI, employeeD,
+           carryingPoseData, grabPoseData, workingPoseData
+    ] = await Promise.all([
+        loader.loadAsync(lifterRightFile),
+        loader.loadAsync(lifterLeftFile),
+        loader.loadAsync(stackCartFile),
+        loader.loadAsync(fanDIMMFile),
+        loader.loadAsync(conveyorFile),
+        loader.loadAsync(manualConveyorFile),
+        loader.loadAsync(AOIFile),
+        loader.loadAsync(employeeData),
+        loader.loadAsync(carryingPoseFile),
+        loader.loadAsync(grabPoseFile),
+        loader.loadAsync(workingPose)
     ])  
     const rightLifter = extractModel(rightLifterD)
     const leftLifter = extractModel(leftLifterD)
@@ -76,6 +84,21 @@ export async function loadModel() {
     const employee2 = employee.clone()
     const employee3 = employee.clone()
 
+    const operateEmployee = extractModel(grabPoseData)
+    operateEmployee.scale.set(0.9, 0.9, 0.9)
+    changePosition(operateEmployee, 4.2, -1.33, -0.75, -3.137, 1.678, 0)
+    const operateEmployee1 = operateEmployee.clone()
+    const operateEmployee2 = operateEmployee.clone()
+
+    changePosition(operateEmployee1, 7.3, -1.33, -2.79, 0, -1.648, -3.142)
+    changePosition(operateEmployee2, -3.55, -1.33, -2.79, 0, -1.648, -3.142)
+
+
+    const assemblyEmployee = extractModel(workingPoseData)
+    assemblyEmployee.scale.set(0.9, 0.9, 0.9)
+    const carryingEmployee = extractModel(carryingPoseData)
+    carryingEmployee.scale.set(0.9, 0.9, 0.9)
+
     changePosition(stackCartR, 9, -1.032, -2.272, 0, 0, Math.PI)
     changePosition(rightLifter, 8.155, -1.23, -2.272, 0, 0, Math.PI)
     changePosition(conveyor1, 7.075, -0.65, -1.624, -Math.PI, 0, 0)
@@ -95,18 +118,17 @@ export async function loadModel() {
     changePosition(stackCartL, -8.1, -1.032, -2.272, 0, 0, Math.PI)
 
     changePosition(employee, 0, -1.33, -1.441, 0, -1.555, 0)
-    changePosition(employee1, -5.391, -1.33, -1.441, 0, -1.555, 0)
-    changePosition(employee2, 4.379, -1.33, -1, 0, -1.555, 0)
-    changePosition(employee3, 8.536, -1.33, -1, 0, -1.555, 0)
+    changePosition(assemblyEmployee, -1.233, -1.33, -1.441, -3.137, 1.678, 0)
+    changePosition(carryingEmployee, -7.469, -1.33, 0, -3.137, 1.262, 0)
 
 
     // positionAdjustment(stackCartR, "stackCartR")
-    positionAdjustment(employee3, "employee3")
+    // positionAdjustment(operateEmployee1, "carryingEmployee1")
     // positionAdjustment(AOICopy, "AOICopy")
     // positionAdjustment(conveyor5, "conveyor5")
     // positionAdjustment(manualConveyor4, "manualConveyor4")
     // positionAdjustment(conveyor6, "conveyor6")
-    positionAdjustment(leftLifter, "leftLifter")
+    // positionAdjustment(operateEmployee2, "operateEmployee2")
     // positionAdjustment(stackCartL, "stackCartL")
 
 
@@ -114,7 +136,7 @@ export async function loadModel() {
         rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
         conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
         manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-        employee1, employee2, employee3
+        operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
     }
 }
 
