@@ -8,27 +8,28 @@ import { Loop } from "./PlatForms/systemControls/Loop"
 import { Resizer } from "./PlatForms/systemControls/Resizer"
 import axios from "axios"
 import { CreatePlanes } from "./PlatForms/models/plane"
-
+import * as THREE from 'three'
+import { GUI } from 'dat.gui'
 
 
 const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
 
 
-let camera, renderer, scene, orbit, loop, control, planexGenerator, texturePlane
+let camera, renderer, scene, orbit, control, planexGenerator, texturePlane
 
 export class DisplayModels {
     constructor(document){
         camera = createCamera()
         renderer = createRenderer()
         scene = createScene()
-        loop = new Loop(camera, scene, renderer)
+        this.loop = new Loop(camera, scene, renderer)
         orbit = createControl(camera, renderer)
         const {pointLight1, pointLight2, pointLight3, pointLight4} = createLights()
         planexGenerator = new CreatePlanes()
         texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
         orbit.addEventListener('change', this.display)
         // orbit.autoRotate = true
-        loop.updatables.push(orbit)
+        this.loop.updatables.push(orbit)
         
         scene.add(pointLight1, pointLight2, pointLight3, pointLight4)
         camera.position.set(0, 4.167, 5.692)
@@ -43,7 +44,7 @@ export class DisplayModels {
             rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
             conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
             manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-            operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
+            operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee, walkingData
 
         } = await loadModel()
         scene.add(
@@ -52,8 +53,34 @@ export class DisplayModels {
             manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
             operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
             )
-    }
+        
+        const walkingAnimation = walkingData.scene
+        const cfolder = new GUI()
+        
+        
+        const mixer = new THREE.AnimationMixer(walkingAnimation)
+        const clips = walkingData.animations
+        const clip = THREE.AnimationClip.findByName(clips, 'Armature.001Action')
+        const action = mixer.clipAction(clip)
+        // action.play()
 
+        scene.add(walkingAnimation)
+        walkingAnimation.position.set(-4.77, -1.35, 0.43)
+        walkingAnimation.rotation.set(0, 1.47, 0)
+        // const position = cfolder.addFolder("walking position")
+        // const rotation = cfolder.addFolder("walking rotation")
+
+        // position.add(walkingAnimation.position, 'x', -3*Math.PI, 3*Math.PI, 0.01)
+        // position.add(walkingAnimation.position, 'y', -3*Math.PI, 3*Math.PI, 0.01)
+        // position.add(walkingAnimation.position, 'z', -3*Math.PI, 3*Math.PI, 0.01)
+
+        // rotation.add(walkingAnimation.rotation, 'x', -3*Math.PI, 3*Math.PI, 0.01)
+        // rotation.add(walkingAnimation.rotation, 'y', -3*Math.PI, 3*Math.PI, 0.01)
+        // rotation.add(walkingAnimation.rotation, 'z', -3*Math.PI, 3*Math.PI, 0.01)
+
+        this.loop.start(mixer)
+
+    }
     async #getData(url){
         const res = await axios.get(url);
         return res.data;
@@ -94,33 +121,15 @@ export class DisplayModels {
         await this.#loadnig()
     }
 
-    render(){
-        renderer.render(scene, camera)
-    }
-
     display() {
-    
-        loop.start()
+        // const loader = new GLTFLoader()
+        // loader.load('/GLBModels/EmployeePoses/walkingAnimationV2.glb', (gltf) => {
+        //     scene.add(gltf.scene.children[0])
+        // })
+        // loop.start()
     }
     stop(){
-        loop.stop()
-    }
-
-    addModelRotation(model, controls, name){
-        
-        const control = controls.addFolder(name)
-        control.add(model.rotation, 'x', -Math.PI/2, Math.PI*2, 0.001)
-        control.add(model.rotation, 'y', -Math.PI/2, Math.PI*2, 0.001)
-        control.add(model.rotation, 'z', -Math.PI/2, Math.PI*2, 0.001)
-    }
-
-    addModelPosition(model, controls, name){
-
-        const control = controls.addFolder(name)
-        control.add(model.position, 'x', -(Math.PI*6 - 1), Math.PI*6 - 1, 0.001)
-        control.add(model.position, 'y', -(Math.PI*6 - 1), Math.PI*6 - 1, 0.001)
-        control.add(model.position, 'z', -(Math.PI*6 - 1), Math.PI*6 - 1, 0.001)
-        
+        // loop.stop()
     }
 
 

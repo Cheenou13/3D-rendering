@@ -16,6 +16,7 @@ let employeeData = '/GLBModels/dracoPerson.glb'
 let carryingPoseFile = '/GLBModels/EmployeePoses/carryingPoseDraco.glb'
 let grabPoseFile = '/GLBModels/EmployeePoses/grabPoseDraco.glb'
 let workingPose = '/GLBModels/EmployeePoses/workingPoseDraco.glb'
+let walking = '/GLBModels/EmployeePoses/walkingAnimationV2.glb'
 
 export async function loadModel() {
     const loadingManager = new LoadingManager (() => {
@@ -29,7 +30,7 @@ export async function loadModel() {
     loader.setDRACOLoader(dracoLoader)
     const [rightLifterD, leftLifterD, stackCartD, fanDIMM, 
            conveyor, manual_conveyor, AOI, employeeD,
-           carryingPoseData, grabPoseData, workingPoseData
+           carryingPoseData, grabPoseData, workingPoseData, walkingData
     ] = await Promise.all([
         loader.loadAsync(lifterRightFile),
         loader.loadAsync(lifterLeftFile),
@@ -41,7 +42,8 @@ export async function loadModel() {
         loader.loadAsync(employeeData),
         loader.loadAsync(carryingPoseFile),
         loader.loadAsync(grabPoseFile),
-        loader.loadAsync(workingPose)
+        loader.loadAsync(workingPose),
+        loader.loadAsync(walking)
     ])  
     const rightLifter = extractModel(rightLifterD)
     const leftLifter = extractModel(leftLifterD)
@@ -80,9 +82,7 @@ export async function loadModel() {
 
     const employee = extractModel(employeeD)
     employee.scale.set(0.9, 0.9, 0.9)
-    const employee1 = employee.clone()
-    const employee2 = employee.clone()
-    const employee3 = employee.clone()
+
 
     const operateEmployee = extractModel(grabPoseData)
     operateEmployee.scale.set(0.9, 0.9, 0.9)
@@ -93,6 +93,17 @@ export async function loadModel() {
     changePosition(operateEmployee1, 7.3, -1.33, -2.79, 0, -1.648, -3.142)
     changePosition(operateEmployee2, -3.55, -1.33, -2.79, 0, -1.648, -3.142)
 
+    // const walkingAnimation = extractModel(walkingData)
+    // walkingAnimation.position.set(0, 0, 0)
+    // mixer = new THREE.AnimationMixer(walkingAnimation)
+    // const clips = walkingData.animations
+    // const clip = THREE.AnimationClip.findByName(clips, 'Armature.001Action')
+    // const action = mixer.clipAction(clip)
+    // action.play
+    // console.log(walkingData)
+    // console.log(clip)
+    // console.log(clips)
+    // console.log(action.play)
 
     const assemblyEmployee = extractModel(workingPoseData)
     assemblyEmployee.scale.set(0.9, 0.9, 0.9)
@@ -136,7 +147,7 @@ export async function loadModel() {
         rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
         conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
         manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-        operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
+        operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee, walkingData
     }
 }
 
