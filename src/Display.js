@@ -62,7 +62,7 @@ export class DisplayModels {
         const clips = walkingData.animations
         const clip = THREE.AnimationClip.findByName(clips, 'Armature.001Action')
         const action = mixer.clipAction(clip)
-        // action.play()
+        action.play()
 
         scene.add(walkingAnimation)
         walkingAnimation.position.set(-4.77, -1.35, 0.43)

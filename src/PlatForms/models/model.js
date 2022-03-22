@@ -16,7 +16,7 @@ let employeeData = '/GLBModels/dracoPerson.glb'
 let carryingPoseFile = '/GLBModels/EmployeePoses/carryingPoseDraco.glb'
 let grabPoseFile = '/GLBModels/EmployeePoses/grabPoseDraco.glb'
 let workingPose = '/GLBModels/EmployeePoses/workingPoseDraco.glb'
-let walking = '/GLBModels/EmployeePoses/walkingAnimationV2.glb'
+let walking = '/GLBModels/EmployeePoses/comrepessedWalking.glb'
 
 export async function loadModel() {
     const loadingManager = new LoadingManager (() => {
