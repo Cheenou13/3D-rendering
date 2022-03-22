@@ -2,11 +2,11 @@
 # Stream Of Quality (SOQ) - 3 Dimension
 
 This project uses vanila js and light weight three js to load model 3 dimension model(s) of manufacture line.
-
-
+improve version includes motion caption of 3d charactors
 ## Motivation
 
-This project will allow one get basic information from production line (in 3D). 
+This project will allow one get basic information from production line (in 3D). As well as display the action of 
+an employee will be doing.
 
 ## Code Style
 
@@ -26,14 +26,18 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   └── main.min.js
 ├── dist
 │   ├── GLBModels
-│   │   ├── colored.glb
-│   │   ├── noColored.glb
-│   │   └── oilTank.glb
+│   │   ├── cartStacker.glb
+│   │   ├── dracoAOI.glb
+│   │   ├── dracoConveyorV2.glb
+│   │   ├── dracoFanDim.glb
+│   │   ├── dracoLeftLoader.glb
+│   │   ├── dracoLoader.glb
+│   │   └── dracoManaulConveyorV2.glb
 │   ├── assets
 │   │   ├── favicon.17e50649.svg
-│   │   ├── index.9c72360e.js
-│   │   ├── index.a48048fd.css
-│   │   └── vendor.e5134370.js
+│   │   ├── index.cc12f24a.js
+│   │   ├── index.e3fc458e.css
+│   │   └── vendor.43338a04.js
 │   ├── index.html
 │   ├── screenBackground
 │   │   ├── floorMetal.jpeg
@@ -51,13 +55,22 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ├── package.json
 ├── public
 │   ├── GLBModels
-│   │   ├── cartStacker.glb
-│   │   ├── dracoAOI.glb
-│   │   ├── dracoConveyorV2.glb
-│   │   ├── dracoFanDim.glb
-│   │   ├── dracoLeftLoader.glb
-│   │   ├── dracoLoader.glb
-│   │   └── dracoManaulConveyorV2.glb
+│   │   ├── EmployeePoses
+│   │   │   ├── carryingPoseDraco.glb
+│   │   │   ├── compressWalkingAnimation.glb
+│   │   │   ├── grabPoseDraco.glb
+│   │   │   ├── walkingAnimation.glb
+│   │   │   ├── walkingAnimationV2.glb
+│   │   │   └── workingPoseDraco.glb
+│   │   ├── Machines
+│   │   │   ├── cartStacker.glb
+│   │   │   ├── dracoAOI.glb
+│   │   │   ├── dracoConveyorV2.glb
+│   │   │   ├── dracoFanDim.glb
+│   │   │   ├── dracoLeftLoader.glb
+│   │   │   ├── dracoLoader.glb
+│   │   │   └── dracoManaulConveyorV2.glb
+│   │   └── dracoPerson.glb
 │   ├── screenBackground
 │   │   ├── floorMetal.jpeg
 │   │   └── metalMapping.jpeg
