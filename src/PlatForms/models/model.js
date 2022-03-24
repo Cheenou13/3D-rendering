@@ -1,7 +1,7 @@
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { extractModel } from './setUp'
-import { LoadingManager, Object3D } from 'three'
+import { LoadingManager, Object3D, AnimationClip, AnimationMixer} from 'three'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { GUI } from 'dat.gui'
 
@@ -16,7 +16,7 @@ let employeeData = '/GLBModels/dracoPerson.glb'
 let carryingPoseFile = '/GLBModels/EmployeePoses/carryingPoseDraco.glb'
 let grabPoseFile = '/GLBModels/EmployeePoses/grabPoseDraco.glb'
 let workingPose = '/GLBModels/EmployeePoses/workingPoseDraco.glb'
-let walking = '/GLBModels/EmployeePoses/comrepessedWalking.glb'
+let animationFile = '/GLBModels/EmployeePoses/operatingAnimationV2.glb'
 
 export async function loadModel() {
     const loadingManager = new LoadingManager (() => {
@@ -29,8 +29,8 @@ export async function loadModel() {
     dracoLoader.setDecoderPath('/static/')
     loader.setDRACOLoader(dracoLoader)
     const [rightLifterD, leftLifterD, stackCartD, fanDIMM, 
-           conveyor, manual_conveyor, AOI, employeeD,
-           carryingPoseData, grabPoseData, workingPoseData, walkingData
+           conveyor, manual_conveyor, AOI, animitionData, animitionData1, 
+           animitionData2, animitionData3
     ] = await Promise.all([
         loader.loadAsync(lifterRightFile),
         loader.loadAsync(lifterLeftFile),
@@ -39,11 +39,14 @@ export async function loadModel() {
         loader.loadAsync(conveyorFile),
         loader.loadAsync(manualConveyorFile),
         loader.loadAsync(AOIFile),
-        loader.loadAsync(employeeData),
-        loader.loadAsync(carryingPoseFile),
-        loader.loadAsync(grabPoseFile),
-        loader.loadAsync(workingPose),
-        loader.loadAsync(walking)
+        // loader.loadAsync(employeeData),
+        // loader.loadAsync(carryingPoseFile),
+        // loader.loadAsync(grabPoseFile),
+        // loader.loadAsync(workingPose),
+        loader.loadAsync(animationFile),
+        loader.loadAsync(animationFile),
+        loader.loadAsync(animationFile),
+        loader.loadAsync(animationFile)
     ])  
     const rightLifter = extractModel(rightLifterD)
     const leftLifter = extractModel(leftLifterD)
@@ -80,35 +83,37 @@ export async function loadModel() {
     DIMM.scale.set(0.001, 0.001, 0.001)
     AOICopy.scale.set(0.001, 0.001, 0.001)
 
-    const employee = extractModel(employeeD)
-    employee.scale.set(0.9, 0.9, 0.9)
+    /*****************************Animation Section********************************/
+    const clips = animitionData.animations
+    const clips1 = animitionData1.animations
+    const clips2 = animitionData2.animations
+    const clips3 = animitionData3.animations
 
+    const operatingAnime = extractModel(animitionData)
+    operatingAnime.scale.set(0.9, 0.9, 0.9)
+    const mixer = generateMixer(operatingAnime, clips)
+    operatingAnime.position.set(-5.39, -1.35, -1.23)
+    operatingAnime.rotation.set(0, 3.13, 0)
+    
+    const operator1 = extractModel(animitionData1)
+    operator1.scale.set(0.9, 0.9, 0.9)
+    const mixer1 = generateMixer(operator1, clips1)
+    operator1.position.set(-1.23, -1.35, -1.23)
+    operator1.rotation.set(0, 3.13, 0)
 
-    const operateEmployee = extractModel(grabPoseData)
-    operateEmployee.scale.set(0.9, 0.9, 0.9)
-    changePosition(operateEmployee, 4.2, -1.33, -0.75, -3.137, 1.678, 0)
-    const operateEmployee1 = operateEmployee.clone()
-    const operateEmployee2 = operateEmployee.clone()
+    const operator2 = extractModel(animitionData2)
+    operator2.scale.set(0.9, 0.9, 0.9)
+    const mixer2 = generateMixer(operator2, clips2)
+    operator2.position.set(-0.15, -1.35, -1.23)
+    operator2.rotation.set(0, 3.13, 0)
 
-    changePosition(operateEmployee1, 7.3, -1.33, -2.79, 0, -1.648, -3.142)
-    changePosition(operateEmployee2, -3.55, -1.33, -2.79, 0, -1.648, -3.142)
+    const operator3 = extractModel(animitionData3)
+    operator3.scale.set(0.9, 0.9, 0.9)
+    const mixer3 = generateMixer(operator3, clips3)
+    operator3.position.set(5.63, -1.35, -1.23)
+    operator3.rotation.set(0, 3.13, 0)
+    /******************************************************************************/
 
-    // const walkingAnimation = extractModel(walkingData)
-    // walkingAnimation.position.set(0, 0, 0)
-    // mixer = new THREE.AnimationMixer(walkingAnimation)
-    // const clips = walkingData.animations
-    // const clip = THREE.AnimationClip.findByName(clips, 'Armature.001Action')
-    // const action = mixer.clipAction(clip)
-    // action.play
-    // console.log(walkingData)
-    // console.log(clip)
-    // console.log(clips)
-    // console.log(action.play)
-
-    const assemblyEmployee = extractModel(workingPoseData)
-    assemblyEmployee.scale.set(0.9, 0.9, 0.9)
-    const carryingEmployee = extractModel(carryingPoseData)
-    carryingEmployee.scale.set(0.9, 0.9, 0.9)
 
     changePosition(stackCartR, 9, -1.032, -2.272, 0, 0, Math.PI)
     changePosition(rightLifter, 8.155, -1.23, -2.272, 0, 0, Math.PI)
@@ -128,26 +133,11 @@ export async function loadModel() {
     changePosition(leftLifter, -7.095, -1.23, -2.272, 0, 0, Math.PI)
     changePosition(stackCartL, -8.1, -1.032, -2.272, 0, 0, Math.PI)
 
-    changePosition(employee, 0, -1.33, -1.441, 0, -1.555, 0)
-    changePosition(assemblyEmployee, -1.233, -1.33, -1.441, -3.137, 1.678, 0)
-    changePosition(carryingEmployee, -7.469, -1.33, 0, -3.137, 1.262, 0)
-
-
-    // positionAdjustment(stackCartR, "stackCartR")
-    // positionAdjustment(operateEmployee1, "carryingEmployee1")
-    // positionAdjustment(AOICopy, "AOICopy")
-    // positionAdjustment(conveyor5, "conveyor5")
-    // positionAdjustment(manualConveyor4, "manualConveyor4")
-    // positionAdjustment(conveyor6, "conveyor6")
-    // positionAdjustment(operateEmployee2, "operateEmployee2")
-    // positionAdjustment(stackCartL, "stackCartL")
-
-
     return {
         rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
         conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
-        manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-        operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee, walkingData
+        manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, operatingAnime,
+        operator1, operator2, operator3, mixer, mixer1, mixer2, mixer3
     }
 }
 
@@ -176,4 +166,12 @@ function positionAdjustment (object, name){
 }
 function onTransitionEnd (event) {
     event.target.remove()
+}
+
+function generateMixer(animable, clips){
+    const mixer = new AnimationMixer(animable)
+    const clip = AnimationClip.findByName(clips, 'Armature.001Action.001')
+    const action = mixer.clipAction(clip)
+    action.play()
+    return mixer
 }

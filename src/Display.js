@@ -27,7 +27,7 @@ export class DisplayModels {
         const {pointLight1, pointLight2, pointLight3, pointLight4} = createLights()
         planexGenerator = new CreatePlanes()
         texturePlane = planexGenerator.loadTexturePlane('/screenBackground/metalMapping.jpeg')
-        orbit.addEventListener('change', this.display)
+        // orbit.addEventListener('change', this.display)
         // orbit.autoRotate = true
         this.loop.updatables.push(orbit)
         
@@ -43,42 +43,44 @@ export class DisplayModels {
         const {
             rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
             conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
-            manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-            operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee, walkingData
+            manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, operatingAnime,
+            operator1, operator2, operator3, mixer, mixer1, mixer2, mixer3
 
         } = await loadModel()
         scene.add(
             rightLifter, leftLifter, stackCartR, stackCartL, FAN_PSU, DIMM, AOICopy, 
             conveyor1, conveyor2, conveyor3, conveyor4, conveyor5, conveyor6,
-            manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, employee,
-            operateEmployee, operateEmployee1, operateEmployee2, assemblyEmployee, carryingEmployee
+            manualConveyor1, manualConveyor2, manualConveyor3, manualConveyor4, operatingAnime,
+            operator1, operator2, operator3
             )
         
-        const walkingAnimation = walkingData.scene
+        
+        // const walkingAnimation = walkingData.scene
+        // walkingAnimation.scale.set(0.5, 0.5, 0.5)
         const cfolder = new GUI()
         
         
-        const mixer = new THREE.AnimationMixer(walkingAnimation)
-        const clips = walkingData.animations
-        const clip = THREE.AnimationClip.findByName(clips, 'Armature.001Action')
-        const action = mixer.clipAction(clip)
-        action.play()
+        // const mixer = new THREE.AnimationMixer(walkingAnimation)
+        // const clips = walkingData.animations
+        // console.log(walkingData.animations)
+        // const clip = THREE.AnimationClip.findByName(clips, 'Armature.001Action.001')
+        // const action = mixer.clipAction(clip)
+        // action.play()
 
-        scene.add(walkingAnimation)
-        walkingAnimation.position.set(-4.77, -1.35, 0.43)
-        walkingAnimation.rotation.set(0, 1.47, 0)
-        // const position = cfolder.addFolder("walking position")
+        // scene.add(walkingAnimation)
+        // walkingAnimation.position.set(-5.39, -1.35, -1.23)
+        // walkingAnimation.rotation.set(0, 3.13, 0)
+        const position = cfolder.addFolder("walking position")
         // const rotation = cfolder.addFolder("walking rotation")
 
-        // position.add(walkingAnimation.position, 'x', -3*Math.PI, 3*Math.PI, 0.01)
-        // position.add(walkingAnimation.position, 'y', -3*Math.PI, 3*Math.PI, 0.01)
-        // position.add(walkingAnimation.position, 'z', -3*Math.PI, 3*Math.PI, 0.01)
+        position.add(operator3.position, 'x', -3*Math.PI, 3*Math.PI, 0.01)
+        position.add(operator3.position, 'y', -3*Math.PI, 3*Math.PI, 0.01)
+        position.add(operator3.position, 'z', -3*Math.PI, 3*Math.PI, 0.01)
 
         // rotation.add(walkingAnimation.rotation, 'x', -3*Math.PI, 3*Math.PI, 0.01)
         // rotation.add(walkingAnimation.rotation, 'y', -3*Math.PI, 3*Math.PI, 0.01)
         // rotation.add(walkingAnimation.rotation, 'z', -3*Math.PI, 3*Math.PI, 0.01)
-
-        this.loop.start(mixer)
+        this.startAnime(mixer, mixer1, mixer2, mixer3)
 
     }
     async #getData(url){
@@ -127,6 +129,9 @@ export class DisplayModels {
         //     scene.add(gltf.scene.children[0])
         // })
         // loop.start()
+    }
+    startAnime (mixer, mixer1, mixer2, mixer3){
+        this.loop.start(mixer, mixer1, mixer2,mixer3)
     }
     stop(){
         // loop.stop()
