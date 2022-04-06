@@ -56,8 +56,8 @@ export class DisplayModels {
         glRenderer.domElement.style.zIndex = 1
 
         cssRenderer.domElement.style.top = 0
-        cssRenderer.domElement.style.left = 0
-        cssRenderer.domElement.style.margin = 0
+        // cssRenderer.domElement.style.left = 0
+        // cssRenderer.domElement.style.margin = 0
         cssRenderer.domElement.padding = 0
         //place webgl dom element renderer inside css render dom element
         cssRenderer.domElement.appendChild(glRenderer.domElement)
@@ -86,7 +86,7 @@ export class DisplayModels {
         // var divContainer = document.getElementById("container")
         var element = this.#getDivElement("container")
         var element2 = this.#getDivElement("container2")
-        var tagElement = this.#getDivElement("tag-container")
+        var tagElement = this.#getDivElement("tag-background")
         element.scale.multiplyScalar(1/63)
         element2.scale.multiplyScalar(1/63)
         tagElement.scale.multiplyScalar(1/63)
