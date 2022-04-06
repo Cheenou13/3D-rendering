@@ -112,7 +112,7 @@ export class DisplayModels {
         var hf = 1;
         wf = Number(w) / dw
         hf = Number(h) / dh
-        /**********************************/
+        /*********************************/
         const planeHieght = cfolder.addFolder("Plane Height")
         const planeWidth = cfolder.addFolder("Plane Width")
         const tagElemRotation = cfolder.addFolder("tag element rotation")
