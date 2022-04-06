@@ -81,7 +81,7 @@ export class CreatePlanes {
          * @default color is ocean blue
          */
         const normalTexture = this.texture_loader.load(texture)
-        this.geometry = new THREE.BoxGeometry(19, 9, 0.3)
+        this.geometry = new THREE.BoxGeometry(19, 13, 0.3)
         this.material = new THREE.MeshPhysicalMaterial({
             side: THREE.DoubleSide,
             color: new THREE.Color(typeof color === 'undefined' ? 0xe0f4ff : color),
