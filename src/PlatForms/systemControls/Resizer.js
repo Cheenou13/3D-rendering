@@ -9,7 +9,7 @@ const setSize = (camera, renderer) => {
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
     if (renderType === "CSS3DRenderer") {
-        // renderer.setPixelRatio = window.devicePixelRatio
+        renderer.setPixelRatio = window.devicePixelRatio
         return
     }
     renderer.setPixelRatio(window.devicePixelRatio)

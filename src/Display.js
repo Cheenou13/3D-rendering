@@ -17,6 +17,8 @@ const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
 
 
 let camera, scene, orbit, planexGenerator, texturePlane, glRenderer, cssRenderer, rayCaster, pointer
+const motherContainer = document.querySelector(".mother-container")
+
 
 const dimension = {
     options: {
@@ -25,7 +27,6 @@ const dimension = {
         diameter: 0.3,
     }
 }
-
 export class DisplayModels {
     constructor(document){
         camera = createCamera()
@@ -47,20 +48,29 @@ export class DisplayModels {
         // adjust resize when screen size change so does the objects
         new Resizer(camera, glRenderer)
         new Resizer(camera, cssRenderer)
-        const container = document.getElementsByTagName("section")[0].parentNode
+        const container = document.body
         //apend css renderer dom element to the parent dom
         container.appendChild(cssRenderer.domElement)
+        
+        // glRenderer.domElement.appendChild(cssRenderer.domElement)
         // put webgl renderer in front of css renderer
         glRenderer.domElement.style.top = 0
         glRenderer.domElement.style.position = "absolute"
         glRenderer.domElement.style.zIndex = 1
-
-        cssRenderer.domElement.style.top = 0
+        container.appendChild(cssRenderer.domElement)
+        
+        // cssRenderer.domElement.style.top = 0
         // cssRenderer.domElement.style.left = 0
         // cssRenderer.domElement.style.margin = 0
-        cssRenderer.domElement.padding = 0
+
         //place webgl dom element renderer inside css render dom element
         cssRenderer.domElement.appendChild(glRenderer.domElement)
+        // glRenderer.domElement.appendChild(div)
+        // container.appendChild(div)
+        // cssRenderer.domElement.appendChild(div)
+        // cssRenderer.domElement.classList.add("cssRenderer")
+
+  
 
         
     }
@@ -75,32 +85,84 @@ export class DisplayModels {
         making a plane mesh to place css3D object in the same spot so the object would appear as it is in the
         same container as css objects
         */
+        
+        var backsideWall = this.#getPlane(19, 5.7)
+        var rightSideWall = this.#getPlane(13, 5.77)
+        var tagPlane1 = this.#getPlane( 2.02, 0.80)
+        var tagPlane2 = this.#getPlane( 2.02, 0.80)
+        var tagPlane3 = this.#getPlane( 2.02, 0.80)
+        var tagPlane4 = this.#getPlane( 2.02, 0.80)
+        var tagPlane5 = this.#getPlane( 2.02, 0.80)
+        var tagPlane6 = this.#getPlane( 2.02, 0.80)
+        var tagPlane7 = this.#getPlane( 2.02, 0.80)
+        var tagPlane8 = this.#getPlane( 2.02, 0.80)
 
-        var plane = this.#getPlane(19, 5.7)
-        var plane2 = this.#getPlane(13, 5.77)
-        var tagPlane = this.#getPlane( 2.24, 0.91)
-        plane.position.set(0, 1.50, -8.5)
-        tagPlane.position.set(-0.43, 0.68, 0)
-        plane2.position.set(9.48, 1.47, -2)
-        plane2.rotation.set(0, (1.57*3), 0)
+        backsideWall.position.set(0, 1.50, -8.5)
+        rightSideWall.position.set(9.48, 1.47, -2)
+        rightSideWall.rotation.set(0, (1.57*3), 0)
+        tagPlane1.position.set(-0.5, 0.68, 0)
+        tagPlane2.position.set(-0.5, 0.68, 3.05)
+        tagPlane3.position.set(5.09, 0.68, 0)
+        tagPlane4.position.set(-0.5, 0.68, -3.15)
+        tagPlane5.position.set(-0.5, 0.68, -6.25)
+        tagPlane6.position.set(5.09, 0.68, 3.05)
+        tagPlane7.position.set(-4.9, 0.68, -3.15)
+        tagPlane8.position.set(-2.95, 0.68, 3.05)
         // var divContainer = document.getElementById("container")
         var element = this.#getDivElement("container")
         var element2 = this.#getDivElement("container2")
-        var tagElement = this.#getDivElement("tag-background")
+        var tagElement1 = this.#getDivElement("tag-container")
+        var tagElement2 = this.#getDivElement()
+        var tagElement3 = this.#getDivElement()
+        var tagElement4 = this.#getDivElement()
+        var tagElement5 = this.#getDivElement()
+        var tagElement6 = this.#getDivElement()
+        var tagElement6 = this.#getDivElement()
+        var tagElement7 = this.#getDivElement()
+        var tagElement8 = this.#getDivElement()
+        // document.body.appendChild(tagElement2)
         element.scale.multiplyScalar(1/63)
         element2.scale.multiplyScalar(1/63)
-        tagElement.scale.multiplyScalar(1/63)
+        tagElement1.scale.multiplyScalar(1/100)
+        tagElement2.scale.multiplyScalar(1/100)
+        tagElement3.scale.multiplyScalar(1/100)
+        tagElement4.scale.multiplyScalar(1/100)
+        tagElement5.scale.multiplyScalar(1/100)
+        tagElement6.scale.multiplyScalar(1/100)
+        tagElement7.scale.multiplyScalar(1/100)
+        tagElement8.scale.multiplyScalar(1/100)
+        workerTags.add(
+            tagElement1, tagElement2, tagElement3, tagElement4,
+            tagElement5, tagElement6, tagElement7, tagElement8
+            )
         // add mesh plane and css object to the same scene
-        scene.add(plane, plane2, tagPlane, element, element2, tagElement)
+        scene.add(
+            backsideWall, rightSideWall, tagPlane1, tagPlane2, tagPlane3,
+            tagPlane4, tagPlane5, tagPlane6, tagPlane7, tagPlane8,
+            element, element2, tagElement1, workerTags
+            )
         // set css object position and rotation the same as the plane mesh so when we move the plane the css object moves
-        element.position.set(plane.position.x, plane.position.y, plane.position.z)
-        element.rotation.set(plane.rotation.x, plane.rotation.y, plane.rotation.z) 
-        element2.position.set(plane2.position.x, plane2.position.y, plane2.position.z)
-        element2.rotation.set(plane2.rotation.x, plane2.rotation.y, plane2.rotation.z) 
-        tagElement.position.set(tagPlane.position.x, tagPlane.position.y, tagPlane.position.z)
-        tagElement.rotation.set(tagPlane.rotation.x, tagPlane.rotation.y, tagPlane.rotation.z)
-        
-        // element2.visible = plane2.visible = false
+        element.position.set(backsideWall.position.x, backsideWall.position.y, backsideWall.position.z)
+        element.rotation.set(backsideWall.rotation.x, backsideWall.rotation.y, backsideWall.rotation.z) 
+        element2.position.set(rightSideWall.position.x, rightSideWall.position.y, rightSideWall.position.z)
+        element2.rotation.set(rightSideWall.rotation.x, rightSideWall.rotation.y, rightSideWall.rotation.z) 
+        tagElement1.position.set(tagPlane1.position.x, tagPlane1.position.y-0.06, tagPlane1.position.z)
+        tagElement1.rotation.set(tagPlane1.rotation.x, tagPlane1.rotation.y, tagPlane1.rotation.z)
+        tagElement2.position.set(tagPlane2.position.x, tagPlane2.position.y-0.06, tagPlane2.position.z)
+        tagElement2.rotation.set(tagPlane2.rotation.x, tagPlane2.rotation.y, tagPlane2.rotation.z)
+        tagElement3.position.set(tagPlane3.position.x, tagPlane3.position.y-0.06, tagPlane3.position.z)
+        tagElement3.rotation.set(tagPlane3.rotation.x, tagPlane3.rotation.y, tagPlane3.rotation.z)
+        tagElement4.position.set(tagPlane4.position.x, tagPlane4.position.y-0.06, tagPlane4.position.z)
+        tagElement4.rotation.set(tagPlane4.rotation.x, tagPlane4.rotation.y, tagPlane4.rotation.z)
+        tagElement5.position.set(tagPlane5.position.x, tagPlane5.position.y-0.06, tagPlane5.position.z)
+        tagElement5.rotation.set(tagPlane5.rotation.x, tagPlane5.rotation.y, tagPlane5.rotation.z)
+        tagElement6.position.set(tagPlane6.position.x, tagPlane6.position.y-0.06, tagPlane6.position.z)
+        tagElement6.rotation.set(tagPlane6.rotation.x, tagPlane6.rotation.y, tagPlane6.rotation.z)
+        tagElement7.position.set(tagPlane7.position.x, tagPlane7.position.y-0.06, tagPlane7.position.z)
+        tagElement7.rotation.set(tagPlane7.rotation.x, tagPlane7.rotation.y, tagPlane7.rotation.z)
+        tagElement8.position.set(tagPlane8.position.x, tagPlane8.position.y-0.06, tagPlane8.position.z)
+        tagElement8.rotation.set(tagPlane8.rotation.x, tagPlane8.rotation.y, tagPlane8.rotation.z)
+        // element2.visible = rightSideWall.visible = false
         // this.startAnime(mixer, mixer1, mixer2, mixer3)
         this.startAnime()
         /***Normalize screen coordinate***/
@@ -113,41 +175,30 @@ export class DisplayModels {
         wf = Number(w) / dw
         hf = Number(h) / dh
         /*********************************/
+        producttionLines.position.set(0.22, -1.31, -1.44)
         const planeHieght = cfolder.addFolder("Plane Height")
         const planeWidth = cfolder.addFolder("Plane Width")
-        const tagElemRotation = cfolder.addFolder("tag element rotation")
         const planePosition = cfolder.addFolder("Plane Position")
+        const cssObjectPosition = cfolder.addFolder("css position")
 
         planeHieght.add(dimension.options, "height", -20*wf, 20*hf, 0.01).onChange(changeDimension)
         planeWidth.add(dimension.options, "width", -20*wf, 20*hf, 0.01).onChange(changeDimension)
 
-        producttionLines.position.set(0.22, -1.31, -1.44)
-        console.log(tagElement.rotation.x)
-        tagElemRotation.add(tagPlane.rotation, "x", -Math.PI*3, Math.PI*3, 0.01)
-        tagElemRotation.add(tagPlane.rotation, "y", -Math.PI*3, Math.PI*3, 0.01)
-        tagElemRotation.add(tagPlane.rotation, "z", -Math.PI*3, Math.PI*3, 0.01)
+        planePosition.add(tagPlane8.position, "x", -10, 10, 0.01)
+        planePosition.add(tagPlane8.position, "y", -10, 10, 0.01)
+        planePosition.add(tagPlane8.position, "z", -10, 10, 0.01)
 
-        planePosition.add(tagPlane.position, "x", -10, 10, 0.01)
-        planePosition.add(tagPlane.position, "y",  -10, 10, 0.01)
-        planePosition.add(tagPlane.position, "z",  -10, 10, 0.01)
-
-        const cameraFolder = new GUI()
-        const cameraPosition = cameraFolder.addFolder("Camera Position")
-
-        cameraPosition.add(camera.position, 'x', -Math.PI*3, Math.PI*3, 0.01)
-        cameraPosition.add(camera.position, 'y', -Math.PI*3, Math.PI*3, 0.01)
-        cameraPosition.add(camera.position, 'z', -Math.PI*3, Math.PI*3, 0.01)
+        cssObjectPosition.add(tagElement2.position, 'y', -10, 10, 0.001)
+       
 
         function changeDimension (){
-            tagPlane.geometry.dispose()
-            tagPlane.geometry = new THREE.PlaneGeometry(
+            tagPlane2.geometry.dispose()
+            tagPlane2.geometry = new THREE.PlaneGeometry(
                 dimension.options.width, 
                 dimension.options.height
             )
         }
 
-        const blocker = document.getElementById("blocker")
-        blocker.style.display = "none"
     }
     async #getData(url){
         const res = await axios.get(url);
@@ -169,15 +220,15 @@ export class DisplayModels {
       
       
         lift1Label.rotation.set(0, 1.55, 0)
-        lift1Label.position.set(-7.126, 0.783, -2.278)
-        mt1Label.position.set(-5.34, 0.783, -2.278)
-        fanLabel.position.set(-3.554, 0.783, -2.278)
-        dimmLabel.position.set(-1.513, 0.783, -2.278)
-        mt2Label.position.set(0.23, 0.783, -2.278)
-        mt3Label.position.set(1.65, 0.783, -2.278)
-        aoiLabel.position.set(3.335, 0.783, -2.278)
-        mt4Label.position.set(5, 0.783, -2.278)
-        lifter2Label.position.set(7.126, 0.783, -2.278)
+        lift1Label.position.set(-7.126, 0.8083, -2.278)
+        mt1Label.position.set(-5.34, 0.8083, -2.278)
+        fanLabel.position.set(-3.554, 0.8083, -2.278)
+        dimmLabel.position.set(-1.513, 0.8083, -2.278)
+        mt2Label.position.set(0.23, 0.8083, -2.278)
+        mt3Label.position.set(1.65, 0.8083, -2.278)
+        aoiLabel.position.set(3.335, 0.8083, -2.278)
+        mt4Label.position.set(5, 0.8083, -2.278)
+        lifter2Label.position.set(7.126, 0.8083, -2.278)
         lifter2Label.rotation.set(0, -1.55, 0)
         scene.add(texturePlane)
         // scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
@@ -193,9 +244,34 @@ export class DisplayModels {
     }
 
     #getDivElement(elementId){
-        var div = document.getElementById(elementId)
-        div.style.display = 'none'
-        return new CSS3DObject(div)
+        var container = undefined
+        
+        if (elementId) {
+            container = document.getElementById(elementId)
+        }
+        else {
+            container = document.createElement('div')
+            var bodyDiv = document.createElement('div')
+            var stationStatus = document.createElement('span')
+            var employee = document.createElement('span')
+            var employeeID = document.createElement('span')
+            var task = document.createElement('span')
+            stationStatus.innerText = "Station Status: "
+            employee.innerText = "Employee: "
+            employeeID.innerText = "Employee ID: "
+            task.innerText = "Task: "
+
+            bodyDiv.appendChild(stationStatus)
+            bodyDiv.appendChild(employee)
+            bodyDiv.appendChild(employeeID)
+            bodyDiv.appendChild(task)
+            container.classList.add("tag-container")
+            bodyDiv.classList.add("tag-shadowBox")
+            container.appendChild(bodyDiv)
+
+        }
+        container.style.display = 'none'
+        return new CSS3DObject(container)
     }
     #getPlane(width, height){
         var planeMaterial = new THREE.MeshBasicMaterial({ 

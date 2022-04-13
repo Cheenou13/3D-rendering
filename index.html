@@ -5,6 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css">
+    <link href="src/input.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Vite App</title>
   </head>
   
@@ -23,14 +25,37 @@
           <span id="employee-id">Employee ID:</span>
           <span id="task-performed">Task:</span>
         </div>
+
       </div>
       <div id="container2">
         <img src="/usedImages/graph.png" alt="">
       </div>
-      
-      <div id="blocker" style></div>
+
+      <div class="modal-bg">
+        <div class="child rounded-lg">
+          <p id="a">a</p>
+          <p id="b">b</p>
+          <p id="c">c</p>
+          <p id="d">d</p>
+          <p id="e">e</p>
+          <p id="f">f</p>
+          <div id="h"><button class="btn rounded-lg pl-8 pr-8 bg-indigo-500 hover:bg-sky-700 p-px">done</button></div>
+        </div>
+      </div>
+      <nav>
+        <div class="burger-container">
+          <button id="BAR_BTN" class="burger hover:bg-green-300 bg-green-200 transition-all">
+            <div class="space-y-2">
+              <div class="w-8 h-0.5 bg-gray-600"></div>
+              <div class="w-8 h-0.5 bg-gray-600"></div>
+              <div class="w-8 h-0.5 bg-gray-600"></div>
+            </div>
+          </button>
+      </div>
+      </nav>
 
     </div>
+    <div class="threeD-screen"></div>
     <section id="loading-screen">
       <div id="loader">
         <script type="module" src="/src/main.js"></script>

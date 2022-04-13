@@ -30,8 +30,10 @@ export class Loop {
         raycast = new THREE.Raycaster()
         displayWorker = false
         colors = this.#makeColor()
+        const toggleModal = () => this.#toggleModal()
         var worker = null
-        var green = colors[1]
+        const myCamera = this.camera
+        const myscene = this.scene
         /********************************* */
         // objects.filter((object => object.type !== "Mesh"))
         // randomizedIndex = Math.floor((Math.random()  * objects.length)-1)
@@ -73,16 +75,16 @@ export class Loop {
 
         function visibility(worker, opacity, transparency){
             // save old uv map for new matching to new uv mapping
-            var oldMapp_1 = worker.children[1].material.map
-            var oldMapp_2 = worker.children[2].material.map
-            var oldMapp_3 = worker.children[3].material.map
-            var oldMapp_4 = worker.children[4].material.map
+            var oldTexture_1 = worker.children[1].material.map
+            var oldTexture_2 = worker.children[2].material.map
+            var oldTexture_3 = worker.children[3].material.map
+            var oldTexture_4 = worker.children[4].material.map
             // apply the old uv map to the new mesh, this way the worker would obtain their own
             // old texture and have their own independent map
-            worker.children[1].material = new THREE.MeshStandardMaterial({map: oldMapp_1})
-            worker.children[2].material = new THREE.MeshStandardMaterial({map: oldMapp_2})
-            worker.children[3].material = new THREE.MeshStandardMaterial({map: oldMapp_3})
-            worker.children[4].material = new THREE.MeshStandardMaterial({map: oldMapp_4})
+            worker.children[1].material = new THREE.MeshStandardMaterial({map: oldTexture_1})
+            worker.children[2].material = new THREE.MeshStandardMaterial({map: oldTexture_2})
+            worker.children[3].material = new THREE.MeshStandardMaterial({map: oldTexture_3})
+            worker.children[4].material = new THREE.MeshStandardMaterial({map: oldTexture_4})
             // change the transparency and opacity of worker
             worker.children[1].material.opacity = opacity
             worker.children[1].material.transparent = transparency
@@ -98,13 +100,63 @@ export class Loop {
             mouse.x = (event.clientX/window.innerWidth) * 2 - 1
             mouse.y = - (event.clientY/window.innerHeight) * 2 + 1
         }
-        function onClick (event) {
-            console.log(event)
+        function onClick () {
+            raycast.setFromCamera(mouse, myCamera)
+            const length = myscene.children[2].children.length
+            const intersects = raycast.intersectObjects(myscene.children[2].children)
+            for (let i = 0; i < intersects.length; ++ i) {
+                if (intersects[i].object.name === "AOI" || intersects[i].object.parent.name === "AOI") {
+                    toggleModal()
+                    intersects[i].object.material.transparent = true
+                    intersects[i].object.material.opacity = 0.5
+                }
+                if (intersects[i].object.name === "Manual" || intersects[i].object.parent.name === "Manual") toggleModal()
+                if (intersects[i].object.name === "DIMM" || intersects[i].object.parent.name === "DIMM") toggleModal()
+                if (intersects[i].object.name === "Lifter" || intersects[i].object.parent.name === "Lifter") toggleModal()
+                if (intersects[i].object.name === "Fan" || intersects[i].object.parent.name === "Fan") toggleModal()      
+            }
+            // console.log(length)
+        }
+        function onHover (){
+            raycast.setFromCamera(mouse, myCamera)
+            const intersects = raycast.intersectObjects(myscene.children[2].children)
+            for (let i = 0; i < intersects.length; ++ i) {
+                if (intersects[i].object.name === "AOI" || intersects[i].object.parent.name === "AOI") {
+                    intersects[i].object.material.transparent = true
+                    intersects[i].object.material.opacity = 0.5
+                }
+                if (intersects[i].object.name === "Manual" || intersects[i].object.parent.name === "Manual"){
+                    intersects[i].object.material.transparent = true
+                    intersects[i].object.material.opacity = 0.5
+                }
+                if (intersects[i].object.name === "DIMM" || intersects[i].object.parent.name === "DIMM"){
+                    intersects[i].object.material.transparent = true
+                    intersects[i].object.material.opacity = 0.5
+                }
+                if (intersects[i].object.name === "Lifter" || intersects[i].object.parent.name === "Lifter") {
+                    intersects[i].object.material.transparent = true
+                    intersects[i].object.material.opacity = 0.5
+                }
+                if (intersects[i].object.name === "Fan" || intersects[i].object.parent.name === "Fan") {
+                    intersects[i].object.material.transparent = true
+                    intersects[i].object.material.opacity = 0.5
+                }
+            }
+        }
+        function resettransparency(){
+            for (let i = 0; i < myscene.children[2].children.length; ++ i){
+                // myscene.children[2].children[i].material.transparent = false
+                myscene.children[2].children[i].material.opacity = 1
+            }
         }
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
-        window.addEventListener('click', onClick)
-        window.addEventListener('mousemove', onMouseMove)
+        // this.cssRenderer.domElement.addEventListener('mouseover', (event) => {
+        //     console.log(event.target)
+        // })
+        this.cssRenderer.domElement.addEventListener('mousedown', onClick, false)
+        this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
+        // this.cssRenderer.domElement.addEventListener('mouseover', onHover)
        
         this.renderer.setAnimationLoop( () => {
             // every animation will tick forward one frame
@@ -114,12 +166,18 @@ export class Loop {
             // mixer1.update(clock1.getDelta())
             // mixer2.update(clock2.getDelta())
             // mixer3.update(clock3.getDelta())
-
             this.renderer.render(this.scene, this.camera)
             this.cssRenderer.render(this.scene, this.camera)
         })
     }
-
+    #toggleModal(){
+        let toggleModal = document.querySelector(".modal-bg")
+        let doneBtn = document.querySelector(".btn")
+        if (toggleModal.style.display !== "block")toggleModal.style.display = "block"
+        else doneBtn.addEventListener("click", () => {
+            toggleModal.style.display = "none"
+        })
+    }
 
     stop(){
         this.renderer.setAnimationLoop(null);
@@ -148,6 +206,18 @@ export class Loop {
         var colors = []
         colors.push(red, green, yellow)
         return colors
+    }
+    #isMachine(mouse, camera, scene){
+        raycast.setFromCamera(mouse, camera)
+        const intersects = raycast.intersectObjects(scene.children[2].children)
+        for (let i = 0; i < intersects.length; ++ i) {
+            if (intersects[i].object.name === "AOI" || intersects[i].object.parent.name === "AOI") return true
+            if (intersects[i].object.name === "Manual" || intersects[i].object.parent.name === "Manual") return true
+            if (intersects[i].object.name === "DIMM" || intersects[i].object.parent.name === "DIMM") return true
+            if (intersects[i].object.name === "Lifter" || intersects[i].object.parent.name === "Lifter") return true
+            if (intersects[i].object.name === "Fan" || intersects[i].object.parent.name === "Fan") return true     
+        }
+        return false
     }
 
     tick(){
