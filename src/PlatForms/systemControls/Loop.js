@@ -150,7 +150,7 @@ export class Loop {
         // this.cssRenderer.domElement.addEventListener('mouseover', (event) => {
         //     console.log(event.target)
         // })
-        this.cssRenderer.domElement.addEventListener('mousedown', onClick, false)
+        this.cssRenderer.domElement.addEventListener('click', onClick, false)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
         // this.cssRenderer.domElement.addEventListener('mouseover', onHover)
        
