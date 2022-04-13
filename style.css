@@ -229,6 +229,7 @@ body {
     display: flex;
     width: 100vw;
     height: 100vh;
+
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
     /* background-color: red; */
@@ -248,8 +249,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 0.25fr 1.5fr 1.2fr 8fr;
-    /* display: none; */
-    /* visibility: visible; */
+    padding: 0.25em;
     grid-template-areas: 
     "a a a a"
     "b c c c"
@@ -259,19 +259,19 @@ body {
   }
 
 #a {
-  background-color: blue;
+  /* background-color: blue; */
   grid-area: a;
 }
 #b {
-  background-color: red;
+  /* background-color: red; */
   grid-area: b;
 }
 #c {
-  background-color: pink;
+  /* background-color: pink; */
   grid-area: c;
 }
 #d {
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   grid-area: d;
 }
 #e {
@@ -279,19 +279,21 @@ body {
   grid-area: e;
 }
 #f {
-  background-color: violet;
+  /* background-color: violet; */
   grid-area: f;
 }
 #h {
-  background-color: white;
+  /* background-color: white; */
   grid-area: h;
   padding: 8px;
-  box-shadow: 0px 0px 5px var(--clr-gray-med);
+}
+.box-shadow {
+  box-shadow: 0px 5px 5px var(--clr-gray-med);
 }
 
 .burger-container {
   position: absolute;
-  /* background:var(--clr-gray-med); */
+  /* background:white; */
   z-index: 1;
   display: flex;
   top: 0%;

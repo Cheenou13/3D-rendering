@@ -36,14 +36,14 @@ export class DisplayModels {
         scene = createScene()
         this.loop = new Loop(camera, scene, glRenderer, cssRenderer)
         orbit = createControl(camera, cssRenderer)
-        const {pointLight1, pointLight2, pointLight3, pointLight4, ambientLight} = createLights()
+        const {pointLight1, pointLight2, pointLight3, pointLight4, ambientLight, hemiLight, directLight} = createLights()
         planexGenerator = new CreatePlanes()
         texturePlane = planexGenerator.loadTexturePlane('/usedImages/metalMapping.jpeg')
         // orbit.addEventListener('change', this.display)
         // orbit.autoRotate = true
         this.loop.updatables.push(orbit)
         
-        scene.add(ambientLight)
+        scene.add(hemiLight, directLight)
         
         // adjust resize when screen size change so does the objects
         new Resizer(camera, glRenderer)
@@ -97,17 +97,17 @@ export class DisplayModels {
         var tagPlane7 = this.#getPlane( 2.02, 0.80)
         var tagPlane8 = this.#getPlane( 2.02, 0.80)
 
-        backsideWall.position.set(0, 1.50, -8.5)
-        rightSideWall.position.set(9.48, 1.47, -2)
+        backsideWall.position.set(1.34, 1.50, -6.6)
+        rightSideWall.position.set(10.8, 1.47, -0.1)
         rightSideWall.rotation.set(0, (1.57*3), 0)
-        tagPlane1.position.set(-0.5, 0.68, 0)
-        tagPlane2.position.set(-0.5, 0.68, 3.05)
-        tagPlane3.position.set(5.09, 0.68, 0)
-        tagPlane4.position.set(-0.5, 0.68, -3.15)
-        tagPlane5.position.set(-0.5, 0.68, -6.25)
-        tagPlane6.position.set(5.09, 0.68, 3.05)
-        tagPlane7.position.set(-4.9, 0.68, -3.15)
-        tagPlane8.position.set(-2.95, 0.68, 3.05)
+        tagPlane1.position.set(0.84, 0.68, 1.90)
+        tagPlane2.position.set(0.84, 0.68, 4.95)
+        tagPlane3.position.set(6.43, 0.68, 1.90)
+        tagPlane4.position.set(0.84, 0.68, -1.25)
+        tagPlane5.position.set(0.84, 0.68, -4.35)
+        tagPlane6.position.set(6.43, 0.68, 4.95)
+        tagPlane7.position.set(-3.56, 0.68, -1.25)
+        tagPlane8.position.set(-1.61, 0.68, 4.95)
         // var divContainer = document.getElementById("container")
         var element = this.#getDivElement("container")
         var element2 = this.#getDivElement("container2")
@@ -175,25 +175,50 @@ export class DisplayModels {
         wf = Number(w) / dw
         hf = Number(h) / dh
         /*********************************/
-        producttionLines.position.set(0.22, -1.31, -1.44)
-        const planeHieght = cfolder.addFolder("Plane Height")
-        const planeWidth = cfolder.addFolder("Plane Width")
-        const planePosition = cfolder.addFolder("Plane Position")
-        const cssObjectPosition = cfolder.addFolder("css position")
+        // producttionLines.position.set(0.22, -1.31, -1.44)
+        producttionLines.position.set(1.56, -1.31, 0.46)
+        // const planeHieght = cfolder.addFolder("Plane Height")
+        // const planeWidth = cfolder.addFolder("Plane Width")
+        // const planePosition = cfolder.addFolder("Plane Position")
+        // const cssObjectPosition = cfolder.addFolder("css position")
+        const productLines = cfolder.addFolder("Production Position")
+        const backWall = cfolder.addFolder("Back Wall Position")
+        const sideWall = cfolder.addFolder("Side Wall Position")
+        const productLinesRotation = cfolder.addFolder("Production Line rotation")
+        const backWallSize = cfolder.addFolder("Back Wall Size")
+        const cameraAngle = cfolder.addFolder("Camera Angle")
 
-        planeHieght.add(dimension.options, "height", -20*wf, 20*hf, 0.01).onChange(changeDimension)
-        planeWidth.add(dimension.options, "width", -20*wf, 20*hf, 0.01).onChange(changeDimension)
+        cameraAngle.add(camera.position, 'x', -10, 10, 0.01)
+        cameraAngle.add(camera.position, 'y', -10, 10, 0.01)
+        cameraAngle.add(camera.position, 'z', -10, 10, 0.01)
+        productLines.add(producttionLines.position, 'x', -10, 10, 0.01)
+        productLines.add(producttionLines.position, 'y', -10, 10, 0.01)
+        productLines.add(producttionLines.position, 'z', -10, 10, 0.01)
+        productLinesRotation.add(producttionLines.rotation, 'x', -Math.PI, Math.PI, 0.01)
+        productLinesRotation.add(producttionLines.rotation, 'y', -Math.PI, Math.PI, 0.01)
+        productLinesRotation.add(producttionLines.rotation, 'z', -Math.PI, Math.PI, 0.01)
+        backWall.add(backsideWall.position, 'x', -10, 10, 0.01)
+        backWall.add(backsideWall.position, 'y', -10, 10, 0.01)
+        backWall.add(backsideWall.position, 'z', -10, 10, 0.01)
+        sideWall.add(rightSideWall.position, 'x', -10, 10, 0.01)
+        sideWall.add(rightSideWall.position, 'y', -10, 10, 0.01)
+        sideWall.add(rightSideWall.position, 'z', -10, 10, 0.01)
+        backWallSize.add(dimension.options, 'height', -20, 20, 0.01).onChange(changeDimension)
+        backWallSize.add(dimension.options, 'width', -20, 20, 0.01).onChange(changeDimension)
 
-        planePosition.add(tagPlane8.position, "x", -10, 10, 0.01)
-        planePosition.add(tagPlane8.position, "y", -10, 10, 0.01)
-        planePosition.add(tagPlane8.position, "z", -10, 10, 0.01)
+        // planeHieght.add(dimension.options, "height", -20*wf, 20*hf, 0.01).onChange(changeDimension)
+        // planeWidth.add(dimension.options, "width", -20*wf, 20*hf, 0.01).onChange(changeDimension)
 
-        cssObjectPosition.add(tagElement2.position, 'y', -10, 10, 0.001)
+        // planePosition.add(tagPlane8.position, "x", -10, 10, 0.01)
+        // planePosition.add(tagPlane8.position, "y", -10, 10, 0.01)
+        // planePosition.add(tagPlane8.position, "z", -10, 10, 0.01)
+
+        // cssObjectPosition.add(tagElement2.position, 'y', -10, 10, 0.001)
        
 
         function changeDimension (){
-            tagPlane2.geometry.dispose()
-            tagPlane2.geometry = new THREE.PlaneGeometry(
+            backsideWall.geometry.dispose()
+            backsideWall.geometry = new THREE.PlaneGeometry(
                 dimension.options.width, 
                 dimension.options.height
             )
@@ -230,7 +255,7 @@ export class DisplayModels {
         mt4Label.position.set(5, 0.8083, -2.278)
         lifter2Label.position.set(7.126, 0.8083, -2.278)
         lifter2Label.rotation.set(0, -1.55, 0)
-        scene.add(texturePlane)
+        // scene.add(texturePlane)
         // scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
         //     aoiLabel, mt4Label, lifter2Label, mt1Label)
         

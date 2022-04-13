@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { Float32BufferAttribute } from "three"
 
 
 export function saturn (){
@@ -58,7 +57,7 @@ export function stars (){
       starVertices.push(x, y, z)
     }
     
-    starGeometry.setAttribute('position', new Float32BufferAttribute (starVertices, 3))
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute (starVertices, 3))
 
     return stars
 }

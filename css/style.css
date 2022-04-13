@@ -529,9 +529,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
-.bg-green-200 {
+.bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-gray-600 {
@@ -818,8 +818,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 0.25fr 1.5fr 1.2fr 8fr;
-  /* display: none; */
-  /* visibility: visible; */
+  padding: 0.25em;
   grid-template-areas: 
     "a a a a"
     "b c c c"
@@ -829,22 +828,22 @@ header {
 }
 
 #a {
-  background-color: blue;
+  /* background-color: blue; */
   grid-area: a;
 }
 
 #b {
-  background-color: red;
+  /* background-color: red; */
   grid-area: b;
 }
 
 #c {
-  background-color: pink;
+  /* background-color: pink; */
   grid-area: c;
 }
 
 #d {
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   grid-area: d;
 }
 
@@ -854,20 +853,23 @@ header {
 }
 
 #f {
-  background-color: violet;
+  /* background-color: violet; */
   grid-area: f;
 }
 
 #h {
-  background-color: white;
+  /* background-color: white; */
   grid-area: h;
   padding: 8px;
-  box-shadow: 0px 0px 5px var(--clr-gray-med);
+}
+
+.box-shadow {
+  box-shadow: 0px 5px 5px var(--clr-gray-med);
 }
 
 .burger-container {
   position: absolute;
-  /* background:var(--clr-gray-med); */
+  /* background:white; */
   z-index: 1;
   display: flex;
   top: 0%;
@@ -890,7 +892,7 @@ header {
   background-color: rgb(3 105 161 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-green-300:hover {
+.hover\:bg-slate-400:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }

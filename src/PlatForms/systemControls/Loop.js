@@ -105,11 +105,7 @@ export class Loop {
             const length = myscene.children[2].children.length
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             for (let i = 0; i < intersects.length; ++ i) {
-                if (intersects[i].object.name === "AOI" || intersects[i].object.parent.name === "AOI") {
-                    toggleModal()
-                    intersects[i].object.material.transparent = true
-                    intersects[i].object.material.opacity = 0.5
-                }
+                if (intersects[i].object.name === "AOI" || intersects[i].object.parent.name === "AOI") toggleModal()
                 if (intersects[i].object.name === "Manual" || intersects[i].object.parent.name === "Manual") toggleModal()
                 if (intersects[i].object.name === "DIMM" || intersects[i].object.parent.name === "DIMM") toggleModal()
                 if (intersects[i].object.name === "Lifter" || intersects[i].object.parent.name === "Lifter") toggleModal()
