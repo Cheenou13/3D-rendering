@@ -48,6 +48,11 @@ export class DisplayModels {
         // adjust resize when screen size change so does the objects
         new Resizer(camera, glRenderer)
         new Resizer(camera, cssRenderer)
+        console.log(cssRenderer.domElement.nodeName)
+        // window.addEventListener('resize', () =>{
+        //     cssRenderer.setSize(window.innerWidth, window.innerHeight)
+        //     cssRenderer.setPixelRatio = window.devicePixelRatio
+        // })
         const container = document.body
         //apend css renderer dom element to the parent dom
         container.appendChild(cssRenderer.domElement)
