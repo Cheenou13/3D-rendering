@@ -1,11 +1,7 @@
 
-/* .absolute {
-  position: absolute;
-} */
-
-/* canvas {
-  display: block;
-} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
@@ -308,7 +304,6 @@ body {
 }
 .burger {
   position: absolute;
-  background-color: var(--clr-gray-med);
   padding: 10px;
   box-shadow: 0px 0px 5px var(--clr-gray-med);
 }
