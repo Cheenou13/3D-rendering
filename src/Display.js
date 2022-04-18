@@ -12,8 +12,8 @@ import { CreatePlanes } from "../src/PlatForms/models/plane"
 import { GUI } from 'dat.gui'
 import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
 import * as THREE from 'three'
-import { makeBackChart } from "../public/jsFiles/backChart"
-import { makeSideChart } from "../public/jsFiles/sideChart"
+import { makeBackChart } from "../jsFiles/backChart"
+import { makeSideChart } from "../jsFiles/sideChart"
 
 
 
