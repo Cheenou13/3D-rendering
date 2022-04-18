@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build-css":"tailwindcss build style.css -o css/style.css"
+    "build-css": "tailwindcss build style.css -o css/style.css"
   },
   "devDependencies": {
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@seregpie/three.text-texture": "^3.2.1",
     "axios": "^0.25.0",
+    "chart.js": "^3.7.1",
     "chroma-js": "^2.1.2",
     "dat.gui": "^0.7.7",
     "drag-controls": "^1.0.4",
