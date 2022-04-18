@@ -12,8 +12,8 @@ import { CreatePlanes } from "../src/PlatForms/models/plane"
 import { GUI } from 'dat.gui'
 import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
 import * as THREE from 'three'
-import { makeBackChart } from "../jsFiles/backChart"
-import { makeSideChart } from "../jsFiles/sideChart"
+import { makeSideChart } from "./sideChart"
+import { makeBackChart } from "./backChart"
 
 
 
@@ -224,7 +224,8 @@ export class DisplayModels {
         // planePosition.add(tagPlane8.position, "z", -10, 10, 0.01)
 
         // cssObjectPosition.add(tagElement2.position, 'y', -10, 10, 0.001)
-       
+       makeBackChart()
+       makeSideChart()
 
         function changeDimension (){
             backsideWall.geometry.dispose()
@@ -265,8 +266,6 @@ export class DisplayModels {
         mt4Label.position.set(5, 0.8083, -2.278)
         lifter2Label.position.set(7.126, 0.8083, -2.278)
         lifter2Label.rotation.set(0, -1.55, 0)
-        makeBackChart()
-        makeSideChart()
         // scene.add(texturePlane)
         // scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
         //     aoiLabel, mt4Label, lifter2Label, mt1Label)

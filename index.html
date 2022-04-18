@@ -11,11 +11,11 @@
   <body>
     <!-- <div id="chart"><img src="public/usedImages/graph.png" alt="chart" id="chart2"></div> -->
     <div class="mother-container">
-      <div id="container">
+      <!-- <div class="container">
         <div id="content1">name: cheenou xiong</div>
         <div id="content2">Employee ID: xxxxxxxxxx</div>
         <div id="content3">Current Task: currently inspecting circuit board</div>
-      </div>
+      </div> -->
       <div id="tag-container">
         <div id="tag-background">
           <span id="station-status">Station Status:</span>
@@ -23,10 +23,6 @@
           <span id="employee-id">Employee ID:</span>
           <span id="task-performed">Task:</span>
         </div>
-
-      </div>
-      <div id="container2">
-        <img src="/usedImages/graph.png" alt="">
       </div>
 
       <div class="modal-bg">
@@ -35,8 +31,6 @@
           <p id="b">b</p>
           <p id="c">c</p>
           <p id="d">d</p>
-          <p id="e">e</p>
-          <p id="f">f</p>
           <div id="h"><button class="btn box-shadow rounded-lg pl-8 pr-8 bg-gray-200 hover:bg-white p-px">CLOSE</button></div>
         </div>
       </div>
@@ -51,12 +45,19 @@
           </button>
       </div>
       </nav>
-
+      <div id="chart-backwall">
+        <div class="chart-backwall"><canvas id="threeD-canvas"></canvas></div>
+      </div>
+      <div id="chart-sidewall">
+        <div class="chart-sidewall"><canvas id="sideWall-canvas"></canvas></div>
+      </div>
     </div>
     <div class="threeD-screen"></div>
+    <script type="module" src="src/main.js"></script>
+    <!-- <script type="module" src="jsFiles/sideChart.js"></script> -->
     <section id="loading-screen">
       <div id="loader">
-        <script type="module" src="/src/main.js"></script>
+        
       </div>
     </section>
   </body>
