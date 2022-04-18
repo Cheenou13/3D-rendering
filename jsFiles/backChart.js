@@ -1,6 +1,7 @@
-import Chart from 'chart.js/auto';
-
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 export function makeBackChart (){
+    
     const div = document.getElementById('threeD-canvas').getContext('2d')
 
     const pluginService = {
