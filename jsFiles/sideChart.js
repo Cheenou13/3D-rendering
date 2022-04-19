@@ -86,7 +86,7 @@ export function makeSideChart (){
         },
         plugins:[pluginService],   
     }
-  new Chart (div, configChart)
+    new Chart (div, configChart)
 
 }
 
