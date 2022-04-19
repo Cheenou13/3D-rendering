@@ -57,6 +57,7 @@ export function makeBackChart (){
         },
         options: {
             maintainAspectRatio: false,
+            // onResize:
             scales: {
                 y: {
                     ticks: {
@@ -80,7 +81,7 @@ export function makeBackChart (){
         },
         plugins:[pluginService],   
     }
-  new Chart (div, configChart)
+    new Chart (div, configChart)
 
 }
 
