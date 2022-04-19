@@ -175,7 +175,7 @@ export class Loop {
         }
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
-        this.cssRenderer.domElement.addEventListener('click', onClick, false)
+        this.cssRenderer.domElement.addEventListener('mousedown', onClick, false)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
 
 
