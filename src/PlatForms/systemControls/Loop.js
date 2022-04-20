@@ -2,10 +2,6 @@ import * as THREE from 'three'
 
 
 const clock = new THREE.Clock()
-const clock1 = new THREE.Clock()
-const clock2 = new THREE.Clock()
-const clock3 = new THREE.Clock()
-const clock4 = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
     objects = [], workers = [], randomWorkerIndex,
     raycast, mouse, displayWorker, light, colors
@@ -63,7 +59,7 @@ export class Loop {
             worker = workers[randomWorkerIndex]
 
             if (!displayWorker) {
-                visibility(worker, 0.2, true)
+                visibility(worker, 0.5, true)
                 displayWorker = true
             }
             else {
@@ -100,16 +96,54 @@ export class Loop {
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1
             mouse.y = - (event.clientY / window.innerHeight) * 2 + 1
         }
-
+       
         function onClick() {
+            const oldX = myCamera.position.x
+            const oldY = myCamera.position.y
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             if (intersects.length > 0) {
-                if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") toggleModal()
-                if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") toggleModal()
-                if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") toggleModal()
-                if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) toggleModal()
-                if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") toggleModal()
+                if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {
+                    toggleModal()
+                    console.log("AOI", intersects[0].object.position.x)
+                    // myCamera.position.x = intersects[0].point.x
+                    // myCamera.position.y = intersects[0].point.y
+                    // myCamera.position.z = intersects[0].object.position.z
+                    // myCamera.lookAt(intersects[0].point)
+    
+                    console.log("camera", myCamera)
+                }
+                if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
+                    toggleModal()
+                    console.log("Manual", intersects[0].object.position)
+                    // myCamera.position.x = intersects[0].point.x
+                    // myCamera.position.y = intersects[0].point.y
+    
+                    // myCamera.position.z = intersects[0].point.z
+                }
+                if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
+                    toggleModal()
+                    // myCamera.position.x = intersects[0].point.x
+                    // myCamera.position.y = intersects[0].point.y
+    
+                    // myCamera.position.z = intersects[0].point.z
+                }
+                if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
+                    toggleModal()
+                    // myCamera.position.x = intersects[0].point.x
+                    // myCamera.position.y = intersects[0].point.y
+    
+                    // myCamera.position.z = intersects[0].point.z
+                }
+                if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
+                    toggleModal()
+                    // myCamera.position.x = intersects[0].point.x
+                    // myCamera.position.y = intersects[0].point.y
+
+                    // myCamera.position.z = intersects[0].point.z
+                }
+
+                
             }
 
         }
@@ -184,14 +218,10 @@ export class Loop {
             // every animation will tick forward one frame
             this.tick()
             // render the frame
-            // mixer.update(clock.getDelta())
-            // mixer1.update(clock1.getDelta())
-            // mixer2.update(clock2.getDelta())
-            // mixer3.update(clock3.getDelta())
             resettransparency()
             onHover()
-            // this.cssRenderer.domElement.addEventListener('mouseover', onHover())
-
+            // console.log(this.scene.position)
+            // console.log(this.camera.position)
             this.renderer.render(this.scene, this.camera)
             this.cssRenderer.render(this.scene, this.camera)
         })
@@ -199,6 +229,10 @@ export class Loop {
     #toggleModal() {
         let toggleModal = document.querySelector(".modal-bg")
         let doneBtn = document.querySelector(".btn")
+
+        // setTimeout(() =>{
+        //     toggleModal.style.display = "block"
+        // }, 2000)
         toggleModal.style.display = "block"
         doneBtn.addEventListener("click", () => {
             toggleModal.style.display = "none"
@@ -236,7 +270,7 @@ export class Loop {
 
     tick() {
 
-        for (const obj of this.updatables) { obj.tick(clock4.getDelta) }
+        for (const obj of this.updatables) { obj.tick(clock.getDelta) }
     }
 
 }

@@ -468,38 +468,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
+.absolute {
+  position: absolute;
 }
 
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
+.block {
+  display: block;
 }
 
 .h-0\.5 {
@@ -543,12 +517,41 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1px;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .pl-8 {
   padding-left: 2rem;
 }
 
 .pr-8 {
   padding-right: 2rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-sky-500 {
+  --tw-text-opacity: 1;
+  color: rgb(14 165 233 / var(--tw-text-opacity));
 }
 
 .transition-all {
@@ -567,7 +570,7 @@ body {
 
 #loading-screen {
   position: absolute;
-  z-index: 2;
+  z-index: 7;
   top: 0;
   left: 0;
   width: 100%;
@@ -673,6 +676,7 @@ header {
 }
 
 .mother-container {
+  position: absolute;
   display: flex;
   flex-wrap: wrap;
   display: grid;
@@ -700,28 +704,8 @@ header {
   box-shadow: 0px 0px 10px var(--clr-gray-med);
 }
 
-#container2{
-  /* display: flex; */
-  align-content: bottom;
-  width: 818px;
-  height: 360px;
-  /* display: grid; */
-  /* grid-template-columns: auto; */
-  /* float: right; */
-  /* grid-template-rows: 2fr 2fr 3fr; */
-}
-
-#container2 img {
-  margin: 0 0.5em 0.5em 0;
-  /* display: flex; */
-  padding: 0.8em;
-  height: 100%;
-  width: 100%;
-  box-shadow: 0px 0px 10px var(--clr-gray-med);
-}
-
 #tag-container {
-  background-color: white;
+  /* background-color: white; */
   font-size: 12px;
   width: 200.5px;
   height: 90.5px;
@@ -743,7 +727,7 @@ header {
   background-color: white;
   font-size: 12px;
   width: 200.5px;
-  height: 90.5px;
+  height: 92.5px;
 }
 
 .tag-container span {
@@ -767,14 +751,6 @@ header {
   width: 20%;
   height: 20%;
 }
-
-.text-white {
-  color: white;
-}
-
-/* .absolute {
-    position: relative;
-  } */
 
 .testSec {
   position: absolute;
@@ -869,23 +845,42 @@ header {
 
 .burger-container {
   position: absolute;
-  /* background:white; */
+  /* display: flex; */
+  /* background-color: red; */
   z-index: 1;
-  display: flex;
-  top: 0%;
-  left: 0%;
-  width: 100vw;
-  /* height: 100vh; */
-  padding-top: 15px;
-  padding-left: 40px;
-  /* box-shadow: 0px 0px 5px var(--clr-gray-med); */
+  /* top: 0%;
+  left: 0%; */
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-left: 19.5px;
+  width: 50px;
+  height: 42.5px;
+  /* padding-top: 15px;
+  padding-left: 40px; */
 }
 
-.burger {
-  position: absolute;
+.burger-container:hover .naviagtion-dropdown{
+  display: block;
+  /* padding: 2em; */
+}
+
+.burger{
+  top: 0%;
+  left: 0%;
+  margin-top: 40px;
+  margin-left: 20px;
+  position: fixed;
+  /* z-index: -1; */
   padding: 10px;
   box-shadow: 0px 0px 5px var(--clr-gray-med);
 }
+
+/* .empty-box {
+  background-color: red;
+  width: 52px;
+  height: 42px;
+  z-index: 1;
+} */
 
 #chart-backwall {
   position: absolute;
@@ -930,12 +925,43 @@ header {
   width: 100vw;
 }
 
+.naviagtion-dropdown{
+  top: 0%;
+  left: 0%;
+  display: none;
+  position: fixed;
+  margin-top: 85px;
+  margin-left: 20px;
+}
+
+html *{
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+}
+
+.hover\:border-2:hover {
+  border-width: 2px;
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-slate-400:hover {
+.hover\:font-semibold:hover {
+  font-weight: 600;
+}
+
+.active\:bg-slate-400:active {
   --tw-bg-opacity: 1;
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }

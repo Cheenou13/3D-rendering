@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Vite App</title>
   </head>
   
@@ -29,23 +29,31 @@
           <div id="h"><button class="btn box-shadow rounded-lg pl-8 pr-8 bg-gray-200 hover:bg-white p-px">CLOSE</button></div>
         </div>
       </div>
-      <nav>
-        <div class="burger-container">
-          <button id="BAR_BTN" class="burger hover:bg-slate-400 bg-white transition-all">
-            <div class="space-y-2">
-              <div class="w-8 h-0.5 bg-gray-600"></div>
-              <div class="w-8 h-0.5 bg-gray-600"></div>
-              <div class="w-8 h-0.5 bg-gray-600"></div>
-            </div>
-          </button>
-      </div>
-      </nav>
       <div id="chart-backwall">
         <div class="chart-backwall"><canvas id="threeD-canvas"></canvas></div>
       </div>
       <div id="chart-sidewall">
         <div class="chart-sidewall"><canvas id="sideWall-canvas"></canvas></div>
       </div>
+    </div>
+    <div class="burger-container ">
+      <!-- <div class="empty-box"> -->
+        <!-- <button class="burger bg-white transition-all rounded-lg hover:border-2 active:bg-slate-400 box-shadow"> -->
+          <div class="space-y-2 burger bg-white transition-all rounded-lg hover:border-2 active:bg-slate-400 box-shadow">
+            <div class="w-8 h-0.5 bg-gray-600"></div>
+            <div class="w-8 h-0.5 bg-gray-600"></div>
+            <div class="w-8 h-0.5 bg-gray-600"></div>
+          </div>
+        <!-- </button> -->
+      <!-- </div> -->
+      <div class="naviagtion-dropdown absolute bg-white rounded-lg py-1 text-sky-500 box-shadow">
+        <a class="block px-2 text-sm text-left hover:font-semibold transition-all text-base" 
+              id="back-to-soq" href="">&#8678; Back</a>
+        <a class="block px-2 text-sm text-left hover:font-semibold transition-all text-base" 
+              id="view-campus" href="">Campus View</a>
+        <a class="block px-2 text-sm text-left hover:font-semibold transition-all text-base" 
+              id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
+       </div>
     </div>
     <div class="threeD-screen"></div>
     <script type="module" src="./src/main.js"></script>
