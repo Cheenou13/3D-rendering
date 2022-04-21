@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="531.81451mm"
+   height="531.81512mm"
+   viewBox="0 0 531.81451 531.81512"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="satelite-orbit.svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   inkscape:export-filename="/Users/wenjin/Code/three/three-project/img/satelite-orbit.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.18150378"
+     inkscape:cx="889.78862"
+     inkscape:cy="867.75051"
+     inkscape:window-width="1312"
+     inkscape:window-height="791"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient7371">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="0"
+         id="stop7369" />
+      <stop
+         style="stop-color:#ffaaaa;stop-opacity:0"
+         offset="0.91369063"
+         id="stop7413" />
+      <stop
+         style="stop-color:#ff2a2a;stop-opacity:1"
+         offset="1"
+         id="stop7367" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2325"
+       inkscape:swatch="gradient">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0"
+         id="stop2393" />
+      <stop
+         style="stop-color:#ff0000;stop-opacity:0;"
+         offset="1"
+         id="stop2395" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2325-1"
+       inkscape:swatch="gradient">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="0"
+         id="stop2321" />
+      <stop
+         style="stop-color:#ff2a2a;stop-opacity:1"
+         offset="1"
+         id="stop2323" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2325-1"
+       id="radialGradient6451"
+       cx="119.00823"
+       cy="146.67248"
+       fx="119.00823"
+       fy="146.67248"
+       r="265.90726"
+       gradientTransform="matrix(1,0,0,1.0000011,0,-1.6233179e-4)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7371"
+       id="radialGradient7373"
+       cx="119.00823"
+       cy="146.67248"
+       fx="119.00823"
+       fy="146.67248"
+       r="265.90726"
+       gradientTransform="matrix(1,0,0,1.0000011,0,-1.6233179e-4)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(146.89875,119.23477)">
+    <rect
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.698249;stroke-opacity:0"
+       id="rect8421"
+       width="229.52922"
+       height="191.29842"
+       x="-255.42265"
+       y="-365.05667" />
+    <path
+       style="mix-blend-mode:normal;fill:url(#radialGradient7373);fill-opacity:1;fill-rule:nonzero;stroke:url(#radialGradient6451);stroke-width:2.64583;stroke-opacity:0"
+       id="path1030"
+       sodipodi:type="arc"
+       sodipodi:cx="119.00851"
+       sodipodi:cy="146.67279"
+       sodipodi:rx="264.58334"
+       sodipodi:ry="264.58334"
+       sodipodi:start="6.2667599"
+       sodipodi:end="6.255511"
+       sodipodi:open="true"
+       sodipodi:arc-type="arc"
+       d="M 383.55616,142.3271 A 264.58334,264.58334 0 0 1 124.09815,411.20718 264.58334,264.58334 0 0 1 -145.51052,152.50634 264.58334,264.58334 0 0 1 112.43109,-117.82878 264.58334,264.58334 0 0 1 383.49054,139.35156" />
+  </g>
+</svg>

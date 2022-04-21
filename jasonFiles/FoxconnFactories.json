@@ -1,0 +1,353 @@
+[
+
+    {
+
+        "name": "1",
+
+        "city": "New Taipei City",
+
+        "region": "Taiwan",
+
+        "isLighthouse": false,
+
+        "LatLng": [24.958577,121.419351]
+
+    },
+
+    {
+
+        "name": "2",
+
+        "city": "Taoyuan",
+
+        "region": "Taiwan",
+
+        "isLighthouse": false,
+
+        "LatLng": [25.05189016339938, 121.2865228134572]
+
+    },
+
+    {
+
+        "name": "3",
+
+        "city": "Hsinchu",
+
+        "region": "Taiwan",
+
+        "isLighthouse": false,
+
+        "LatLng": [24.78080359779088, 121.00475860916349]
+
+    },
+
+    {
+
+        "name": "4",
+
+        "city": "Yantai",
+
+        "region": "China",
+
+        "isLighthouse": false,
+
+        "LatLng": [37.58804261037818, 121.13965135742757]
+
+    },
+
+    {
+
+        "name": "5",
+
+        "city": "Kunshan",
+
+        "region": "China",
+
+        "isLighthouse": false,
+
+        "LatLng": [31.334754398860287, 120.9227164536623]
+
+    },
+
+    {
+
+        "name": "6",
+
+        "city": "Wuhan",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [30.429455999106928, 114.46378538588705]
+
+    },
+
+    {
+
+        "name": "7",
+
+        "city": "Shenzhen",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [22.681983429464275, 113.96638367015484]
+
+    },
+
+    {
+
+        "name": "8",
+
+        "city": "Zhengzhou",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [34.55278841812699, 113.8487521682301]
+
+    },
+
+    {
+
+        "name": "9",
+
+        "city": "Chongqing",
+
+        "region": "China",
+
+        "isLighthouse": false,
+
+        "LatLng": [29.581260590683137, 106.38527499776099]
+
+    },
+
+    {
+
+        "name": "10",
+
+        "city": "Chengdu",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [30.77102969553135, 103.91308622759084]
+
+    },
+
+    {
+
+        "name": "11",
+
+        "city": "Bắc Giang",
+
+        "region": "Vietnam",
+
+        "isLighthouse": false,
+
+        "LatLng": [21.262176125581256, 106.12480627295021]
+
+    },
+
+    {
+
+        "name": "12",
+
+        "city": "Bắc Ninh",
+
+        "region": "Vietnam",
+
+        "isLighthouse": false,
+
+        "LatLng": [21.157079829437055, 106.11455529745572]
+
+    },
+
+    {
+
+        "name": "13",
+
+        "city": "Kulai",
+
+        "region": "Malaysia",
+
+        "isLighthouse": false,
+
+        "LatLng": [1.6307254142841596, 103.60163730740484]
+
+    },
+
+    {
+
+        "name": "14",
+
+        "city": "Andhra Pradesh",
+
+        "region": "India",
+
+        "isLighthouse": false,
+
+        "LatLng": [13.552093694155655, 80.01981128606559]
+
+    },
+
+    {
+
+        "name": "15",
+
+        "city": "Tamil Nadu",
+
+        "region": "India",
+
+        "isLighthouse": false,
+
+        "LatLng": [12.926913127001653, 79.90211093297629]
+
+    },
+
+    {
+
+        "name": "16",
+
+        "city": "Ergene",
+
+        "region": "Turkey",
+
+        "isLighthouse": false,
+
+        "LatLng": [41.27522942050985, 27.798750574854463]
+
+    },
+
+    {
+
+        "name": "17",
+
+        "city": "Komárom",
+
+        "region": "Hungary",
+
+        "isLighthouse": false,
+
+        "LatLng": [47.74204701994031, 18.079517436660012]
+
+    },
+
+    {
+
+        "name": "18",
+
+        "city": "Nitra",
+
+        "region": "Slovakia",
+
+        "isLighthouse": false,
+
+        "LatLng": [48.328719067482844, 18.047613553435482]
+
+    },
+
+    {
+
+        "name": "19",
+
+        "city": "Pardubice",
+
+        "region": "Czech Republic",
+
+        "isLighthouse": false,
+
+        "LatLng": [50.02659956146805, 15.803677552206457]
+
+    },
+
+    {
+
+        "name": "20",
+
+        "city": "Kutná Hora",
+
+        "region": "Czech Republic",
+
+        "isLighthouse": false,
+
+        "LatLng": [49.940801968306346, 15.283051130687099]
+
+    },
+
+
+    {
+
+        "name": "21",
+
+        "city": "Jundiaí",
+
+        "region": "Brazil",
+
+        "isLighthouse": false,
+
+        "LatLng": [-23.16635841505256, -46.947235399466145]
+
+    },
+
+    {
+
+        "name": "22",
+
+        "city": "Milwaukee",
+
+        "region": "United States of America",
+
+        "isLighthouse": false,
+
+        "LatLng": [42.67965775709507, -87.92555474603066]
+
+    },
+
+    {
+
+        "name": "23",
+
+        "city": "Ciudad Juarez",
+
+        "region": "Mexico",
+
+        "isLighthouse": false,
+
+        "LatLng": [31.777557671878274, -106.69237111344681]
+
+    },
+
+    {
+
+        "name": "24",
+
+        "city": "Tijuana",
+
+        "region": "Mexico",
+
+        "isLighthouse": false,
+
+        "LatLng": [32.50013029247734, -116.92485402677998]
+
+    },
+    {
+
+        "name": "25",
+
+        "city": "Houston",
+
+        "region": "US",
+
+        "isLighthouse": false,
+
+        "LatLng": [29.9236594308918, -95.53049914911459]
+
+    }
+
+]

@@ -1,0 +1,85 @@
+[
+    {
+
+        "name": "6",
+
+        "city": "Wuhan",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [30.429455999106928, 114.46378538588705]
+
+    },
+
+    {
+
+        "name": "7",
+
+        "city": "Shenzhen",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [22.681983429464275, 113.96638367015484]
+
+    },
+
+    {
+
+        "name": "8",
+
+        "city": "Zhengzhou",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [34.55278841812699, 113.8487521682301]
+
+    },
+
+    {
+
+        "name": "9",
+
+        "city": "Chongqing",
+
+        "region": "China",
+
+        "isLighthouse": false,
+
+        "LatLng": [29.581260590683137, 106.38527499776099]
+
+    },
+
+    {
+
+        "name": "10",
+
+        "city": "Chengdu",
+
+        "region": "China",
+
+        "isLighthouse": true,
+
+        "LatLng": [30.77102969553135, 103.91308622759084]
+
+    },
+
+    {
+
+        "name": "22",
+
+        "city": "Milwaukee",
+
+        "region": "United States of America",
+
+        "isLighthouse": false,
+
+        "LatLng": [42.67965775709507, -87.92555474603066]
+
+    }
+]
