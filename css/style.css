@@ -1315,9 +1315,20 @@ html *{
   /* 4 */
 }
 
+/* .globe-nav{
+  position: absolute;
+  z-index: 0;
+} */
+
 .globe-nav:hover .naviagtion-dropdown {
   display: block;
   margin-top: 40px;
+  margin-left: 15px;
+}
+
+.local-nav:hover .naviagtion-dropdown{
+  display: block;
+  margin-top: 47px;
   margin-left: 15px;
 }
 

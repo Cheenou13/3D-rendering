@@ -90,6 +90,7 @@
   </head>
   <body>
     <div class="h-screen min-h-screen absolute">
+        
         <div class=" absolute w-full text-center mt-4">
             <h1 class="text-2xl font-bold text-white">
                 <span class="bg-blue-700 bg-opacity-80 rounded px-4 py-2 leading-none">
@@ -98,24 +99,26 @@
             </h1>
         </div>
         <div class=" absolute w-full text-center pt-2 px-4 z-50">
-            <div class="globe-nav flex justify-between items-center w-8 h-8 rounded-md">
-                <div class="naviagtion-dropdown bg-blue-900 rounded-lg py-1 text-white box-shadow bg-opacity-80 ">
-                    <a class="block px-2 text text-left transition-all text-base " 
-                          id="back-to-soq" href="http://10.20.128.102:3000/index.html">L10</a>
-                    <a class="block px-2 text text-left transition-all text-base" 
-                          id="view-campus" href="http://10.20.128.102:3000/navigation-pages/global.html">Global Network</a>
-                    <a class="block px-2 text text-left transition-all text-base" 
-                          id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
+            <div class="flex justify-between items-center">
+                <div class="local-nav absolute h-8 w-8 rounded-md ">
+                    <div class="naviagtion-dropdown bg-blue-900 rounded-lg py-1 text-white box-shadow bg-opacity-80 ">
+                        <a class="block px-2 text text-left transition-all text-base " 
+                              id="back-to-soq" href="http://10.20.128.102:3000/index.html">L10</a>
+                        <a class="block px-2 text text-left transition-all text-base" 
+                              id="view-campus" href="http://10.20.128.102:3000/navigation-pages/global.html">Global Network</a>
+                        <a class="block px-2 text text-left transition-all text-base" 
+                              id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
+                    </div>
+                    <div>
+                        <button class="bg-blue-900  bg-opacity-30 hover:bg-blue-900 hover:text-white hover:bg-opacity-80  w-8 h-8 text-center rounded flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <button class="bg-blue-900  bg-opacity-30 hover:bg-blue-900 hover:text-white hover:bg-opacity-80  w-8 h-8 text-center rounded flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class=" right-4 mt-1 text-white flex items-center rounded overflow-hidden">
+                <div></div>
+                <div class="right-4 mt-1 text-white flex items-center rounded overflow-hidden">
                     <div class="h-full text-sm bg-gray-200 text-blue-900 px-2">
                         <span id="nowTime">13:30:01</span> <br>
                         <span id="todayDate">3/27/2022</span>
@@ -132,7 +135,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                 </svg>
-                                <div class="ml-1" id="weatherLocation">
+                                <div class="ml-1 " id="weatherLocation">
                                     Mount Pleasant
                                 </div>
                             </div>
