@@ -12,8 +12,8 @@ import gsap from 'gsap'
 
 
 const canvasEl = document.getElementById("threeCanvas");
-var width = canvasEl.offsetWidth;
-var height = canvasEl.offsetHeight;
+var width = innerWidth;
+var height = innerHeight;
 
 // scene
 const scene = new THREE.Scene();
