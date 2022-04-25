@@ -3,12 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./dist/output.css"> -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="stylesheet" href="../css/style.css">
 
     <title>Foxconn Wisconsin Science + Technology Park</title>
-    <style>
+    <!-- <style>
       :root {
           --corner-color: #859ac0;
           --corner-thickness: 4px;
@@ -88,26 +86,35 @@
           height: var(--corner-thickness);
           background-color: var(--corner-color);
       }
-    </style>
+    </style> -->
   </head>
   <body>
-    <div class="h-screen min-h-screen relative">
-        <div class="invisible absolute w-full text-center mt-4">
+    <div class="h-screen min-h-screen absolute">
+        <div class=" absolute w-full text-center mt-4">
             <h1 class="text-2xl font-bold text-white">
                 <span class="bg-blue-700 bg-opacity-80 rounded px-4 py-2 leading-none">
                     Foxconn Wisconsin Science + Technology Park
                 </span>
             </h1>
         </div>
-        <div class="invisible absolute w-full text-center pt-2 px-4 z-50">
-            <div class="flex justify-between items-center">
+        <div class=" absolute w-full text-center pt-2 px-4 z-50">
+            <div class="globe-nav flex justify-between items-center w-8 h-8 rounded-md">
+                <div class="naviagtion-dropdown bg-blue-900 rounded-lg py-1 text-white box-shadow bg-opacity-80 ">
+                    <a class="block px-2 text text-left transition-all text-base " 
+                          id="back-to-soq" href="http://10.20.128.102:3000/index.html">L10</a>
+                    <a class="block px-2 text text-left transition-all text-base" 
+                          id="view-campus" href="http://10.20.128.102:3000/navigation-pages/global.html">Global Network</a>
+                    <a class="block px-2 text text-left transition-all text-base" 
+                          id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
+                </div>
                 <div>
-                    <button class="bg-gray-50 bg-opacity-60 hover:bg-blue-900 hover:text-white text-gray-400 w-8 h-8 text-center rounded flex items-center justify-center">
+                    <button class="bg-blue-900  bg-opacity-30 hover:bg-blue-900 hover:text-white hover:bg-opacity-80  w-8 h-8 text-center rounded flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
+
                 <div class=" right-4 mt-1 text-white flex items-center rounded overflow-hidden">
                     <div class="h-full text-sm bg-gray-200 text-blue-900 px-2">
                         <span id="nowTime">13:30:01</span> <br>
@@ -135,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <div class="invisible absolute px-4 pt-16">
+        <div class=" absolute px-4 pt-16">
             <div class="space-y-4">
                 <div class="bg-blue-900 w-96 bg-opacity-30 rounded-lg px-4 pt-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
                     <div class="border-b-2 flex items-center justify-center space-x-1">
@@ -178,7 +185,7 @@
             </div>
         </div>
         <!-- right dash -->
-        <div class="invisible absolute px-4 pt-16 right-0">
+        <div class=" absolute px-4 pt-16 right-0">
             <div class="space-y-4">
                 <div class="bg-blue-900 bg-opacity-30 w-64 rounded-lg p-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
                     <div class="border-b-2 flex items-center justify-center space-x-1">
@@ -211,7 +218,7 @@
             
         </div>
         <!-- bottom dash -->
-        <div class="invisible absolute p-4 bottom-0 w-full">
+        <div class=" absolute p-4 bottom-0 w-full">
             <div class="flex justify-between space-x-4">
                 <div class="bg-blue-900 bg-opacity-30 w-1/4 text-white p-4 rounded-lg hover:bg-blue-800 hover:bg-opacity-80">
                     <div class="text-center font-semibold border-b-2 uppercase">SMC Overview</div>
