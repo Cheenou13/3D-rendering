@@ -1,10 +1,7 @@
 module.exports = {
-  content: ['index.html'],
+  content: ['index.html', 'navigation-pages/global.html', 'navigation-pages/local-campus.html'],
   theme: {
     extend: {},
   },
-  // variants: {
-  //   backgroundColor: ['active']
-  // },
   plugins: [],
 }

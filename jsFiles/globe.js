@@ -12,7 +12,7 @@ let globeGroup = new THREE.Group()
 var radius = 5
 
 const Dom = document.querySelector( '#container' );
-const width = Dom.clientWidth, height = Dom.clientHeight;
+const width = innerWidth, height = innerWidth;
 
 // render
 function initRenderer() {
@@ -30,9 +30,9 @@ function initRenderer() {
 
 // camera
 function initCamera() {
-    camera = new THREE.PerspectiveCamera( 45, width / height, 1, 10000 );
-    camera.position.set( 0, 10, 15 );
-    camera.lookAt( 0, 3, 0 );
+    camera = new THREE.PerspectiveCamera( 60, width / height, 1, 10000 );
+    camera.position.set( 0, 0, 30 );
+    // camera.lookAt( 0, 50, 0 );
     window.camera = camera;
 }
 
@@ -127,6 +127,7 @@ function initEarth() {
             map: texture,
          } );
         var globeMesh = new THREE.Mesh( globeGeometry, globeMaterial );
+        // globeMesh.position.set(0,10, 0)
         //globeGroup.rotation.set( 0.5, 2.9, 0.1 );
         //texture.encoding = THREE.sRGBEncoding
         globeGroup.add( globeMesh );
@@ -143,6 +144,7 @@ function initEarth() {
 		var sprite = new THREE.Sprite( spriteMaterial );
 		sprite.scale.set( radius * 3, radius * 3, 1 );
 		globeGroup.add( sprite );
+        globeGroup.position.set(0, 8, 0)
   }
 
 let sateliteGroup = new THREE.Group()
@@ -156,7 +158,7 @@ function initSatelite() {
             depthWrite: false
         } );
         var mesh = new THREE.Mesh( geometry, material );
-        sateliteGroup.add( mesh );
+        sateliteGroup.add( mesh )
         scene.add(sateliteGroup)
     });
 
@@ -173,10 +175,11 @@ function initSatelite() {
             depthWrite: false
         } );
         var earthPoints = new THREE.Points( geometry, material );
+
         sateliteGroup.add( earthPoints );
     } );
 
-    //sateliteGroup.rotation.set( 1.9, 0.5, 1 );
+    // sateliteGroup.rotation.set( 1.9, 0.5, 1 );
 }
 
 function latlng2xyz(lat, lon, radius) {
