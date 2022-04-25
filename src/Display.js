@@ -186,6 +186,7 @@ export class DisplayModels {
         /*********************************/
         // producttionLines.position.set(0.22, -1.31, -1.44)
         producttionLines.position.set(1.56, -1.31, 0.46)
+        producttionLines.rotation.set(0, Math.PI, 0)
         // const planeHieght = cfolder.addFolder("Plane Height")
         // const planeWidth = cfolder.addFolder("Plane Width")
         // const planePosition = cfolder.addFolder("Plane Position")
@@ -214,15 +215,6 @@ export class DisplayModels {
         sideWall.add(rightSideWall.position, 'z', -10, 10, 0.01)
         backWallSize.add(dimension.options, 'height', -20, 20, 0.01).onChange(changeDimension)
         backWallSize.add(dimension.options, 'width', -20, 20, 0.01).onChange(changeDimension)
-
-        // planeHieght.add(dimension.options, "height", -20*wf, 20*hf, 0.01).onChange(changeDimension)
-        // planeWidth.add(dimension.options, "width", -20*wf, 20*hf, 0.01).onChange(changeDimension)
-
-        // planePosition.add(tagPlane8.position, "x", -10, 10, 0.01)
-        // planePosition.add(tagPlane8.position, "y", -10, 10, 0.01)
-        // planePosition.add(tagPlane8.position, "z", -10, 10, 0.01)
-
-        // cssObjectPosition.add(tagElement2.position, 'y', -10, 10, 0.001)
        
 
         function changeDimension (){
