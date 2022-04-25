@@ -1,17 +1,5 @@
 import * as echarts from 'echarts';
 
-/* <script type="module" src="../jsFiles/localCampus.js"></script>
-<script type="module" src="../jsFiles/minChart.js"></script> */
-
-/* <div class="naviagtion-dropdown bg-blue-900 rounded-lg py-1 text-white box-shadow bg-opacity-80 ">
-<a class="block px-2 text text-left transition-all text-base " 
-      id="back-to-soq" href="http://10.20.128.102:3000/index.html">L10</a>
-<a class="block px-2 text text-left transition-all text-base" 
-      id="view-campus" href="http://10.20.128.102:3000/navigation-pages/global.html">Global Network</a>
-<a class="block px-2 text text-left transition-all text-base" 
-      id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
-</div> */
-
 // initialize the echarts instance
 var myChart = echarts.init(document.getElementById('chartDaily'));
 // Draw the chart
