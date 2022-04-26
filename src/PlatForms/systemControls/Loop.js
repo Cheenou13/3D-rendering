@@ -31,6 +31,13 @@ export class Loop {
         const myCamera = this.camera
         const myscene = this.scene
         const css = this.cssRenderer
+        const stationData = {
+            Status: "void",
+            Station:"void",
+            Manager:"void",
+            Operator:"void",
+            Engineer:"void"
+        }
         /********************************* */
         // objects.filter((object => object.type !== "Mesh"))
         // randomizedIndex = Math.floor((Math.random()  * objects.length)-1)
@@ -105,7 +112,9 @@ export class Loop {
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             if (intersects.length > 0) {
                 if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {  
-                    toggleModal("AOI" )
+                    stationData.Station = "AOI"
+                    stationData.Status = "some light peeping"
+                    toggleModal(stationData)
                     console.log("AOI", intersects[0].object.position.x)
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
@@ -119,6 +128,9 @@ export class Loop {
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
+                    stationData.Station = "AOI"
+                    stationData.Status = "some light is peeping"
+                    toggleModal(stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
                     toggleModal("DIMM")
@@ -126,6 +138,9 @@ export class Loop {
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
+                    stationData.Station = "DIMM"
+                    stationData.Status = "this light is not peeping"
+                    toggleModal(stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
                     toggleModal("Lifter")
@@ -133,6 +148,9 @@ export class Loop {
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
+                    stationData.Station = "Lifter"
+                    stationData.Status = "this light may be peeping"
+                    toggleModal(stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
                     toggleModal("Fan")
@@ -140,6 +158,9 @@ export class Loop {
                     // myCamera.position.y = intersects[0].point.y
 
                     // myCamera.position.z = intersects[0].point.z
+                    stationData.Station = "Fan"
+                    stationData.Status = "a 'Fan' but not an air conditioner"
+                    toggleModal(stationData)
                 }
 
                 
@@ -228,14 +249,49 @@ export class Loop {
             this.cssRenderer.render(this.scene, this.camera)
         })
     }
-    #toggleModal(name) {
-        let image = document.querySelector(".image")
-        let toggleModal = document.querySelector(".modal-bg")
-        let doneBtn = document.querySelector(".btn")
-        if(name === "AOI") image.src = "./station-images/AOI.png"
-        if(name === "Fan" || name === "DIMM") image.src = "./station-images/Fan-DIMM.png"
-        if(name === "Manual") image.src = "./station-images/Manual-Conveyor.png"
-        if(name === "Lifter") image.src = "./station-images/Lifter.png"
+    #toggleModal(stationData) {
+        var image = document.querySelector(".image")
+        var toggleModal = document.querySelector(".modal-bg")
+        var doneBtn = document.querySelector(".btn")
+        var manager = document.querySelector(".manager-name")
+        var operator = document.querySelector(".operator-name")
+        var engineer = document.querySelector(".engineer-name")
+        var station = document.querySelector(".station-name")
+        var status = document.querySelector(".status-indicator")
+        
+        if(stationData.Station === "AOI") {
+            image.src = "./station-images/AOI.png"
+            status.innerText = stationData.Status
+            manager.innerText = stationData.Manager
+            operator.innerText = stationData.Operator
+            engineer.innerText = stationData.Engineer
+            station.innerText = stationData.Station
+            console.log(status.innerText)
+        }
+        if(stationData.Station === "Fan" || stationData.Station === "DIMM") {
+            image.src = "./station-images/Fan-DIMM.png"
+            status.innerText = stationData.Status
+            manager.innerText = stationData.Manager
+            operator.innerText = stationData.Operator
+            engineer.innerText = stationData.Engineer
+            station.innerText = stationData.Station
+        }
+        if(stationData.Station === "Manual") {
+            image.src = "./station-images/Manual-Conveyor.png"
+            status.innerText = stationData.Status
+            manager.innerText = stationData.Manager
+            operator.innerText = stationData.Operator
+            engineer.innerText = stationData.Engineer
+            station.innerText = stationData.Station
+        }
+        if(stationData.Station === "Lifter") {
+            image.src = "./station-images/Lifter.png"
+            status.innerText = stationData.Status
+            manager.innerText = stationData.Manager
+            operator.innerText = stationData.Operator
+            engineer.innerText = stationData.Engineer
+            station.innerText = stationData.Station
+        }
         // setTimeout(() =>{
         //     toggleModal.style.display = "block"
         // }, 2000)
