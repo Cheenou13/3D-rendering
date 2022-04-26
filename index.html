@@ -21,14 +21,33 @@
       </div>
 
       <div class="modal-bg">
-        <div class="child rounded-lg">
-          <p id="a">a</p>
-          <p id="b">b</p>
-          <p id="c">c</p>
-          <p id="d">d</p>
-          <p id="e">e</p>
-          <p id="f">f</p>
-          <div id="h"><button class="btn box-shadow rounded-lg pl-8 pr-8 bg-gray-200 hover:bg-white p-px">CLOSE</button></div>
+        <div class="modal-child rounded-lg font-sans text-xs text-blue-600">
+          <div class="text-sm" id="card-tittle">Station Information</div>
+          <div class="modal-label-layout station ">
+            <span>Station</span><br>
+            <span>xxxxxxxx</span>
+          </div>
+          <div class="modal-label-layout station-status">
+            <span>Station Status</span><br>
+            <span>xxxxxxxx</span>
+          </div>
+          <div class="modal-label-layout manager">
+            <span>Manager</span><br>
+            <span>xxxxxxxx</span>
+          </div>
+          <div class="modal-label-layout operator">
+            <span>Operator</span><br>
+            <span>xxxxxxxx</span>
+          </div>
+          <div class="modal-label-layout engineer">
+            <span>Engineer</span><br>
+            <span>xxxxxxxx</span>
+          </div>
+          <div class="image-container">
+            <img class="image rounded-lg" src="./station-images/AOI.png" alt="">
+            <!-- <p class="testSec">This test is to see if this paragraph element will be in the center of a div element</p> -->
+          </div>
+          <div class="btn-container"><button class="btn box-shadow rounded-lg pl-5 pr-5 bg-gray-200 active:bg-white p-px">CLOSE</button></div>
         </div>
       </div>
       <div id="chart-backwall">
@@ -40,21 +59,21 @@
     </div>
     <div class="burger-container ">
       <!-- <div class="empty-box"> -->
-        <!-- <button type="button" class="burger space-y-1  bg-white transition-all rounded-lg box-shadow"> -->
-        <div class="space-y-1 burger bg-white transition-all rounded-lg box-shadow" rel="burger">
+        <!-- <button type="button" class="burger space-y-1  bg-white divansition-all rounded-lg box-shadow"> -->
+        <div class="space-y-1 burger bg-white divansition-all rounded-lg box-shadow" rel="burger">
             <div class="w-4 h-0.5 bg-gray-600"></div>
             <div class="w-4 h-0.5 bg-gray-600"></div>
             <div class="w-4 h-0.5 bg-gray-600"></div>
         </div>
         <!-- </button> -->
         <div class="naviagtion-dropdown bg-white rounded-lg py-1 text-sky-500 box-shadow ">
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="back-to-soq" href="http://localhost:3001/twin">&#8678; Back</a>
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="view-campus" href="./navigation-pages/local-campus.html">Campus View</a>
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="view-globe" href="./navigation-pages/global.html">Global Network</a>
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
          </div>
       <!-- </div> -->

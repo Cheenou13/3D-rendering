@@ -779,12 +779,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
-.pl-8 {
-  padding-left: 2rem;
+.pl-5 {
+  padding-left: 1.25rem;
 }
 
-.pr-8 {
-  padding-right: 2rem;
+.pr-5 {
+  padding-right: 1.25rem;
 }
 
 .pt-2 {
@@ -819,6 +819,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -827,16 +841,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .text-5xl {
@@ -867,6 +871,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .leading-none {
   line-height: 1;
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
 }
 
 .text-sky-500 {
@@ -1093,15 +1102,11 @@ header {
 }
 
 .testSec {
-  position: absolute;
-  /* background-color:white; */
-  /* opacity: 0.5; */
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  z-index: 1;
-  align-items: center;
-  justify-content: center;
+  /* flex: 1;
+    justify-items: center;
+    align-items: center;
+    justify-content: center; */
+  color: white;
   /* display: none; */
 }
 
@@ -1123,60 +1128,82 @@ header {
   /* visibility: visible; */
 }
 
-.child {
-  top: 50%;
+.modal-child {
+  top: 40%;
   left: 50%;
-  width: 500px;
-  height: 250px;
+  width: 25%;
+  height: 30%;
   background: white;
   position: fixed;
   transform: translate(-50%, -50%);
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.25fr 1.5fr 1.2fr 1.2fr 1.2fr;
+  grid-template-columns: 0.1fr 2fr 0fr 2fr 0fr;
+  grid-template-rows: 1.2fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 1.2fr;
   padding: 0.25em;
   grid-template-areas: 
-    "a a a a"
-    "b c c c"
-    "d e e e"
-    "f f f f"
-    "h h h h"
+    "x a a a a"
+    "x b b f f"
+    "x c c f f"
+    "x d d f f"
+    "x e e f f"
+    "x g g f f"
+    "x h h h h"
 }
 
-#a {
-  background-color: blue;
+#card-tittle {
+  /* background-color: blue; */
   grid-area: a;
 }
 
-#b {
-  background-color: red;
+.station-status {
+  /* background-color: aquamarine; */
   grid-area: b;
 }
 
-#c {
-  background-color: pink;
+.station {
+  /* background-color: aqua; */
   grid-area: c;
 }
 
-#d {
-  background-color: greenyellow;
+.manager {
+  /* background-color: pink; */
   grid-area: d;
 }
 
-#e {
-  background-color: yellow;
+.operator{
+  /* background-color: greenyellow; */
   grid-area: e;
 }
 
-#f {
-  background-color: violet;
+.engineer {
+  /* background-color: yellow; */
+  grid-area: g;
+}
+
+.modal-label-layout {
+  text-align: center;
+  border-width: 2px;
+  /* padding-left: 0.5rem; */
+  /* box-shadow: 0px 5px 5px var(--clr-gray-med); */
+  /* background-color: red; */
+}
+
+.image-container{
+  display: flex;
+  /* background-color: violet; */
+  /* border-width: 2px; */
+  justify-content: center;
   grid-area: f;
 }
 
-#h {
-  background-color: blue;
+.image {
+  box-shadow: 2px 2px 0px 2px var(--clr-gray-med);
+}
+
+.btn-container{
+  /* background-color: blue; */
   grid-area: h;
-  padding: 8px;
+  padding-top: 0.5rem;
 }
 
 .box-shadow {
@@ -1340,11 +1367,6 @@ html *{
   background-color: rgb(30 58 138 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-blue-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
@@ -1362,4 +1384,9 @@ html *{
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.active\:bg-white:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }

@@ -26,10 +26,11 @@ export class Loop {
         raycast = new THREE.Raycaster()
         displayWorker = false
         colors = this.#makeColor()
-        const toggleModal = () => this.#toggleModal()
+        const toggleModal = (name) => this.#toggleModal(name)
         var worker = null
         const myCamera = this.camera
         const myscene = this.scene
+        const css = this.cssRenderer
         /********************************* */
         // objects.filter((object => object.type !== "Mesh"))
         // randomizedIndex = Math.floor((Math.random()  * objects.length)-1)
@@ -103,18 +104,16 @@ export class Loop {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             if (intersects.length > 0) {
-                if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {
-                    toggleModal()
+                if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {  
+                    toggleModal("AOI" )
                     console.log("AOI", intersects[0].object.position.x)
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
                     // myCamera.position.z = intersects[0].object.position.z
                     // myCamera.lookAt(intersects[0].point)
-    
-                    console.log("camera", myCamera)
                 }
                 if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
-                    toggleModal()
+                    toggleModal("Manual")
                     console.log("Manual", intersects[0].object.position)
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
@@ -122,21 +121,21 @@ export class Loop {
                     // myCamera.position.z = intersects[0].point.z
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
-                    toggleModal()
+                    toggleModal("DIMM")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
-                    toggleModal()
+                    toggleModal("Lifter")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
-                    toggleModal()
+                    toggleModal("Fan")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
 
@@ -150,8 +149,9 @@ export class Loop {
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
-            for (let i = 0; i < intersects.length; ++i) {
-
+            // for (let i = 0; i < intersects.length; ++i) {
+            if (intersects.length > 0){
+                
                 if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {
                     changeTransparency(intersects[0].object.parent.children[0], true, 0.5)
                     changeTransparency(intersects[0].object.parent.children[1], true, 0.5)
@@ -174,6 +174,7 @@ export class Loop {
                     changeTransparency(intersects[0].object.parent.children[2], true, 0.5)
                 }
 
+
             }
         }
         function resettransparency() {
@@ -183,6 +184,7 @@ export class Loop {
                     changeTransparency(myscene.children[2].children[i].children[0], false, 1)
                     changeTransparency(myscene.children[2].children[i].children[1], false, 1)
                     changeTransparency(myscene.children[2].children[i].children[2], false, 1)
+                    css.domElement.style.cursor = ""
                 }
                 if (name === "Manual") changeTransparency(myscene.children[2].children[i], false, 1)
                 if (name === "DIMM") {
@@ -206,6 +208,8 @@ export class Loop {
             object.material.transparent = transparent
             object.material.opacity = opacity
             object.depthWrite = false
+            if (transparent) css.domElement.style.cursor = "pointer"
+            else css.domElement.style.cursor = ""
         }
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
@@ -220,16 +224,18 @@ export class Loop {
             // render the frame
             resettransparency()
             onHover()
-            // console.log(this.scene.position)
-            // console.log(this.camera.position)
             this.renderer.render(this.scene, this.camera)
             this.cssRenderer.render(this.scene, this.camera)
         })
     }
-    #toggleModal() {
+    #toggleModal(name) {
+        let image = document.querySelector(".image")
         let toggleModal = document.querySelector(".modal-bg")
         let doneBtn = document.querySelector(".btn")
-
+        if(name === "AOI") image.src = "./station-images/AOI.png"
+        if(name === "Fan" || name === "DIMM") image.src = "./station-images/Fan-DIMM.png"
+        if(name === "Manual") image.src = "./station-images/Manual-Conveyor.png"
+        if(name === "Lifter") image.src = "./station-images/Lifter.png"
         // setTimeout(() =>{
         //     toggleModal.style.display = "block"
         // }, 2000)
