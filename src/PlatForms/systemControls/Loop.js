@@ -1,6 +1,7 @@
 import * as THREE from 'three'
+import axios from "axios"
 
-
+const url = "http://10.20.199.77:5015"
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
     objects = [], workers = [], randomWorkerIndex,
@@ -38,6 +39,8 @@ export class Loop {
             Operator:"void",
             Engineer:"void"
         }
+        // const data = await this.#getData(url)
+        // console.log("data: ", data)
         /********************************* */
         // objects.filter((object => object.type !== "Mesh"))
         // randomizedIndex = Math.floor((Math.random()  * objects.length)-1)
@@ -128,7 +131,7 @@ export class Loop {
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
-                    stationData.Station = "AOI"
+                    stationData.Station = "Manual"
                     stationData.Status = "some light is peeping"
                     toggleModal(stationData)
                 }
@@ -258,7 +261,10 @@ export class Loop {
         var engineer = document.querySelector(".engineer-name")
         var station = document.querySelector(".station-name")
         var status = document.querySelector(".status-indicator")
-        
+        toggleModal.style.display = "block"
+        doneBtn.addEventListener("click", () => {
+            toggleModal.style.display = "none"
+        })
         if(stationData.Station === "AOI") {
             image.src = "./station-images/AOI.png"
             status.innerText = stationData.Status
@@ -295,10 +301,7 @@ export class Loop {
         // setTimeout(() =>{
         //     toggleModal.style.display = "block"
         // }, 2000)
-        toggleModal.style.display = "block"
-        doneBtn.addEventListener("click", () => {
-            toggleModal.style.display = "none"
-        })
+
     }
 
     stop() {
@@ -328,6 +331,10 @@ export class Loop {
         var colors = []
         colors.push(red, green, yellow)
         return colors
+    }
+    async #getData(url){
+        const res = await axios.get(url);
+        return res.data;
     }
 
     tick() {
