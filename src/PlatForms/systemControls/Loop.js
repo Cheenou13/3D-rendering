@@ -295,7 +295,7 @@ export class Loop {
         console.log("inside toggle ", stationData.station_name)
         if(stationData.station_name === "AOI") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./src/assets/stations/AOI.svg"
+            image.src = "./assets/stations/AOI.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
@@ -308,7 +308,7 @@ export class Loop {
         }
         if(stationData.station_name === "Fan" || stationData.station_name === "DIMM") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./src/assets/stations/dimm-fan.svg"
+            image.src = "./assets/stations/dimm-fan.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
@@ -320,7 +320,7 @@ export class Loop {
         }
         if(stationData.station_name === "Manual") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./src/assets/stations/manual.svg"
+            image.src = "./assets/stations/manual.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
@@ -332,7 +332,7 @@ export class Loop {
         }
         if(stationData.station_name === "Lifter") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./src/assets/stations/lift.svg"
+            image.src = "./assets/stations/lift.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
