@@ -140,15 +140,12 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    toggleModal("Manual")
-                    console.log("Manual", intersects[0].object.material)
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
-                    stationData.Station = "Manual"
-                    stationData.Status = "some light is peeping"
                     toggleModal(stationData)
+                    console.log("Manual", stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
                     stationData.station_name = (station.name === "DIMM") ? station.name : station.parent.name
@@ -156,14 +153,12 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    toggleModal("DIMM")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
-                    stationData.Station = "DIMM"
-                    stationData.Status = "this light is not peeping"
                     toggleModal(stationData)
+                    console.log("DIMM", stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
                     stationData.station_name = "Lifter"
@@ -171,14 +166,12 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    toggleModal("Lifter")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
-                    stationData.Station = "Lifter"
-                    stationData.Status = "this light may be peeping"
                     toggleModal(stationData)
+                    console.log("Lifter", stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
                     stationData.station_name = (station.name === "Fan") ? station.name : station.parent.name
@@ -186,14 +179,12 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    toggleModal("Fan")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
 
                     // myCamera.position.z = intersects[0].point.z
-                    stationData.Station = "Fan"
-                    stationData.Status = "a 'Fan' but not an air conditioner"
                     toggleModal(stationData)
+                    console.log("Fan", stationData)
                 }
 
                 
@@ -267,7 +258,7 @@ export class Loop {
         }
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
-        this.cssRenderer.domElement.addEventListener('mousedown', onClick, false)
+        this.cssRenderer.domElement.addEventListener('click', onClick, false)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
 
 
@@ -301,10 +292,10 @@ export class Loop {
         doneBtn.addEventListener("click", () => {
             toggleModal.style.display = "none"
         })
-
+        console.log("inside toggle ", stationData.station_name)
         if(stationData.station_name === "AOI") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./station-images/AOI.png"
+            image.src = "./src/assets/stations/AOI.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
@@ -315,9 +306,9 @@ export class Loop {
             console.log(statusLight.style)
 
         }
-        if(stationData.Station === "Fan" || stationData.Station === "DIMM") {
+        if(stationData.station_name === "Fan" || stationData.station_name === "DIMM") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./station-images/Fan-DIMM.png"
+            image.src = "./src/assets/stations/dimm-fan.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
@@ -327,9 +318,9 @@ export class Loop {
             statusLight.style.backgroundColor = color[stationData.station_status]
             console.log(statusLight.style)
         }
-        if(stationData.Station === "Manual") {
+        if(stationData.station_name === "Manual") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./station-images/Manual-Conveyor.png"
+            image.src = "./src/assets/stations/manual.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
@@ -339,9 +330,9 @@ export class Loop {
             statusLight.style.backgroundColor = color[stationData.station_status]
             console.log(statusLight.style)
         }
-        if(stationData.Station === "Lifter") {
+        if(stationData.station_name === "Lifter") {
             console.log("The color is ", color[stationData.station_status])
-            image.src = "./station-images/Lifter.png"
+            image.src = "./src/assets/stations/lift.svg"
             workPiece.innerText = stationData.current_piece
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
