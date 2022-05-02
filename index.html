@@ -19,35 +19,55 @@
           <span id="task-performed">Task:</span>
         </div>
       </div>
-
       <div class="modal-bg">
-        <div class="modal-child rounded-lg font-sans text-xs ">
-          <div class="text-sm text-blue-600" id="card-tittle">Station Information</div>
-          <div class="modal-label-layout station ">
-            <span class="text-blue-600">Station</span><br>
-            <span class="station-name text-blue-400">xxxxxxxx</span>
+        <div class="modal-child rounded-lg font-sans text-sm ">
+          <div class=" text-blue-600" id="status-container">
+            <div class="indicator-container">
+              <span class="status-type light-text text-lg">Status</span>
+              <span class="light-color ml-2 w-3 h-3 bg-black rounded-full"></span>
+            </div>
           </div>
-          <div class="modal-label-layout station-status">
-            <span class="text-blue-600">Station Status</span><br>
-            <span class="status-indicator text-blue-500">xxxxxxxx</span>
-          </div>
-          <div class="modal-label-layout manager">
-            <span class="text-blue-600">Manager</span><br>
-            <span class="manager-name text-blue-500">xxxxxxxx</span>
-          </div>
-          <div class="modal-label-layout operator">
-            <span class="text-blue-600">Operator</span><br>
-            <span class="operator-name text-blue-500">xxxxxxxx</span>
-          </div>
-          <div class="modal-label-layout engineer">
-            <span class="text-blue-600">Engineer</span><br>
-            <span class="engineer-name text-blue-500">xxxxxxxx</span>
+          <div class="station-container flex-content-center">
+              <span class="station-name text-blue-600 font-semibold text-left">Testing</span>
           </div>
           <div class="image-container">
-            <img class="image rounded-lg" src="./station-images/AOI.png" alt="">
-            <!-- <p class="testSec">This test is to see if this paragraph element will be in the center of a div element</p> -->
+            <!-- <div> -->
+              <!-- <span class="text-blue-600">Station Status</span><br>
+              <span class="status-indicator inline-block text-blue-500">xxxxxxxx</span> -->
+              <img class="image rounded-lg box-shadow" src="./src/assets/stations/aoi.svg" alt="">
+            <!-- </div> -->
           </div>
-          <div class="btn-container"><button class="btn box-shadow rounded-lg pl-5 pr-5 bg-gray-200 active:bg-white p-px">CLOSE</button></div>
+          <div class="station-info-container bg-gray-50">
+            <div class="text-left text-blue-600 ml-4">
+              <span class="">Current Workpiece</span><br>
+              <span class="workpiece-report" >SN</span>
+            </div>
+            <div class="text-left ml-4">
+              <span class="text-blue-600">Error Code</span><br>
+              <span class="error-code text-blue-500">911</span>
+            </div>
+            <div class="text-left ml-4">
+              <span class="text-blue-600">OEE</span><br>
+              <span class="oee-report text-blue-500">Gimme that $$$ instead of %%%</span>
+            </div>
+          </div>
+          <!-- <div class="modal-label-layout operator flex-content-center">
+            <div>
+              <span class="text-blue-600">Operator</span><br>
+              <span class="operator-name text-blue-500">xxxxxxxx</span>
+            </div>
+          </div> -->
+          <!-- <div class="modal-label-layout engineer flex-content-center">
+            <div>
+              <span class="text-blue-600">Engineer</span><br>
+              <span class="engineer-name text-blue-500">xxxxxxxx</span>
+            </div>
+          </div> -->
+          <!-- <div class="image-container"> -->
+            <!-- <img class="image rounded-lg" src="./station-images/AOI.png" alt=""> -->
+            <!-- <p class="testSec">This test is to see if this paragraph element will be in the center of a div element</p> -->
+          <!-- </div> -->
+          <div class="btn-container bg-gray-50"><button class="btn box-shadow rounded-lg pl-5 pr-5 bg-gray-200 active:bg-white p-px">CLOSE</button></div>
         </div>
       </div>
       <div id="chart-backwall">

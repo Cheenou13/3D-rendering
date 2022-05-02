@@ -1,11 +1,13 @@
 import * as THREE from 'three'
+import axios from "axios"
 
-
+const url = "http://10.20.199.77:5015/get_station_status/2"
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
     objects = [], workers = [], randomWorkerIndex,
     raycast, mouse, displayWorker, light, colors
 export class Loop {
+    testCamera 
     constructor(camera, scene, renderer, cssRenderer) {
         this.camera = camera
         this.scene = scene
@@ -32,12 +34,19 @@ export class Loop {
         const myscene = this.scene
         const css = this.cssRenderer
         const stationData = {
-            Status: "void",
-            Station:"void",
-            Manager:"void",
-            Operator:"void",
-            Engineer:"void"
+            station_name: "void",
+            station_status:"void",
+            current_piece: "void",
+            error_code:"void",
+            oee:"void"
         }
+        const lightIndicator = [
+            {status:'Abnormal', error_code: '3D0F2'}, 
+            {status:'Normal', error_code: '4D0F2'}, 
+            {status:'Warning', error_code:'5D0F2'}]
+        const products = ['motherbord', 'LED Pannel', 'TFT board']
+        // const data = await this.#getData(url)
+        // console.log("data: ", data)
         /********************************* */
         // objects.filter((object => object.type !== "Mesh"))
         // randomizedIndex = Math.floor((Math.random()  * objects.length)-1)
@@ -111,28 +120,42 @@ export class Loop {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             if (intersects.length > 0) {
-                if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {  
-                    stationData.Station = "AOI"
-                    stationData.Status = "some light peeping"
+                const station = intersects[0].object
+                if (station.name === "AOI" || station.parent.name === "AOI") {  
+                    stationData.station_name = (station.name === "AOI") ? station.name : station.parent.name
+                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
+                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.oee = randomNumGenerator(101)+'%'
                     toggleModal(stationData)
-                    console.log("AOI", intersects[0].object.position.x)
+                    console.log("AOI", stationData)
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
                     // myCamera.position.z = intersects[0].object.position.z
                     // myCamera.lookAt(intersects[0].point)
                 }
                 if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
+                    stationData.station_name = (station.name === "Manual") ? station.name : station.parent.name
+                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
+                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.oee = randomNumGenerator(101)+'%'
                     toggleModal("Manual")
-                    console.log("Manual", intersects[0].object.position)
+                    console.log("Manual", intersects[0].object.material)
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
     
                     // myCamera.position.z = intersects[0].point.z
-                    stationData.Station = "AOI"
+                    stationData.Station = "Manual"
                     stationData.Status = "some light is peeping"
                     toggleModal(stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
+                    stationData.station_name = (station.name === "DIMM") ? station.name : station.parent.name
+                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
+                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.oee = randomNumGenerator(101)+'%'
                     toggleModal("DIMM")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
@@ -143,6 +166,11 @@ export class Loop {
                     toggleModal(stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
+                    stationData.station_name = "Lifter"
+                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
+                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.oee = randomNumGenerator(101)+'%'
                     toggleModal("Lifter")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
@@ -153,6 +181,11 @@ export class Loop {
                     toggleModal(stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
+                    stationData.station_name = (station.name === "Fan") ? station.name : station.parent.name
+                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
+                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.oee = randomNumGenerator(101)+'%'
                     toggleModal("Fan")
                     // myCamera.position.x = intersects[0].point.x
                     // myCamera.position.y = intersects[0].point.y
@@ -251,54 +284,77 @@ export class Loop {
     }
     #toggleModal(stationData) {
         var image = document.querySelector(".image")
+        var stationName = document.querySelector(".station-name")
+        var workPiece = document.querySelector(".workpiece-report")
+        var errorCode = document.querySelector(".error-code")
+        var oee = document.querySelector(".oee-report")
+        var statusType = document.querySelector(".status-type")
+        var statusLight = document.querySelector(".light-color")
         var toggleModal = document.querySelector(".modal-bg")
         var doneBtn = document.querySelector(".btn")
-        var manager = document.querySelector(".manager-name")
-        var operator = document.querySelector(".operator-name")
-        var engineer = document.querySelector(".engineer-name")
-        var station = document.querySelector(".station-name")
-        var status = document.querySelector(".status-indicator")
-        
-        if(stationData.Station === "AOI") {
-            image.src = "./station-images/AOI.png"
-            status.innerText = stationData.Status
-            manager.innerText = stationData.Manager
-            operator.innerText = stationData.Operator
-            engineer.innerText = stationData.Engineer
-            station.innerText = stationData.Station
-            console.log(status.innerText)
+        const color = {
+            "Abnormal": "#FF6A6A",
+            "Warning" : "#e5ba35",
+            "Normal"  : "#4ED6B2"
         }
-        if(stationData.Station === "Fan" || stationData.Station === "DIMM") {
-            image.src = "./station-images/Fan-DIMM.png"
-            status.innerText = stationData.Status
-            manager.innerText = stationData.Manager
-            operator.innerText = stationData.Operator
-            engineer.innerText = stationData.Engineer
-            station.innerText = stationData.Station
-        }
-        if(stationData.Station === "Manual") {
-            image.src = "./station-images/Manual-Conveyor.png"
-            status.innerText = stationData.Status
-            manager.innerText = stationData.Manager
-            operator.innerText = stationData.Operator
-            engineer.innerText = stationData.Engineer
-            station.innerText = stationData.Station
-        }
-        if(stationData.Station === "Lifter") {
-            image.src = "./station-images/Lifter.png"
-            status.innerText = stationData.Status
-            manager.innerText = stationData.Manager
-            operator.innerText = stationData.Operator
-            engineer.innerText = stationData.Engineer
-            station.innerText = stationData.Station
-        }
-        // setTimeout(() =>{
-        //     toggleModal.style.display = "block"
-        // }, 2000)
         toggleModal.style.display = "block"
         doneBtn.addEventListener("click", () => {
             toggleModal.style.display = "none"
         })
+
+        if(stationData.station_name === "AOI") {
+            console.log("The color is ", color[stationData.station_status])
+            image.src = "./station-images/AOI.png"
+            workPiece.innerText = stationData.current_piece
+            stationName.innerText = stationData.station_name
+            errorCode.innerText = stationData.error_code
+            oee.innerText = stationData.oee
+            statusType.innerText = stationData.station_status
+            statusType.style.color = color[stationData.station_status]
+            statusLight.style.backgroundColor = color[stationData.station_status]
+            console.log(statusLight.style)
+
+        }
+        if(stationData.Station === "Fan" || stationData.Station === "DIMM") {
+            console.log("The color is ", color[stationData.station_status])
+            image.src = "./station-images/Fan-DIMM.png"
+            workPiece.innerText = stationData.current_piece
+            stationName.innerText = stationData.station_name
+            errorCode.innerText = stationData.error_code
+            oee.innerText = stationData.oee
+            statusType.innerText = stationData.station_status
+            statusType.style.color = color[stationData.station_status]
+            statusLight.style.backgroundColor = color[stationData.station_status]
+            console.log(statusLight.style)
+        }
+        if(stationData.Station === "Manual") {
+            console.log("The color is ", color[stationData.station_status])
+            image.src = "./station-images/Manual-Conveyor.png"
+            workPiece.innerText = stationData.current_piece
+            stationName.innerText = stationData.station_name
+            errorCode.innerText = stationData.error_code
+            oee.innerText = stationData.oee
+            statusType.innerText = stationData.station_status
+            statusType.style.color = color[stationData.station_status]
+            statusLight.style.backgroundColor = color[stationData.station_status]
+            console.log(statusLight.style)
+        }
+        if(stationData.Station === "Lifter") {
+            console.log("The color is ", color[stationData.station_status])
+            image.src = "./station-images/Lifter.png"
+            workPiece.innerText = stationData.current_piece
+            stationName.innerText = stationData.station_name
+            errorCode.innerText = stationData.error_code
+            oee.innerText = stationData.oee
+            statusType.innerText = stationData.station_status
+            statusType.style.color = color[stationData.station_status]
+            statusLight.style.backgroundColor = color[stationData.station_status]
+            console.log(statusLight.style)
+        }
+        // setTimeout(() =>{
+        //     toggleModal.style.display = "block"
+        // }, 2000)
+
     }
 
     stop() {
@@ -328,6 +384,10 @@ export class Loop {
         var colors = []
         colors.push(red, green, yellow)
         return colors
+    }
+    async #getData(url){
+        const res = await axios.get(url);
+        return res.data;
     }
 
     tick() {

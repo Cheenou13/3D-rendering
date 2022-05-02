@@ -18,6 +18,7 @@ import { makeSideChart } from "../jsFiles/sideChart"
 
 
 const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
+// const url2 = "http://10.20.199.77:5015"
 
 
 let camera, scene, orbit, planexGenerator, texturePlane, glRenderer, cssRenderer, rayCaster, pointer
@@ -264,6 +265,7 @@ export class DisplayModels {
         
     }
     async int(){
+        // await this.#getData(url2)
         await this.#loadLabel()
         await this.#loadnig()
     }
