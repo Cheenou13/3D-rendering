@@ -710,12 +710,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 9999px;
 }
 
-.rounded {
-  border-radius: 0.25rem;
-}
-
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .border-r {
@@ -1205,7 +1205,7 @@ header {
 
 .image {
   display: flex;
-  /* object-fit: covcer; */
+  /* object-fit: contain; */
   width: 110px;
   margin: 1em;
 }
@@ -1428,8 +1428,9 @@ This part down is for testing for designing only
 }
 
 .test-svg {
-  display: flex;
-  /* width: 100%; */
+  /* display: flex; */
+  width: 80%;
+  /* background-color: green; */
   box-shadow: 0px 5px 5px var(--clr-gray-med);
   -o-object-fit: cover;
      object-fit: cover;
