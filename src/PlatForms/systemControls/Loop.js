@@ -5,6 +5,7 @@ const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
     objects = [], workers = [], randomWorkerIndex,
     raycast, mouse, displayWorker, light, colors
+
 export class Loop {
     constructor(camera, scene, renderer, cssRenderer) {
         this.camera = camera
@@ -16,9 +17,7 @@ export class Loop {
     start(mixer, mixer1, mixer2, mixer3) {
         this.scene.traverse((object) => {
             if (object.children.length > 2 && object.type === 'Group') objects.push(object)
-            if (object.type === 'Object3D' && object.name) {
-                workers.push(object)
-            }
+            if (object.type === 'Object3D' && object.name) workers.push(object)
         })
         workers.forEach(worker => { visibility(worker, 0.2, true) })
         /************** initiate variables */
@@ -28,6 +27,7 @@ export class Loop {
         colors = this.#makeColor()
         const toggleModal = (name) => this.#toggleModal(name)
         var worker = null
+        var control = this.updatables[0]
         const myCamera = this.camera
         const myscene = this.scene
         const css = this.cssRenderer
@@ -111,12 +111,11 @@ export class Loop {
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1
             mouse.y = - (event.clientY / window.innerHeight) * 2 + 1
         }
-        var control = this.updatables[0]
+
         function onClick() {
-            const oldX = myCamera.position.x
-            const oldY = myCamera.position.y
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
+            stationData.oee = randomNumGenerator(101)+'%'
             if (intersects.length > 0) {
                 const station = intersects[0].object
                 if (station.name === "AOI" || station.parent.name === "AOI") {  
@@ -124,7 +123,6 @@ export class Loop {
                     stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    stationData.oee = randomNumGenerator(101)+'%'
                     console.log("AOI", stationData)
                     moveTo(station, stationData)
                     
@@ -134,7 +132,6 @@ export class Loop {
                     stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    stationData.oee = randomNumGenerator(101)+'%'
                     moveTo(station, stationData)
                     console.log("Manual", stationData)
                 }
@@ -143,7 +140,6 @@ export class Loop {
                     stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    stationData.oee = randomNumGenerator(101)+'%'
                     moveTo(station, stationData)
                     console.log("DIMM", stationData)
                 }
@@ -152,7 +148,6 @@ export class Loop {
                     stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    stationData.oee = randomNumGenerator(101)+'%'
                     moveTo(station, stationData)
                     console.log("Lifter", stationData)
                 }
@@ -161,14 +156,10 @@ export class Loop {
                     stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    stationData.oee = randomNumGenerator(101)+'%'
                     moveTo(station, stationData)
                     console.log("Fan", stationData)
-                }
-
-                
+                }    
             }
-
         }
         function moveTo(object, objectInfo) {
             const focalPoint = new THREE.Box3().setFromObject(object)
@@ -185,22 +176,18 @@ export class Loop {
                     control.update()
                 }
             })
-
             gsap.to(myCamera.position, {
                 delay: 0.6,
                 duration: 2,
                 ease: 'power2.out',
                 x: stationCenterPoint.x,
                 y: stationCenterPoint.y,
-                z: stationCenterPoint.z + stationSize.z * 3,
+                z: stationCenterPoint.z + stationSize.z * 2, //add the radius around object so it wouldn't zoom in too close on object
                 onUpdate: () => {
                     myCamera.lookAt(stationCenterPoint)
                 }
             })
-            console.log("AOI center", stationCenterPoint)
-            setTimeout(() =>{
-                toggleModal(objectInfo)
-            }, 2500)
+            setTimeout(() => { toggleModal(objectInfo) }, 2500)
         }
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
@@ -229,34 +216,26 @@ export class Loop {
                     changeTransparency(intersects[0].object.parent.children[1], true, 0.5)
                     changeTransparency(intersects[0].object.parent.children[2], true, 0.5)
                 }
-
-
             }
         }
         function resettransparency() {
             for (let i = 0; i < myscene.children[2].children.length; ++i) {
-                const name = myscene.children[2].children[i].name
-                if (name === 'AOI') {
-                    changeTransparency(myscene.children[2].children[i].children[0], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[1], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[2], false, 1)
-                    css.domElement.style.cursor = ""
-                }
-                if (name === "Manual") changeTransparency(myscene.children[2].children[i], false, 1)
-                if (name === "DIMM") {
-                    changeTransparency(myscene.children[2].children[i].children[0], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[1], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[2], false, 1)
-                }
-                if (name === "Fan") {
-                    changeTransparency(myscene.children[2].children[i].children[0], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[1], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[2], false, 1)
-                }
-                if (name.includes("Lifter")) {
-                    changeTransparency(myscene.children[2].children[i].children[0], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[1], false, 1)
-                    changeTransparency(myscene.children[2].children[i].children[2], false, 1)
+                var name = myscene.children[2].children[i].name
+                if (name.includes("Lifter")) name = "Lifter"
+                switch (name){
+                    case "AOI":
+                    case "Lifter":
+                    case "DIMM":
+                    case "Fan":
+                        changeTransparency(myscene.children[2].children[i].children[0], false, 1)
+                        changeTransparency(myscene.children[2].children[i].children[1], false, 1)
+                        changeTransparency(myscene.children[2].children[i].children[2], false, 1)
+                        break
+                    case "Manual":
+                        changeTransparency(myscene.children[2].children[i], false, 1)
+                        break
+                    default:
+                        console.log("Poop smells")
                 }
             }
         }

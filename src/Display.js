@@ -265,10 +265,10 @@ export class DisplayModels {
         
     }
     async int(){
-        const testingData = await this.#getData(url2)
+        // const testingData = await this.#getData(url2)
         await this.#loadLabel()
         await this.#loadnig()
-        console.log("inside Display backend data is ", testingData)
+        // console.log("inside Display backend data is ", testingData)
     }
     startAnime (mixer, mixer1, mixer2, mixer3){
         this.loop.start(mixer, mixer1, mixer2,mixer3)
