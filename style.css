@@ -157,9 +157,6 @@ body {
     background-color: lightblue;
     border-radius: 10px;
   }
-  #tag-background {
-    box-shadow: 0px 0px 5px var(--clr-gray-med);
-  }
   .tag-container{
     background-color: white;
     font-size: 12px;
@@ -423,7 +420,7 @@ This part down is for testing for designing only
 }
 
 .test-inner-container{
-  /* background-color: lightblue; */
+  background-color: white;
   width: auto;
   height: auto;
   display: grid;
