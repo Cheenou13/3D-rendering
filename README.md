@@ -22,64 +22,68 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ```
 .
 ├── README.md
-├── build
-│   └── main.min.js
-├── dist
-│   ├── GLBModels
-│   │   ├── cartStacker.glb
-│   │   ├── dracoAOI.glb
-│   │   ├── dracoConveyorV2.glb
-│   │   ├── dracoFanDim.glb
-│   │   ├── dracoLeftLoader.glb
-│   │   ├── dracoLoader.glb
-│   │   └── dracoManaulConveyorV2.glb
-│   ├── assets
-│   │   ├── favicon.17e50649.svg
-│   │   ├── index.cc12f24a.js
-│   │   ├── index.e3fc458e.css
-│   │   └── vendor.43338a04.js
-│   ├── index.html
-│   ├── screenBackground
-│   │   ├── floorMetal.jpeg
-│   │   └── metalMapping.jpeg
-│   └── static
-│       ├── draco_decoder.js
-│       ├── draco_decoder.wasm
-│       ├── draco_encoder.js
-│       └── draco_wasm_wrapper.js
+├── css
+│   └── style.css
 ├── examples
 │   └── lookLike.png
 ├── favicon.svg
 ├── index.html
+├── jasonFiles
+│   ├── FoxconnFactories.json
+│   └── FoxconnLighthouseFactories.json
+├── jsFiles
+│   ├── backChart.js
+│   ├── globe.js
+│   ├── localCampus.js
+│   ├── minChart.js
+│   ├── sideChart.js
+│   ├── testDisplay.js
+│   └── testMain.js
+├── navigation-pages
+│   ├── global.html
+│   ├── local-campus.html
+│   └── test-page.html
 ├── package-lock.json
 ├── package.json
 ├── public
 │   ├── GLBModels
 │   │   ├── EmployeePoses
 │   │   │   ├── carryingPoseDraco.glb
-│   │   │   ├── compressWalkingAnimation.glb
 │   │   │   ├── grabPoseDraco.glb
-│   │   │   ├── walkingAnimation.glb
-│   │   │   ├── walkingAnimationV2.glb
+│   │   │   ├── operatingAnimationV2.glb
 │   │   │   └── workingPoseDraco.glb
-│   │   ├── Machines
-│   │   │   ├── cartStacker.glb
-│   │   │   ├── dracoAOI.glb
-│   │   │   ├── dracoConveyorV2.glb
-│   │   │   ├── dracoFanDim.glb
-│   │   │   ├── dracoLeftLoader.glb
-│   │   │   ├── dracoLoader.glb
-│   │   │   └── dracoManaulConveyorV2.glb
-│   │   └── dracoPerson.glb
-│   ├── screenBackground
-│   │   ├── floorMetal.jpeg
-│   │   └── metalMapping.jpeg
+│   │   └── Machines
+│   │       ├── cartStacker.glb
+│   │       ├── dracoAOI.glb
+│   │       ├── dracoConveyorV2.glb
+│   │       ├── dracoFanDim.glb
+│   │       ├── dracoLeftLoader.glb
+│   │       ├── dracoLoader.glb
+│   │       ├── dracoManaulConveyorV2.glb
+│   │       ├── productiobLines-withWorkersV2.glb
+│   │       └── production-lines.glb
+│   ├── assets
+│   │   └── stations
+│   │       ├── AOI.svg
+│   │       ├── dimm-fan.svg
+│   │       ├── lift.svg
+│   │       └── manual.svg
+│   ├── parkModel
+│   │   ├── 868.png
+│   │   ├── Cube_001_png.png
+│   │   ├── Sphere.png
+│   │   ├── datacenter-body.png
+│   │   ├── mpb.png
+│   │   ├── park.bin
+│   │   ├── park.gltf
+│   │   ├── parkImg
+│   │   │   └── light-flow-v1.PNG
+│   │   └── smc.png
 │   └── static
 │       ├── draco_decoder.js
 │       ├── draco_decoder.wasm
 │       ├── draco_encoder.js
 │       └── draco_wasm_wrapper.js
-├── rollup.config.js
 ├── src
 │   ├── Display.js
 │   ├── PlatForms
@@ -98,7 +102,8 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │       ├── Renderer.js
 │   │       └── Resizer.js
 │   └── main.js
-└── style.css
+├── style.css
+└── tailwind.config.js
 
 
 ```

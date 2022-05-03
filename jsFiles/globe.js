@@ -103,7 +103,7 @@ function initStars() {
 
     //const loader = new THREE.TextureLoader()
     var starsMaterial = new THREE.PointsMaterial( {
-        map: loader.load("../img/sp2.png"),
+        map: loader.load("../assets/img/sp2.png"),
         size: 1,
         transparent: true,
         opacity: 1,
@@ -120,7 +120,7 @@ function initStars() {
 
 // globe
 function initEarth() {
-    loader.load( '../img/earth-night.jpg', function ( texture ) {
+    loader.load( '../assets/img/earth-night.jpg', function ( texture ) {
         
         var globeGeometry = new THREE.SphereGeometry( radius, 100, 100 );
         var globeMaterial = new THREE.MeshStandardMaterial( {
@@ -133,7 +133,7 @@ function initEarth() {
         scene.add( globeGroup );
     } );
     //
-    var texture = loader.load( '../img/earth_aperture.png' );
+    var texture = loader.load( '../assets/img/earth_aperture.png' );
 		var spriteMaterial = new THREE.SpriteMaterial( {
 			map: texture,
 			transparent: true,
@@ -260,8 +260,8 @@ console.log(arcsData.length)
 
 
 let WaveMeshArr = []
-const markerTexture = loader.load( '../img/markerWhite.png')
-const waveTexture = loader.load( '../img/wave.png')
+const markerTexture = loader.load( '../assets/img/markerWhite.png')
+const waveTexture = loader.load( '../assets/img/wave.png')
 
 const animateDots = []
 for (let i =0; i<arcsData.length; i++) {
@@ -413,7 +413,7 @@ function createLightMesh( latlngPos, texture, size ) {
     return mesh
 }
 
-var lightTexture = loader.load('../img/9717559b.png')
+var lightTexture = loader.load('../assets/img/9717559b.png')
 const lightGroup = new THREE.Group()
 const lightN = lighthouseFactories.length
 

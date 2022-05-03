@@ -29,12 +29,12 @@ const textureLoader = new THREE.CubeTextureLoader();
 //   'https://threejs.org/manual/examples/resources/images/cubemaps/computer-history-museum/neg-z.jpg',
 // ]);
 const texture = textureLoader.load([
-  '../sky/right.jpeg',
-  '../sky/left.jpeg',
-  '../sky/top.jpeg',
-  '../sky/bottom.jpeg',
-  '../sky/front.jpeg',
-  '../sky/back.jpeg'
+  '../assets/sky/right.jpeg',
+  '../assets/sky/left.jpeg',
+  '../assets/sky/top.jpeg',
+  '../assets/sky/bottom.jpeg',
+  '../assets/sky/front.jpeg',
+  '../assets/sky/back.jpeg'
 ]);
 scene.background = texture;
 
