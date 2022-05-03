@@ -235,7 +235,7 @@ export class Loop {
                         changeTransparency(myscene.children[2].children[i], false, 1)
                         break
                     default:
-                        console.log("Poop smells")
+    
                 }
             }
         }

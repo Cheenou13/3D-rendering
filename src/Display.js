@@ -8,7 +8,7 @@ import { loadModel } from "../src/PlatForms/models/model"
 import { Loop } from "../src/PlatForms/systemControls/Loop"
 import { Resizer } from "../src/PlatForms/systemControls/Resizer"
 import axios from "axios"
-import { CreatePlanes } from "../src/PlatForms/models/plane"
+// import { CreatePlanes } from "../src/PlatForms/models/plane"
 import { GUI } from 'dat.gui'
 import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
 import * as THREE from 'three'
@@ -42,7 +42,7 @@ export class DisplayModels {
         this.loop = new Loop(camera, scene, glRenderer, cssRenderer)
         orbit = createControl(camera, cssRenderer)
         const {pointLight1, pointLight2, pointLight3, pointLight4, ambientLight, hemiLight, directLight} = createLights()
-        planexGenerator = new CreatePlanes()
+        // planexGenerator = new CreatePlanes()
         texturePlane = ""
         // orbit.addEventListener('change', this.display)
         // orbit.autoRotate = true
@@ -232,43 +232,44 @@ export class DisplayModels {
         return res.data;
     }
 
-    async #loadLabel(){
-        const myData = await this.#getData(url)
+    // async #loadLabel(){
+    //     const myData = await this.#getData(url)
 
-        const lift1Label = planexGenerator.getTextPlane(myData['Machine_8'])
-        const mt1Label = planexGenerator.getTextPlane(myData['Machine_1'])
-        const fanLabel = planexGenerator.getTextPlane(myData['Machine_7'])
-        const dimmLabel = planexGenerator.getTextPlane(myData['Machine_3'])
-        const mt2Label = planexGenerator.getTextPlane(myData['Machine_2'])
-        const mt3Label = planexGenerator.getTextPlane(myData['Machine_5'])
-        const aoiLabel = planexGenerator.getTextPlane(myData['Machine_4'])
-        const mt4Label = planexGenerator.getTextPlane(myData['Machine_6'])
-        const lifter2Label = planexGenerator.getTextPlane(myData['Machine_9'])
+    //     const lift1Label = planexGenerator.getTextPlane(myData['Machine_8'])
+    //     const mt1Label = planexGenerator.getTextPlane(myData['Machine_1'])
+    //     const fanLabel = planexGenerator.getTextPlane(myData['Machine_7'])
+    //     const dimmLabel = planexGenerator.getTextPlane(myData['Machine_3'])
+    //     const mt2Label = planexGenerator.getTextPlane(myData['Machine_2'])
+    //     const mt3Label = planexGenerator.getTextPlane(myData['Machine_5'])
+    //     const aoiLabel = planexGenerator.getTextPlane(myData['Machine_4'])
+    //     const mt4Label = planexGenerator.getTextPlane(myData['Machine_6'])
+    //     const lifter2Label = planexGenerator.getTextPlane(myData['Machine_9'])
       
       
-        lift1Label.rotation.set(0, 1.55, 0)
-        lift1Label.position.set(-7.126, 0.8083, -2.278)
-        mt1Label.position.set(-5.34, 0.8083, -2.278)
-        fanLabel.position.set(-3.554, 0.8083, -2.278)
-        dimmLabel.position.set(-1.513, 0.8083, -2.278)
-        mt2Label.position.set(0.23, 0.8083, -2.278)
-        mt3Label.position.set(1.65, 0.8083, -2.278)
-        aoiLabel.position.set(3.335, 0.8083, -2.278)
-        mt4Label.position.set(5, 0.8083, -2.278)
-        lifter2Label.position.set(7.126, 0.8083, -2.278)
-        lifter2Label.rotation.set(0, -1.55, 0)
-        makeBackChart()
-        makeSideChart()
-        // scene.add(texturePlane)
-        // scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
-        //     aoiLabel, mt4Label, lifter2Label, mt1Label)
+    //     lift1Label.rotation.set(0, 1.55, 0)
+    //     lift1Label.position.set(-7.126, 0.8083, -2.278)
+    //     mt1Label.position.set(-5.34, 0.8083, -2.278)
+    //     fanLabel.position.set(-3.554, 0.8083, -2.278)
+    //     dimmLabel.position.set(-1.513, 0.8083, -2.278)
+    //     mt2Label.position.set(0.23, 0.8083, -2.278)
+    //     mt3Label.position.set(1.65, 0.8083, -2.278)
+    //     aoiLabel.position.set(3.335, 0.8083, -2.278)
+    //     mt4Label.position.set(5, 0.8083, -2.278)
+    //     lifter2Label.position.set(7.126, 0.8083, -2.278)
+    //     lifter2Label.rotation.set(0, -1.55, 0)
+
+    //     // scene.add(texturePlane)
+    //     // scene.add(lift1Label, fanLabel, dimmLabel, mt2Label, mt3Label,
+    //     //     aoiLabel, mt4Label, lifter2Label, mt1Label)
         
-    }
+    // }
     async int(){
         // const testingData = await this.#getData(url2)
-        await this.#loadLabel()
+        // await this.#loadLabel()
         await this.#loadnig()
         // console.log("inside Display backend data is ", testingData)
+        makeBackChart()
+        makeSideChart()
     }
     startAnime (mixer, mixer1, mixer2, mixer3){
         this.loop.start(mixer, mixer1, mixer2,mixer3)
