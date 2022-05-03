@@ -18,7 +18,7 @@ import { makeSideChart } from "../jsFiles/sideChart"
 
 
 const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
-// const url2 = "http://10.20.199.77:5015"
+const url2 = "http://10.20.199.77:5015/get_station_status/2"
 
 
 let camera, scene, orbit, planexGenerator, texturePlane, glRenderer, cssRenderer, rayCaster, pointer
@@ -43,7 +43,7 @@ export class DisplayModels {
         orbit = createControl(camera, cssRenderer)
         const {pointLight1, pointLight2, pointLight3, pointLight4, ambientLight, hemiLight, directLight} = createLights()
         planexGenerator = new CreatePlanes()
-        texturePlane = planexGenerator.loadTexturePlane('/usedImages/metalMapping.jpeg')
+        texturePlane = ""
         // orbit.addEventListener('change', this.display)
         // orbit.autoRotate = true
         this.loop.updatables.push(orbit)
@@ -265,9 +265,10 @@ export class DisplayModels {
         
     }
     async int(){
-        // await this.#getData(url2)
+        const testingData = await this.#getData(url2)
         await this.#loadLabel()
         await this.#loadnig()
+        console.log("inside Display backend data is ", testingData)
     }
     startAnime (mixer, mixer1, mixer2, mixer3){
         this.loop.start(mixer, mixer1, mixer2,mixer3)

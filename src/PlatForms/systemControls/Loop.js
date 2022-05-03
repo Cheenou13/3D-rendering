@@ -1,13 +1,11 @@
 import * as THREE from 'three'
-import axios from "axios"
+import gsap from 'gsap'
 
-const url = "http://10.20.199.77:5015/get_station_status/2"
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
     objects = [], workers = [], randomWorkerIndex,
     raycast, mouse, displayWorker, light, colors
 export class Loop {
-    testCamera 
     constructor(camera, scene, renderer, cssRenderer) {
         this.camera = camera
         this.scene = scene
@@ -113,7 +111,7 @@ export class Loop {
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1
             mouse.y = - (event.clientY / window.innerHeight) * 2 + 1
         }
-       
+        var control = this.updatables[0]
         function onClick() {
             const oldX = myCamera.position.x
             const oldY = myCamera.position.y
@@ -127,12 +125,9 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    toggleModal(stationData)
                     console.log("AOI", stationData)
-                    // myCamera.position.x = intersects[0].point.x
-                    // myCamera.position.y = intersects[0].point.y
-                    // myCamera.position.z = intersects[0].object.position.z
-                    // myCamera.lookAt(intersects[0].point)
+                    moveTo(station, stationData)
+                    
                 }
                 if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
                     stationData.station_name = (station.name === "Manual") ? station.name : station.parent.name
@@ -140,11 +135,7 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    // myCamera.position.x = intersects[0].point.x
-                    // myCamera.position.y = intersects[0].point.y
-    
-                    // myCamera.position.z = intersects[0].point.z
-                    toggleModal(stationData)
+                    moveTo(station, stationData)
                     console.log("Manual", stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
@@ -153,11 +144,7 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    // myCamera.position.x = intersects[0].point.x
-                    // myCamera.position.y = intersects[0].point.y
-    
-                    // myCamera.position.z = intersects[0].point.z
-                    toggleModal(stationData)
+                    moveTo(station, stationData)
                     console.log("DIMM", stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
@@ -166,11 +153,7 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    // myCamera.position.x = intersects[0].point.x
-                    // myCamera.position.y = intersects[0].point.y
-    
-                    // myCamera.position.z = intersects[0].point.z
-                    toggleModal(stationData)
+                    moveTo(station, stationData)
                     console.log("Lifter", stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
@@ -179,17 +162,45 @@ export class Loop {
                     stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     stationData.oee = randomNumGenerator(101)+'%'
-                    // myCamera.position.x = intersects[0].point.x
-                    // myCamera.position.y = intersects[0].point.y
-
-                    // myCamera.position.z = intersects[0].point.z
-                    toggleModal(stationData)
+                    moveTo(station, stationData)
                     console.log("Fan", stationData)
                 }
 
                 
             }
 
+        }
+        function moveTo(object, objectInfo) {
+            const focalPoint = new THREE.Box3().setFromObject(object)
+            const stationCenterPoint = focalPoint.getCenter(new THREE.Vector3())
+            const stationSize = focalPoint.getSize(new THREE.Vector3())
+            
+            gsap.to(control.target, {
+                duration: 0.5,
+                x: stationCenterPoint.x,
+                y: stationCenterPoint.y,
+                z: stationCenterPoint.z,
+                ease: 'power2.in',
+                onUpdate: () => {
+                    control.update()
+                }
+            })
+
+            gsap.to(myCamera.position, {
+                delay: 0.6,
+                duration: 2,
+                ease: 'power2.out',
+                x: stationCenterPoint.x,
+                y: stationCenterPoint.y,
+                z: stationCenterPoint.z + stationSize.z * 3,
+                onUpdate: () => {
+                    myCamera.lookAt(stationCenterPoint)
+                }
+            })
+            console.log("AOI center", stationCenterPoint)
+            setTimeout(() =>{
+                toggleModal(objectInfo)
+            }, 2500)
         }
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
@@ -267,6 +278,7 @@ export class Loop {
             // every animation will tick forward one frame
             this.tick()
             // render the frame
+            // console.log("camera:", this.camera.position)
             resettransparency()
             onHover()
             this.renderer.render(this.scene, this.camera)
@@ -303,7 +315,8 @@ export class Loop {
             statusType.innerText = stationData.station_status
             statusType.style.color = color[stationData.station_status]
             statusLight.style.backgroundColor = color[stationData.station_status]
-            console.log(statusLight.style)
+            // statusType.style.visibility = "visible"
+            // statusLight.style.visibility = "visible"
 
         }
         if(stationData.station_name === "Fan" || stationData.station_name === "DIMM") {
@@ -316,7 +329,8 @@ export class Loop {
             statusType.innerText = stationData.station_status
             statusType.style.color = color[stationData.station_status]
             statusLight.style.backgroundColor = color[stationData.station_status]
-            console.log(statusLight.style)
+            // statusType.style.visibility = "visible"
+            // statusLight.style.visibility = "visible"
         }
         if(stationData.station_name === "Manual") {
             console.log("The color is ", color[stationData.station_status])
@@ -325,10 +339,11 @@ export class Loop {
             stationName.innerText = stationData.station_name
             errorCode.innerText = stationData.error_code
             oee.innerText = stationData.oee
-            statusType.innerText = stationData.station_status
-            statusType.style.color = color[stationData.station_status]
-            statusLight.style.backgroundColor = color[stationData.station_status]
-            console.log(statusLight.style)
+            statusType.innerText = "Manual Info"
+            statusType.style.color = "#4ED6B2"
+            statusLight.style.backgroundColor = "#4ED6B2"
+            // statusType.style.visibility = "hidden"
+            // statusLight.style.visibility = "hidden"
         }
         if(stationData.station_name === "Lifter") {
             console.log("The color is ", color[stationData.station_status])
@@ -340,11 +355,13 @@ export class Loop {
             statusType.innerText = stationData.station_status
             statusType.style.color = color[stationData.station_status]
             statusLight.style.backgroundColor = color[stationData.station_status]
-            console.log(statusLight.style)
+            // statusType.style.visibility = "visible"
+            // statusLight.style.visibility = "visible"
         }
         // setTimeout(() =>{
         //     toggleModal.style.display = "block"
         // }, 2000)
+
 
     }
 
