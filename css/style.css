@@ -1137,15 +1137,6 @@ header {
   height: 20%;
 }
 
-.testSec {
-  /* flex: 1;
-    justify-items: center;
-    align-items: center;
-    justify-content: center; */
-  color: white;
-  /* display: none; */
-}
-
 .modal-bg {
   top: 0%;
   /*default is 0, instiate is optional*/
@@ -1390,72 +1381,96 @@ html *{
 This part down is for testing for designing only
 */
 
-.card-container {
+.test-container {
   position: relative;
-  left: 50%;
-  height: 40vh;
-  width: 20vw;
-  /* display: grid;
-  grid-column: 1;
-  grid-row: 2; */
-  transform: translate(-50%, 50%);
+  background-color: lemonchiffon;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.top-part{
-  /* background-color: yellow; */
-  height: 50%;
-  /* padding: 0.2rem; */
+.test-inner-container{
+  /* background-color: lightblue; */
+  width: auto;
+  height: auto;
   display: grid;
-  grid-template-columns: auto auto;
+  /* opacity: 0.5; */
+  /* position: relative; */
+  /* grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 2fr; */
+  box-shadow: 0px 0px 20px 2px var(--clr-gray-light);
+  padding: 0.25em;
+  grid-template-areas: 
+  "a b"
+  "c d"
+  "e f"
+  "g h"
+  ;
 }
 
-.bottom-part{
-  /* background:var(--unnamed-color-fafafa) 0% 0% no-repeat padding-box; */
-  /* background-color: #9370DB; */
-  height: 50%;
-}
-
-.card-body{
-  color: #4771FA;
-  height: 100%;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  /* background-color: #BA55D3; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  text-align: left;
-}
-
-.test-svg {
-  /* display: flex; */
-  width: 80%;
-  /* background-color: green; */
-  box-shadow: 0px 5px 5px var(--clr-gray-med);
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.test-span {
-  display: flex;
-  text-align: left;
-  justify-content: end;
-  background-color: #2962ff;
-}
-
-.test-image{
-  margin-left: 1em;
-  margin-top: 21.64px;
+.a {
+  display: inline-block;
   /* background-color: red; */
-  display: grid;
-  grid-template-columns: auto auto;
+  justify-content: center;
+  text-align: left;
+  grid-area: a;
 }
 
-.test-status-light{
-  background: #0d47a1;
-  text-align: right;
-  /* width: 100%;
-  height: 100%; */
+.b {
+  display: inline-block;
+  /* background-color: blue; */
+  justify-content: center;
+  text-align: left;
+  grid-area: c;
+}
+
+.c {
+  display: inline-block;
+  /* background-color: burlywood; */
+  justify-content: center;
+  text-align: left;
+  grid-area: e;
+}
+
+.d {
+  display: inline-block;
+  /* background-color: yellow; */
+  justify-content: center;
+  text-align: left;
+  grid-area: g;
+}
+
+.e {
+  display: inline-block;
+  /* background-color: pink; */
+  justify-content: center;
+  text-align: left;
+  grid-area: b;
+}
+
+.f {
+  display: inline-block;
+  /* background-color: goldenrod; */
+  justify-content: center;
+  text-align: left;
+  grid-area: d;
+}
+
+.g {
+  display: inline-block;
+  /* background-color: lightgrey; */
+  justify-content: center;
+  text-align: left;
+  grid-area: f;
+}
+
+.h {
+  display: inline-block;
+  /* background-color: chartreuse; */
+  justify-content: center;
+  text-align: left;
+  grid-area: h;
 }
 
 .hover\:bg-blue-800:hover {
