@@ -11,16 +11,18 @@
   <body>
     <!-- <div id="chart"><img src="public/usedImages/graph.png" alt="chart" id="chart2"></div> -->
     <div class="mother-container">
-      <div id="tag-container">
-        <span class="operator-tag-layout" id="station-status">Station Status</span>
-        <span class="operator-tag-layout" id="employee-name">Operator</span>
-        <span class="operator-tag-layout" id="employee-id">Operator ID</span>
-        <span class="operator-tag-layout" id="task-performed">Task</span>
-        <span class="operator-colon" id="colon-1">: In Progress</span>
-        <span class="operator-colon" id="colon-2">: Not Applicable</span>
-        <span class="operator-colon" id="colon-3">: Not Applicable</span>
-        <span class="operator-colon" id="colon-4">: Not Applicable</span>
-      </div>
+      <!-- <div class="bg-tag"> -->
+        <div id="tag-container" class="tag-container">
+          <span class="station-status operator-tag-layout">Station Status</span>
+          <span class="operator-name operator-tag-layout">Operator</span>
+          <span class="operator-id operator-tag-layout">Operator ID</span>
+          <span class="task-performed operator-tag-layout">Task</span>
+          <span class="colon-1 operator-colon"> In Progress</span>
+          <span class="colon-2 operator-colon"> Not Applicable</span>
+          <span class="colon-3 operator-colon"> Not Applicable</span>
+          <span class="colon-4 operator-colon"> Not Applicable</span>
+        </div>
+      <!-- </div> -->
       <div class="modal-bg">
         <div class="modal-child rounded-lg font-sans text-sm ">
           <div class=" text-blue-600" id="status-container">
@@ -83,7 +85,7 @@
     </div>
     <div class="threeD-screen"></div>
     <script type="module" src="./src/main.js"></script>
-    <section class="operator-tag-layout" id="loading-screen">
+    <section id="loading-screen">
       <div id="loader">
         
       </div>

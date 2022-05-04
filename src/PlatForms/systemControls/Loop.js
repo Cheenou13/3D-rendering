@@ -14,7 +14,7 @@ export class Loop{
         this.cssRenderer = cssRenderer
         this.updatables = []
     }
-    start(mixer, mixer1, mixer2, mixer3) {
+    start() {
         this.scene.traverse((object) => {
             if (object.children.length > 2 && object.type === 'Group') objects.push(object)
             if (object.type === 'Object3D' && object.name) workers.push(object)
@@ -43,12 +43,7 @@ export class Loop{
             {status:'Normal', error_code: '4D0F2'}, 
             {status:'Warning', error_code:'5D0F2'}]
         const products = ['motherbord', 'LED Pannel', 'TFT board']
-        // const data = await this.#getData(url)
-        // console.log("data: ", data)
-        /********************************* */
-        // objects.filter((object => object.type !== "Mesh"))
-        // randomizedIndex = Math.floor((Math.random()  * objects.length)-1)
-        // console.log(randomizedIndex)           
+        /********************************* */        
         for (let i = 1; i < objects.length; ++i) {
             objects[i].children[2].material = new THREE.MeshStandardMaterial({ color: new THREE.Color("green") })
         }
@@ -192,7 +187,6 @@ export class Loop{
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
-            // for (let i = 0; i < intersects.length; ++i) {
             if (intersects.length > 0){
                 
                 if (intersects[0].object.name === "AOI" || intersects[0].object.parent.name === "AOI") {
@@ -257,7 +251,6 @@ export class Loop{
             // every animation will tick forward one frame
             this.tick()
             // render the frame
-            // console.log("camera:", this.camera.position)
             resettransparency()
             onHover()
             this.renderer.render(this.scene, this.camera)
@@ -294,8 +287,6 @@ export class Loop{
             statusType.innerText = stationData.station_status
             statusType.style.color = color[stationData.station_status]
             statusLight.style.backgroundColor = color[stationData.station_status]
-            // statusType.style.visibility = "visible"
-            // statusLight.style.visibility = "visible"
 
         }
         if(stationData.station_name === "Fan" || stationData.station_name === "DIMM") {
@@ -308,8 +299,6 @@ export class Loop{
             statusType.innerText = stationData.station_status
             statusType.style.color = color[stationData.station_status]
             statusLight.style.backgroundColor = color[stationData.station_status]
-            // statusType.style.visibility = "visible"
-            // statusLight.style.visibility = "visible"
         }
         if(stationData.station_name === "Manual") {
             console.log("The color is ", color[stationData.station_status])
@@ -321,8 +310,6 @@ export class Loop{
             statusType.innerText = "Manual Info"
             statusType.style.color = "#4ED6B2"
             statusLight.style.backgroundColor = "#4ED6B2"
-            // statusType.style.visibility = "hidden"
-            // statusLight.style.visibility = "hidden"
         }
         if(stationData.station_name === "Lifter") {
             console.log("The color is ", color[stationData.station_status])
@@ -334,8 +321,6 @@ export class Loop{
             statusType.innerText = stationData.station_status
             statusType.style.color = color[stationData.station_status]
             statusLight.style.backgroundColor = color[stationData.station_status]
-            // statusType.style.visibility = "visible"
-            // statusLight.style.visibility = "visible"
         }
         // setTimeout(() =>{
         //     toggleModal.style.display = "block"
