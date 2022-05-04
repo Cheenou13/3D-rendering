@@ -6,7 +6,7 @@ let CLOCK_TICK = 1000, index, randomizedIndex,
     objects = [], workers = [], randomWorkerIndex,
     raycast, mouse, displayWorker, light, colors
 
-export class Loop {
+export class Loop{
     constructor(camera, scene, renderer, cssRenderer) {
         this.camera = camera
         this.scene = scene

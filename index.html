@@ -12,10 +12,14 @@
     <!-- <div id="chart"><img src="public/usedImages/graph.png" alt="chart" id="chart2"></div> -->
     <div class="mother-container">
       <div id="tag-container">
-        <span id="station-status">Station Status</span>
-        <span id="employee-name">Operator</span>
-        <span id="employee-id">Operator ID:</span>
-        <span id="task-performed">Task:</span>
+        <span class="operator-tag-layout" id="station-status">Station Status</span>
+        <span class="operator-tag-layout" id="employee-name">Operator</span>
+        <span class="operator-tag-layout" id="employee-id">Operator ID</span>
+        <span class="operator-tag-layout" id="task-performed">Task</span>
+        <span class="operator-colon" id="colon-1">: In Progress</span>
+        <span class="operator-colon" id="colon-2">: Not Applicable</span>
+        <span class="operator-colon" id="colon-3">: Not Applicable</span>
+        <span class="operator-colon" id="colon-4">: Not Applicable</span>
       </div>
       <div class="modal-bg">
         <div class="modal-child rounded-lg font-sans text-sm ">
@@ -79,7 +83,7 @@
     </div>
     <div class="threeD-screen"></div>
     <script type="module" src="./src/main.js"></script>
-    <section id="loading-screen">
+    <section class="operator-tag-layout" id="loading-screen">
       <div id="loader">
         
       </div>
