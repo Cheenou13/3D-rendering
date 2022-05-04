@@ -22,7 +22,6 @@ const url2 = "http://10.20.199.77:5015/get_station_status/2"
 
 
 let camera, scene, orbit, planexGenerator, texturePlane, glRenderer, cssRenderer, rayCaster, pointer
-const motherContainer = document.querySelector(".mother-container")
 
 export class DisplayModels {
     constructor(document){
@@ -80,14 +79,14 @@ export class DisplayModels {
         backsideWall.position.set(1.34, 3.8, -6.6)
         rightSideWall.position.set(10.8, 3.8, -0.1)
         rightSideWall.rotation.set(0, (1.57*3), 0)
-        tagPlane1.position.set(2.35, 0.62, 1.90)
-        tagPlane2.position.set(2.3, 0.68, 4.95)
-        tagPlane3.position.set(6.75, 0.68, 1.90)
-        tagPlane4.position.set(2.35, 0.68, -1.25)
-        tagPlane5.position.set(2.35, 0.68, -4.35)
-        tagPlane6.position.set(-3.15, 0.68, -4.35)
-        tagPlane7.position.set(-3.15, 0.68, -1.25)
-        tagPlane8.position.set(4.75, 0.68, -4.35)
+        tagPlane1.position.set(2.35, 0.7, 1.90)
+        tagPlane2.position.set(2.3, 0.7, 4.95)
+        tagPlane3.position.set(6.75, 0.7, 1.90)
+        tagPlane4.position.set(2.35, 0.7, -1.25)
+        tagPlane5.position.set(2.35, 0.7, -4.35)
+        tagPlane6.position.set(-3.15, 0.7, -4.35)
+        tagPlane7.position.set(-3.15, 0.7, -1.25)
+        tagPlane8.position.set(4.75, 0.7, -4.35)
 
          
         producttionLines.position.set(1.56, -1.31, 0.46)

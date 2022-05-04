@@ -76,30 +76,20 @@ export class Loop{
                 visibility(worker, 1, false)
                 displayWorker = false
             }
-
         }
 
         function visibility(worker, opacity, transparency) {
-            // save old uv map for new matching to new uv mapping
-            var oldTexture_1 = worker.children[1].material.map
-            var oldTexture_2 = worker.children[2].material.map
-            var oldTexture_3 = worker.children[3].material.map
-            var oldTexture_4 = worker.children[4].material.map
-            // apply the old uv map to the new mesh, this way the worker would obtain their own
-            // old texture and have their own independent map
-            worker.children[1].material = new THREE.MeshStandardMaterial({ map: oldTexture_1 })
-            worker.children[2].material = new THREE.MeshStandardMaterial({ map: oldTexture_2 })
-            worker.children[3].material = new THREE.MeshStandardMaterial({ map: oldTexture_3 })
-            worker.children[4].material = new THREE.MeshStandardMaterial({ map: oldTexture_4 })
-            // change the transparency and opacity of worker
-            worker.children[1].material.opacity = opacity
-            worker.children[1].material.transparent = transparency
-            worker.children[2].material.opacity = opacity
-            worker.children[2].material.transparent = transparency
-            worker.children[3].material.opacity = opacity
-            worker.children[3].material.transparent = transparency
-            worker.children[4].material.opacity = opacity
-            worker.children[4].material.transparent = transparency
+            
+            for (let i = 1; i < worker.children.length; ++ i){
+                // save old uv map for new matching to new uv mapping
+                var oldTexture = worker.children[i].material.map
+                // apply the old uv map to the new mesh, this way the worker would obtain their own
+                // old texture and have their own independent map
+                worker.children[i].material = new THREE.MeshStandardMaterial({map: oldTexture})
+                worker.children[i].material.opacity = opacity
+                worker.children[i].material.transparent = transparency
+            }
+            
         }
 
         function onMouseMove(event) {
@@ -111,12 +101,13 @@ export class Loop{
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             stationData.oee = randomNumGenerator(101)+'%'
+            var randLightIndicator = randomNumGenerator(lightIndicator.length)
             if (intersects.length > 0) {
                 const station = intersects[0].object
                 if (station.name === "AOI" || station.parent.name === "AOI") {  
                     stationData.station_name = (station.name === "AOI") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
-                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.station_status = lightIndicator[randLightIndicator].status
+                    stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     console.log("AOI", stationData)
                     moveTo(station, stationData)
@@ -124,32 +115,32 @@ export class Loop{
                 }
                 if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
                     stationData.station_name = (station.name === "Manual") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
-                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.station_status = lightIndicator[randLightIndicator].status
+                    stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     moveTo(station, stationData)
                     console.log("Manual", stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
                     stationData.station_name = (station.name === "DIMM") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
-                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.station_status = lightIndicator[randLightIndicator].status
+                    stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     moveTo(station, stationData)
                     console.log("DIMM", stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
                     stationData.station_name = "Lifter"
-                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
-                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.station_status = lightIndicator[randLightIndicator].status
+                    stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     moveTo(station, stationData)
                     console.log("Lifter", stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
                     stationData.station_name = (station.name === "Fan") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randomNumGenerator(lightIndicator.length)].status
-                    stationData.error_code = lightIndicator[randomNumGenerator(lightIndicator.length)].error_code
+                    stationData.station_status = lightIndicator[randLightIndicator].status
+                    stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     moveTo(station, stationData)
                     console.log("Fan", stationData)
@@ -160,7 +151,7 @@ export class Loop{
             const focalPoint = new THREE.Box3().setFromObject(object)
             const stationCenterPoint = focalPoint.getCenter(new THREE.Vector3())
             const stationSize = focalPoint.getSize(new THREE.Vector3())
-            
+            console.log("center: ", stationCenterPoint)
             gsap.to(control.target, {
                 duration: 0.5,
                 x: stationCenterPoint.x,
@@ -184,6 +175,7 @@ export class Loop{
             })
             setTimeout(() => { toggleModal(objectInfo) }, 2500)
         }
+
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
