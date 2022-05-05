@@ -5,7 +5,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "build-css": "tailwindcss -i style.css -o ./css/style.css --watch"
+    "build-css": "tailwindcss -i style.css -o public/css/style.css --watch"
   },
   "devDependencies": {
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
