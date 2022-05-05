@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import factories from '../../jasonFiles/FoxconnFactories.json'
-import lighthouseFactories from '../../jasonFiles/FoxconnLighthouseFactories.json'
+import factories from '../jasonFiles/FoxconnFactories.json'
+import lighthouseFactories from '../jasonFiles/FoxconnLighthouseFactories.json'
 console.log('gps:', lighthouseFactories)
 
 
