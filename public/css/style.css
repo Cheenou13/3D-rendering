@@ -1516,6 +1516,10 @@ This part down is for testing for designing only
   grid-area: h;
 }
 
+.testMY{
+  background-color: purple;
+}
+
 .hover\:bg-blue-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
@@ -1539,5 +1543,3 @@ This part down is for testing for designing only
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-
-
