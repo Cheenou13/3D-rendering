@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Vite App</title>
   </head>
   
@@ -29,7 +29,7 @@
               <span class="station-name text-blue-600 font-semibold text-left">Testing</span>
           </div>
           <div class="image-container">
-            <img class="image rounded-md box-shadow" src="./assets/stations/AOI.svg" alt="">
+            <img class="image rounded-md box-shadow" src="../assets/stations/AOI.svg" alt="">
           </div>
           <div class="station-info-container bg-gray-50">
             <div class="text-left text-blue-600 ml-4">
@@ -48,43 +48,48 @@
           <div class="btn-container bg-gray-50"><button class="btn box-shadow rounded-lg pl-5 pr-5 bg-gray-200 active:bg-white p-px">CLOSE</button></div>
         </div>
       </div>
-      <div id="chart-backwall">
 
-      </div>
-      <div id="chart-sidewall">
-      </div>
     </div>
+    <!-- <div class="canvas-container"> -->
+        <div id="chart-backwall">
+            <!-- <canvas></canvas> -->
+        </div>
+        <div id="chart-sidewall">
+            <!-- <div class="chart-sidewall"></div> -->
+        </div>
+    <!-- </div> -->
+
     <div class="burger-container ">
       <!-- <div class="empty-box"> -->
-        <!-- <button type="button" class="burger space-y-1  bg-white transition-all rounded-lg box-shadow"> -->
-        <div class="space-y-1 burger bg-white transition-all rounded-lg box-shadow" rel="burger">
+        <!-- <button type="button" class="burger space-y-1  bg-white divansition-all rounded-lg box-shadow"> -->
+        <div class="space-y-1 burger bg-white divansition-all rounded-lg box-shadow" rel="burger">
             <div class="w-4 h-0.5 bg-gray-600"></div>
             <div class="w-4 h-0.5 bg-gray-600"></div>
             <div class="w-4 h-0.5 bg-gray-600"></div>
         </div>
         <!-- </button> -->
         <div class="naviagtion-dropdown bg-white rounded-lg py-1 text-sky-500 box-shadow ">
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="back-to-soq" href="http://localhost:3001/twin">&#8678; Back</a>
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="view-campus" href="/navigation-pages/local-campus.html">Campus View</a>
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                 id="view-globe" href="/navigation-pages/global.html">Global Network</a>
-          <a class="block px-2 text text-left transition-all text-base" 
+          <a class="block px-2 text text-left divansition-all text-base" 
                  href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
          </div>
       <!-- </div> -->
 
     </div>
-    <div class="threeD-screen"></div>
-    <script type="module" src="./src/main.js"></script>
+
+    <!-- <script type="module" src="/src/main.js"></script> -->
     <script type="module" src="/src/jsFiles/backWallGlobe.js"></script>
     <script type="module" src="/src/jsFiles/sideWallCampus.js"></script>
-    <section id="loading-screen">
+    <!-- <section id="loading-screen">
       <div id="loader">
         
       </div>
-    </section>
+    </section> -->
   </body>
 </html>
 

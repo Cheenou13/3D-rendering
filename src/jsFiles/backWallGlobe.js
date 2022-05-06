@@ -12,7 +12,7 @@ let globeGroup = new THREE.Group()
 var radius = 5
 
 const Dom = document.querySelector( '#chart-backwall' );
-const width = innerWidth, height = innerHeight;
+const width = Dom.offsetWidth, height = Dom.offsetHeight;
 console.log("height: ", height, "Width: ", width)
 
 // render
@@ -24,12 +24,12 @@ function initRenderer() {
     } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( width, height);
-    const containerDom = document.querySelector( '#container' );
+    // const containerDom = document.querySelector( '#container' );
     // const containerDom = document.querySelector( '#chart-backwall' );
     
     //renderer.outputEncoding = THREE.sRGBEncoding
 
-    containerDom.appendChild( renderer.domElement );
+    Dom.appendChild( renderer.domElement );
 }
 
 // camera
@@ -683,6 +683,7 @@ window.onload = () => {
     initSatelite()
     initTimer()
     animate();
-    window.addEventListener('resize', onWindowResize, false);
+   
 };
 
+window.addEventListener('resize', onWindowResize, false);

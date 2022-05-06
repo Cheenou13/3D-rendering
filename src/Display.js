@@ -10,8 +10,8 @@ import { Resizer } from "../src/PlatForms/systemControls/Resizer"
 import axios from "axios"
 import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
 import * as THREE from 'three'
-import { makeBackChart } from "../src/jsFiles/backChart"
-import { makeSideChart } from "../src/jsFiles/sideChart"
+// import { makeBackChart } from "../src/jsFiles/backChart"
+// import { makeSideChart } from "../src/jsFiles/sideChart"
 import { GuiController } from "../src/jsFiles/guiController"
 
 
@@ -194,8 +194,8 @@ export class DisplayModels {
         await this.#loadnig()
         this.startAnime()
         // console.log("inside Display backend data is ", testingData)
-        makeBackChart()
-        makeSideChart()
+        // makeBackChart()
+        // makeSideChart()
     }
     startAnime (){
         this.loop.start()

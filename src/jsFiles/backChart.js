@@ -2,7 +2,7 @@ import Chart from 'chart.js/auto';
 
 
 export function makeBackChart (){
-    const div = document.getElementById('threeD-canvas').getContext('2d')
+    const div = document.getElementById('threeD-canvas')
 
     const pluginService = {
         beforeDraw: (chart, easing) =>{

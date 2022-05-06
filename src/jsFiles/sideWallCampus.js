@@ -10,10 +10,10 @@ import gsap from 'gsap'
 // Debug
 //const gui = new dat.GUI()
 
-// const canvasEl = document.querySelector('.chart-sidewall');
-const canvasEl = document.getElementById("threeCanvas");
-var width = innerWidth;
-var height = innerHeight;
+const canvasEl = document.querySelector('#chart-sidewall');
+// const canvasEl = document.getElementById("threeCanvas");
+var width = canvasEl.offsetWidth;
+var height = canvasEl.offsetHeight;
 
 // scene
 const scene = new THREE.Scene();

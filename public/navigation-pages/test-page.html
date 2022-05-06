@@ -1,34 +1,93 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../css/style.css">
-        <title>Vite App</title>
-    </head>
-    <body>
-        <div class="test-container">
-            <div class="test-bg">
-                <div class="test-inner-container bg-blue-400">
-                    <!-- <div class="a"> -->
-                        <span class="a">Station Status</span>
-                    <!-- </div> -->
-                    <!-- <div class=""> -->
-                        <span class="b">Operator</span>
-                    <!-- </div> -->
-                    <!-- <div class="c"> -->
-                        <span class="c">Operator ID</span>
-                    <!-- </div> -->
-                    <!-- <div class="d"> -->
-                        <span class="d">Task</span>
-                    <!-- </div> -->
-                    <div class="e">: Offline</div>
-                    <span class="f">: Dragonball</span>
-                    <span class="g">: 911911</span>
-                    <span class="h">: Inspecting</span>
-                </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Vite App</title>
+  </head>
+  
+  <body>
+    <!-- <div id="chart"><img src="public/usedImages/graph.png" alt="chart" id="chart2"></div> -->
+    <div class="mother-container">
+      <div id="tag-container">
+        <span id="station-status">Station Status</span>
+        <span id="employee-name">Operator</span>
+        <span id="employee-id">Operator ID:</span>
+        <span id="task-performed">Task:</span>
+      </div>
+      <div class="modal-bg">
+        <div class="modal-child rounded-lg font-sans text-sm ">
+          <div class=" text-blue-600" id="status-container">
+            <div class="indicator-container">
+              <span class="status-type light-text text-lg">Status</span>
+              <span class="light-color ml-2 w-3 h-3 bg-black rounded-full"></span>
             </div>
+          </div>
+          <div class="station-container flex-content-center">
+              <span class="station-name text-blue-600 font-semibold text-left">Testing</span>
+          </div>
+          <div class="image-container">
+            <img class="image rounded-md box-shadow" src="../assets/stations/AOI.svg" alt="">
+          </div>
+          <div class="station-info-container bg-gray-50">
+            <div class="text-left text-blue-600 ml-4">
+              <span class="">Current Workpiece</span><br>
+              <span class="workpiece-report" >SN</span>
+            </div>
+            <div class="text-left ml-4">
+              <span class="text-blue-600">Error Code</span><br>
+              <span class="error-code text-blue-500">911</span>
+            </div>
+            <div class="text-left ml-4">
+              <span class="text-blue-600">OEE</span><br>
+              <span class="oee-report text-blue-500">Gimme that $$$ instead of %%%</span>
+            </div>
+          </div>
+          <div class="btn-container bg-gray-50"><button class="btn box-shadow rounded-lg pl-5 pr-5 bg-gray-200 active:bg-white p-px">CLOSE</button></div>
         </div>
-    </body>
+      </div>
+      <div id="chart-backwall">
+        <!-- <div class="chart-backwall"> -->
+            <!-- <div class="threeD-screen"></div> -->
+        <!-- </div> -->
+      </div>
+      <div id="chart-sidewall">
+        <div class="chart-sidewall"></div>
+      </div>
+    </div>
+    <div class="burger-container ">
+      <!-- <div class="empty-box"> -->
+        <!-- <button type="button" class="burger space-y-1  bg-white divansition-all rounded-lg box-shadow"> -->
+        <div class="space-y-1 burger bg-white divansition-all rounded-lg box-shadow" rel="burger">
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+            <div class="w-4 h-0.5 bg-gray-600"></div>
+        </div>
+        <!-- </button> -->
+        <div class="naviagtion-dropdown bg-white rounded-lg py-1 text-sky-500 box-shadow ">
+          <a class="block px-2 text text-left divansition-all text-base" 
+                id="back-to-soq" href="http://localhost:3001/twin">&#8678; Back</a>
+          <a class="block px-2 text text-left divansition-all text-base" 
+                id="view-campus" href="/navigation-pages/local-campus.html">Campus View</a>
+          <a class="block px-2 text text-left divansition-all text-base" 
+                id="view-globe" href="/navigation-pages/global.html">Global Network</a>
+          <a class="block px-2 text text-left divansition-all text-base" 
+                 href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
+         </div>
+      <!-- </div> -->
+
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/jsFiles/backWallGlobe.js"></script>
+    <script type="module" src="/src/jsFiles/sideWallCampus.js"></script>
+    <section id="loading-screen">
+      <div id="loader">
+        
+      </div>
+    </section>
+  </body>
 </html>
+
