@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
+import { ClickAndHold } from '../../jsFiles/clickandhold'
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
@@ -97,7 +98,7 @@ export class Loop{
             mouse.y = - (event.clientY / window.innerHeight) * 2 + 1
         }
 
-        function onClick() {
+        function onHold() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
             stationData.oee = randomNumGenerator(101)+'%'
@@ -110,7 +111,8 @@ export class Loop{
                     stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
                     console.log("AOI", stationData)
-                    moveTo(station, stationData)
+                    toggleModal(stationData)
+                    // moveTo(station, stationData)
                     
                 }
                 if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
@@ -118,7 +120,8 @@ export class Loop{
                     stationData.station_status = lightIndicator[randLightIndicator].status
                     stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    moveTo(station, stationData)
+                    // moveTo(station, stationData)
+                    toggleModal(stationData)
                     console.log("Manual", stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
@@ -126,7 +129,8 @@ export class Loop{
                     stationData.station_status = lightIndicator[randLightIndicator].status
                     stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    moveTo(station, stationData)
+                    // moveTo(station, stationData)
+                    toggleModal(stationData)
                     console.log("DIMM", stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
@@ -134,7 +138,8 @@ export class Loop{
                     stationData.station_status = lightIndicator[randLightIndicator].status
                     stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    moveTo(station, stationData)
+                    // moveTo(station, stationData)
+                    toggleModal(stationData)
                     console.log("Lifter", stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
@@ -142,16 +147,20 @@ export class Loop{
                     stationData.station_status = lightIndicator[randLightIndicator].status
                     stationData.error_code = lightIndicator[randLightIndicator].error_code
                     stationData.current_piece = products[randomNumGenerator(products.length)]
-                    moveTo(station, stationData)
+                    // moveTo(station, stationData)
+                    toggleModal(stationData)
                     console.log("Fan", stationData)
                 }    
             }
         }
+        var testCamPos = myCamera.position
         function moveTo(object, objectInfo) {
             const focalPoint = new THREE.Box3().setFromObject(object)
             const stationCenterPoint = focalPoint.getCenter(new THREE.Vector3())
             const stationSize = focalPoint.getSize(new THREE.Vector3())
             console.log("center: ", stationCenterPoint)
+            
+            console.log("cam pos: ", testCamPos)
             gsap.to(control.target, {
                 duration: 0.5,
                 x: stationCenterPoint.x,
@@ -174,6 +183,7 @@ export class Loop{
                 }
             })
             setTimeout(() => { toggleModal(objectInfo) }, 2500)
+            return
         }
 
         function onHover() {
@@ -234,7 +244,9 @@ export class Loop{
         }
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
-        this.cssRenderer.domElement.addEventListener('mousedown', onClick, false)
+        // this.cssRenderer.domElement.addEventListener('mousedown', onHold, false)
+        console.log(this.cssRenderer.domElement)
+        new ClickAndHold (this.cssRenderer.domElement, onHold)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
 
 
