@@ -133,34 +133,33 @@ export class DisplayModels {
             )
         // set css object position and rotation the same as the plane mesh so when we move the plane the css object moves
         globeLabel.position.set(-5.302, 3.8,-6.6)
-        compusLabel.position.set(10.8, 3.8, -3.8)
-        compusLabel.rotation.set(rightSideWall.rotation.x, rightSideWall.rotation.y, rightSideWall.rotation.z)
-        element.position.set(backsideWall.position.x, backsideWall.position.y, backsideWall.position.z)
-        element.rotation.set(backsideWall.rotation.x, backsideWall.rotation.y, backsideWall.rotation.z) 
-        element2.position.set(rightSideWall.position.x, rightSideWall.position.y, rightSideWall.position.z)
-        element2.rotation.set(rightSideWall.rotation.x, rightSideWall.rotation.y, rightSideWall.rotation.z) 
-        tagElement1.position.set(tagPlane1.position.x, tagPlane1.position.y, tagPlane1.position.z)
-        tagElement1.rotation.set(tagPlane1.rotation.x, tagPlane1.rotation.y, tagPlane1.rotation.z)
-        tagElement2.position.set(tagPlane2.position.x, tagPlane2.position.y, tagPlane2.position.z)
-        tagElement2.rotation.set(tagPlane2.rotation.x, tagPlane2.rotation.y, tagPlane2.rotation.z)
-        tagElement3.position.set(tagPlane3.position.x, tagPlane3.position.y, tagPlane3.position.z)
-        tagElement3.rotation.set(tagPlane3.rotation.x, tagPlane3.rotation.y, tagPlane3.rotation.z)
-        tagElement4.position.set(tagPlane4.position.x, tagPlane4.position.y, tagPlane4.position.z)
-        tagElement4.rotation.set(tagPlane4.rotation.x, tagPlane4.rotation.y, tagPlane4.rotation.z)
-        tagElement5.position.set(tagPlane5.position.x, tagPlane5.position.y, tagPlane5.position.z)
-        tagElement5.rotation.set(tagPlane5.rotation.x, tagPlane5.rotation.y, tagPlane5.rotation.z)
-        tagElement6.position.set(tagPlane6.position.x, tagPlane6.position.y, tagPlane6.position.z)
-        tagElement6.rotation.set(tagPlane6.rotation.x, tagPlane6.rotation.y, tagPlane6.rotation.z)
-        tagElement7.position.set(tagPlane7.position.x, tagPlane7.position.y, tagPlane7.position.z)
-        tagElement7.rotation.set(tagPlane7.rotation.x, tagPlane7.rotation.y, tagPlane7.rotation.z)
-        tagElement8.position.set(tagPlane8.position.x, tagPlane8.position.y, tagPlane8.position.z)
-        tagElement8.rotation.set(tagPlane8.rotation.x, tagPlane8.rotation.y, tagPlane8.rotation.z)
+        this.#changePosition(compusLabel, rightSideWall, new THREE.Vector3(10.8, 3.8, -3.8))
+        this.#changePosition(element, backsideWall)
+        this.#changePosition(element2, rightSideWall) 
+        this.#changePosition(tagElement1, tagPlane1) 
+        this.#changePosition(tagElement2, tagPlane2) 
+        this.#changePosition(tagElement3, tagPlane3) 
+        this.#changePosition(tagElement4, tagPlane4) 
+        this.#changePosition(tagElement5, tagPlane5) 
+        this.#changePosition(tagElement6, tagPlane6) 
+        this.#changePosition(tagElement7, tagPlane7) 
+        this.#changePosition(tagElement8, tagPlane8) 
 
         const tagGui = new GuiController("Tags Folder")
 
         // tagGui.addPosition(testObject)
         // tagGui.changeShape(testObject, "plane")
 
+    }
+    /**
+     * this private method will change the position and rotation of a 3D dom element
+     * @param {css3D} target the css 3D object dom element that will be map to 3D object 
+     * @param {3DObject} Object3D threejs 3D object, usually plane
+     */
+    #changePosition (target, Object3D, position){
+        if(!position) target.position.set(Object3D.position.x, Object3D.position.y, Object3D.position.z)
+        else target.position.set(position.x, position.y, position.z)
+        target.rotation.set(Object3D.rotation.x, Object3D.rotation.y, Object3D.rotation.z)
     }
     async #getData(url){
         const res = await axios.get(url);
@@ -202,12 +201,12 @@ export class DisplayModels {
         // const testingData = await this.#getData(url2)
         // await this.#loadLabel()
         await this.#loadnig()
-        this.startAnime()
+        this.#startAnime()
         // console.log("inside Display backend data is ", testingData)
         // makeBackChart()
         // makeSideChart()
     }
-    startAnime (){
+    #startAnime (){
         this.loop.start()
     }
 
