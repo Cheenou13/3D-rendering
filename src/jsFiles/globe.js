@@ -164,7 +164,7 @@ function initSatelite() {
         scene.add(sateliteGroup)
     });
 
-    loader.load( '../img/50c63ef1.png', function ( texture ) {
+    loader.load( '../../assets/img/50c63ef1.png', function ( texture ) {
         var p1 = new THREE.Vector3( -7, 0, 0 );
         var p2 = new THREE.Vector3( 7, 0, 0 );
         const points = [ p1,p2];

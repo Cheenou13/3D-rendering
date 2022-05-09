@@ -97,7 +97,18 @@ export class Loop{
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1
             mouse.y = - (event.clientY / window.innerHeight) * 2 + 1
         }
-
+        // console.log(myscene.children[3])
+        function findWalls (){
+            raycast.setFromCamera(mouse, myCamera)
+            const intersectObjects = raycast.intersectObjects(myscene.children[3].children)
+            // console.log(intersectObjects)
+            if (intersectObjects.length > 0){
+                // css.domElement.style.cursor = "pointer"
+                moveTo(intersectObjects[0].object)
+            }
+            // css.domElement.style.cursor = " "
+          
+        }
         function onHold() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
@@ -153,20 +164,17 @@ export class Loop{
                 }    
             }
         }
-        var testCamPos = myCamera.position
+
         function moveTo(object, objectInfo) {
             const focalPoint = new THREE.Box3().setFromObject(object)
             const stationCenterPoint = focalPoint.getCenter(new THREE.Vector3())
             const stationSize = focalPoint.getSize(new THREE.Vector3())
-            console.log("center: ", stationCenterPoint)
-            
-            console.log("cam pos: ", testCamPos)
             gsap.to(control.target, {
                 duration: 0.5,
                 x: stationCenterPoint.x,
                 y: stationCenterPoint.y,
                 z: stationCenterPoint.z,
-                ease: 'power2.in',
+                ease: 'power1.in',
                 onUpdate: () => {
                     control.update()
                 }
@@ -174,16 +182,20 @@ export class Loop{
             gsap.to(myCamera.position, {
                 delay: 0.6,
                 duration: 2,
-                ease: 'power2.out',
+                ease: 'power1.out',
                 x: stationCenterPoint.x,
                 y: stationCenterPoint.y,
-                z: stationCenterPoint.z + stationSize.z * 2, //add the radius around object so it wouldn't zoom in too close on object
+                z: stationCenterPoint.z , //add the radius around object so it wouldn't zoom in too close on object
                 onUpdate: () => {
                     myCamera.lookAt(stationCenterPoint)
                 }
             })
-            setTimeout(() => { toggleModal(objectInfo) }, 2500)
-            return
+            if (objectInfo)setTimeout(() => { toggleModal(objectInfo) }, 2500)
+            else setTimeout( () => {
+                if (object.name === "backwall") window.location = "/navigation-pages/global.html"
+                else window.location = "/navigation-pages/local-campus.html"
+            }, 1500)
+    
         }
 
         function onHover() {
@@ -244,9 +256,10 @@ export class Loop{
         }
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
-        // this.cssRenderer.domElement.addEventListener('mousedown', onHold, false)
+        
         console.log(this.cssRenderer.domElement)
-        new ClickAndHold (this.cssRenderer.domElement, onHold)
+        ClickAndHold.apply(this.cssRenderer.domElement, onHold)
+        ClickAndHold.apply(this.cssRenderer.domElement, findWalls, 0.5)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
 
 

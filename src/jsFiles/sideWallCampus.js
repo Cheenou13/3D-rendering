@@ -106,7 +106,6 @@ loader.load('/parkModel/park.gltf', function(gltf) {
   gltf.scene.position.set(-.4,0,0)
 
 
-  console.log(gltf.scene.children);
   const mesh = gltf.scene.children[15]
   //mesh.material.map = dcTexture
   gltf.scene.children[15].material = dcMaterial

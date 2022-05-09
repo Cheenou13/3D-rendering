@@ -2,8 +2,6 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import factories from '../../jasonFiles/FoxconnFactories.json'
 import lighthouseFactories from '../../jasonFiles/FoxconnLighthouseFactories.json'
-console.log('gps:', lighthouseFactories)
-
 
 let renderer, camera, scene, light, controls
 
@@ -151,7 +149,7 @@ function initEarth() {
 
 let sateliteGroup = new THREE.Group()
 function initSatelite() {
-    loader.load( '../img/satelite-orbit.png', function ( texture ) {
+    loader.load( '../assets/img/satelite-orbit.png', function ( texture ) {
         var geometry = new THREE.PlaneGeometry( 14, 14 );
         var material = new THREE.MeshLambertMaterial( {
             map: texture, 
@@ -164,7 +162,7 @@ function initSatelite() {
         scene.add(sateliteGroup)
     });
 
-    loader.load( '../img/50c63ef1.png', function ( texture ) {
+    loader.load( '/assets/img/50c63ef1.png', function ( texture ) {
         var p1 = new THREE.Vector3( -7, 0, 0 );
         var p2 = new THREE.Vector3( 7, 0, 0 );
         const points = [ p1,p2];
@@ -253,7 +251,7 @@ for(let i=0;i<nArcs;i++){
         }
     }
 }
-console.log(arcsData.length)
+
 
 // const arcsData_ = [...Array(N).keys()].map(() => ({
 //     startLat: (Math.random() - 0.5) * 180,
@@ -680,7 +678,7 @@ window.onload = () => {
     initControls();
     initStars();
     initEarth()
-    initSatelite()
+    // initSatelite()
     initTimer()
     animate();
    

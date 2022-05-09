@@ -64,18 +64,21 @@ export class DisplayModels {
         making a plane mesh to place css3D object in the same spot so the object would appear as it is in the
         same container as css objects
         */
-        
+        const walls = new THREE.Group()
+        walls.name = "walls"
         var backsideWall = this.#getPlane(19, 5.7)
         var rightSideWall = this.#getPlane(13, 5.7)
-        var tagPlane1 = this.#getPlane( 1.985, 0.95)
-        var tagPlane2 = this.#getPlane( 1.985, 0.95)
-        var tagPlane3 = this.#getPlane( 1.985, 0.95)
-        var tagPlane4 = this.#getPlane( 1.985, 0.95)
-        var tagPlane5 = this.#getPlane( 1.985, 0.95)
-        var tagPlane6 = this.#getPlane( 1.985, 0.95)
-        var tagPlane7 = this.#getPlane( 1.985, 0.95)
-        var tagPlane8 = this.#getPlane( 1.985, 0.95)
-
+        backsideWall.name = "backwall"
+        rightSideWall.name = "rightwall"
+        var tagPlane1 = this.#getPlane( 1.968, 0.95)
+        var tagPlane2 = this.#getPlane( 1.968, 0.95)
+        var tagPlane3 = this.#getPlane( 1.968, 0.95)
+        var tagPlane4 = this.#getPlane( 1.968, 0.95)
+        var tagPlane5 = this.#getPlane( 1.968, 0.95)
+        var tagPlane6 = this.#getPlane( 1.968, 0.95)
+        var tagPlane7 = this.#getPlane( 1.968, 0.95)
+        var tagPlane8 = this.#getPlane( 1.968, 0.95)
+        walls.add(backsideWall, rightSideWall)
         backsideWall.position.set(1.34, 3.8, -6.6)
         rightSideWall.position.set(10.8, 3.8, -0.1)
         rightSideWall.rotation.set(0, (1.57*3), 0)
@@ -87,8 +90,6 @@ export class DisplayModels {
         tagPlane6.position.set(-3.15, 0.7, -4.35)
         tagPlane7.position.set(-3.15, 0.7, -1.25)
         tagPlane8.position.set(4.75, 0.7, -4.35)
-
-         
         producttionLines.position.set(1.56, -1.31, 0.46)
         producttionLines.rotation.set(0, Math.PI, 0)
     
@@ -120,7 +121,7 @@ export class DisplayModels {
             )
         // add mesh plane and css object to the same scene
         scene.add(
-            backsideWall, rightSideWall, tagPlane1, tagPlane2, tagPlane3,
+            walls, tagPlane1, tagPlane2, tagPlane3,
             tagPlane4, tagPlane5, tagPlane6, tagPlane7, tagPlane8,
             element, element2, tagElement1, workerTags
             )

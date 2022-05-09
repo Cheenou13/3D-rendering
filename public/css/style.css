@@ -1175,7 +1175,7 @@ header {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0fr 1.5fr 1.5fr 2.5fr 0.4fr;
   padding: 0.25em;
-  /* background-color: black; */
+  /* background-color: gray; */
   grid-template-areas: 
     "b x a a "
     "b c c c"
@@ -1305,12 +1305,6 @@ header {
   align-items: center;
   background-color: black */
   /* display: none; */
-}
-
-.chart-sidewall {
-  /* height: 365px; 
-  width: 820px; */
-  /* background-color: rgba(75, 103, 120, 0.6); */
 }
 
 .naviagtion-dropdown{
