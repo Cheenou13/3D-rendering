@@ -200,15 +200,15 @@ body {
   .modal-bg {
     top: 0%; /*default is 0, instiate is optional*/
     left: 0%; /*default is 0, instiate is optional*/
-    z-index: 3;
+    z-index: 2;
     /* display: flex; */
     /* flex: wrap; */
+    position: relative;
     width: 100%;
     height: 100%;
     display: none;
-    position: fixed;
+    position: absolute;
     background: rgba(0, 0, 0, 0.5);
-    /* display: block; */
     /* background-color: red; */
     /* align-items: center; */
     /* justify-content: center; */
@@ -220,7 +220,7 @@ body {
     width: 20%;
     height: 40% ;
     background: white;
-    position: fixed;
+    position: relative;
     transform: translate(-50%, -50%);
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -327,7 +327,6 @@ body {
   margin-top: 20px;
   margin-left: 20px;
   position: fixed;
-  /* z-index: ; */
   padding: 10px;
   box-shadow: 0px 0px 5px var(--clr-gray-med);
 }
@@ -340,16 +339,8 @@ body {
 }
 
 #chart-sidewall {
-  /* position: relative; */
-  /* display: flex;  */
   height: 368px;
-  /* scale: 0.01; */
   width: 1200px;
-  /* justify-content: center;
-  justify-items: center;
-  align-items: center;
-  background-color: black */
-  /* display: none; */
 }
 .naviagtion-dropdown{
   top: 0%;
@@ -381,11 +372,6 @@ html *{
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
 }
-/* .globe-nav{
-  
-  position: absolute;
-  z-index: 0;
-} */
 
 .globe-nav:hover .naviagtion-dropdown {
   display: block;
@@ -404,6 +390,16 @@ html *{
   --tw-bg-opacity: 0.8;
   background-color: rgb(30 58 138 / var(--tw-bg-opacity));
 }
+.chart-tag{
+  /* height: 100%;
+  width: 100%; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 /*
 This part down is for testing for designing only
 */

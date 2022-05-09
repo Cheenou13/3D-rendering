@@ -21,8 +21,8 @@ const url = 'https://run.mocky.io/v3/8daac68c-09ed-4e7c-83e0-92c941f6a10e'
 const url2 = "http://10.20.199.77:5015/get_station_status/2"
 
 
-let camera, scene, orbit, planexGenerator, texturePlane, glRenderer, cssRenderer, rayCaster, pointer
-
+let camera, scene, orbit, planexGenerator, texturePlane, glRenderer, cssRenderer, testObject, pointer
+const _SCALESIZE = 1/100
 export class DisplayModels {
     constructor(document){
         camera = createCamera()
@@ -78,6 +78,7 @@ export class DisplayModels {
         var tagPlane6 = this.#getPlane( 1.968, 0.95)
         var tagPlane7 = this.#getPlane( 1.968, 0.95)
         var tagPlane8 = this.#getPlane( 1.968, 0.95)
+
         walls.add(backsideWall, rightSideWall)
         backsideWall.position.set(1.34, 3.8, -6.6)
         rightSideWall.position.set(10.8, 3.8, -0.1)
@@ -92,6 +93,7 @@ export class DisplayModels {
         tagPlane8.position.set(4.75, 0.7, -4.35)
         producttionLines.position.set(1.56, -1.31, 0.46)
         producttionLines.rotation.set(0, Math.PI, 0)
+
     
         var element = this.#getDivElement("chart-backwall")
         var element2 = this.#getDivElement("chart-sidewall")
@@ -104,17 +106,21 @@ export class DisplayModels {
         var tagElement6 = this.#getDivElement()
         var tagElement7 = this.#getDivElement()
         var tagElement8 = this.#getDivElement()
+        var globeLabel = this.#getDivElement("instruction")
+        var compusLabel = this.#getDivElement("campus-label")
         // document.body.appendChild(tagElement2)
         element.scale.multiplyScalar(1/63)
         element2.scale.multiplyScalar(1/63)
-        tagElement1.scale.multiplyScalar(1/100)
-        tagElement2.scale.multiplyScalar(1/100)
-        tagElement3.scale.multiplyScalar(1/100)
-        tagElement4.scale.multiplyScalar(1/100)
-        tagElement5.scale.multiplyScalar(1/100)
-        tagElement6.scale.multiplyScalar(1/100)
-        tagElement7.scale.multiplyScalar(1/100)
-        tagElement8.scale.multiplyScalar(1/100)
+        tagElement1.scale.multiplyScalar(_SCALESIZE )
+        tagElement2.scale.multiplyScalar(_SCALESIZE )
+        tagElement3.scale.multiplyScalar(_SCALESIZE )
+        tagElement4.scale.multiplyScalar(_SCALESIZE )
+        tagElement5.scale.multiplyScalar(_SCALESIZE )
+        tagElement6.scale.multiplyScalar(_SCALESIZE )
+        tagElement7.scale.multiplyScalar(_SCALESIZE )
+        tagElement8.scale.multiplyScalar(_SCALESIZE )
+        globeLabel.scale.multiplyScalar(_SCALESIZE )
+        compusLabel.scale.multiplyScalar(_SCALESIZE )
         workerTags.add(
             tagElement1, tagElement2, tagElement3, tagElement4,
             tagElement5, tagElement6, tagElement7, tagElement8
@@ -123,9 +129,12 @@ export class DisplayModels {
         scene.add(
             walls, tagPlane1, tagPlane2, tagPlane3,
             tagPlane4, tagPlane5, tagPlane6, tagPlane7, tagPlane8,
-            element, element2, tagElement1, workerTags
+            element, element2, tagElement1, workerTags, globeLabel, compusLabel
             )
         // set css object position and rotation the same as the plane mesh so when we move the plane the css object moves
+        globeLabel.position.set(-5.302, 3.8,-6.6)
+        compusLabel.position.set(10.8, 3.8, -3.8)
+        compusLabel.rotation.set(rightSideWall.rotation.x, rightSideWall.rotation.y, rightSideWall.rotation.z)
         element.position.set(backsideWall.position.x, backsideWall.position.y, backsideWall.position.z)
         element.rotation.set(backsideWall.rotation.x, backsideWall.rotation.y, backsideWall.rotation.z) 
         element2.position.set(rightSideWall.position.x, rightSideWall.position.y, rightSideWall.position.z)
@@ -149,8 +158,8 @@ export class DisplayModels {
 
         const tagGui = new GuiController("Tags Folder")
 
-        tagGui.addPosition(tagPlane2)
-        tagGui.changeShape(tagPlane2, "plane")
+        // tagGui.addPosition(testObject)
+        // tagGui.changeShape(testObject, "plane")
 
     }
     async #getData(url){

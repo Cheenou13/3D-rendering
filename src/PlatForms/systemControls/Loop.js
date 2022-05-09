@@ -15,6 +15,7 @@ export class Loop{
         this.cssRenderer = cssRenderer
         this.updatables = []
     }
+    
     start() {
         this.scene.traverse((object) => {
             if (object.children.length > 2 && object.type === 'Group') objects.push(object)
@@ -183,21 +184,24 @@ export class Loop{
                 delay: 0.6,
                 duration: 2,
                 ease: 'power1.out',
-                x: stationCenterPoint.x,
-                y: stationCenterPoint.y,
-                z: stationCenterPoint.z , //add the radius around object so it wouldn't zoom in too close on object
+                x: stationCenterPoint.x - stationCenterPoint.x/2,
+                y: stationCenterPoint.y - stationCenterPoint.y/2,
+                z: stationCenterPoint.z - stationCenterPoint.z/2, //add the radius around object so it wouldn't zoom in too close on object
                 onUpdate: () => {
                     myCamera.lookAt(stationCenterPoint)
                 }
             })
             if (objectInfo)setTimeout(() => { toggleModal(objectInfo) }, 2500)
             else setTimeout( () => {
-                if (object.name === "backwall") window.location = "/navigation-pages/global.html"
+                if (object.name === "backwall") {
+                    window.location = "/navigation-pages/global.html"
+                }
                 else window.location = "/navigation-pages/local-campus.html"
-            }, 1500)
+            }, 2700)
     
         }
-
+        // this.camera.position.set(-10, 0, 0)
+        console.log('camera position: ', this.camera.position)
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)

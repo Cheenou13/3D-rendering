@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Vite App</title>
   </head>
   
@@ -49,9 +49,96 @@
         </div>
       </div>
       <div id="chart-backwall">
-
       </div>
       <div id="chart-sidewall">
+      </div>
+      <div class="instruction-container">
+        <div class="instruction" id="instruction">
+          <div class="space-y-4">
+            <div class="bg-blue-900 w-96 bg-opacity-30 rounded-lg px-4 pt-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
+                <div class="border-b-2 flex items-center justify-center space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="font-semibold  uppercase">Production Volume</span>
+                </div>
+                <div class="mt-4 text-cente">
+                  <span class="text-5xl font-semibold">34,889</span>
+                  <span>units</span><br>
+                  <span class="text-2xl font-semibold">&#8226; Click here for more</span>
+                </div>
+                <div class="w-full h-64 pt-6" id="chartDaily"></div>
+            </div>
+            <div class="flex space-x-2 w-96">
+                <div class="bg-blue-900 w-1/2 bg-opacity-30 rounded-lg p-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
+                    <div class="border-b-2 flex items-center justify-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                        </svg>
+                        <span class="font-semibold uppercase">Employees</span>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="text-5xl font-semibold">1,024</span>
+                    </div>
+                </div>
+                <div class="bg-blue-900 w-1/2 bg-opacity-30 rounded-lg p-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
+                    <div class="border-b-2 flex items-center justify-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                        </svg>
+                        <span class="font-semibold  uppercase">Another</span>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="text-5xl font-semibold">424</span>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="campus-label">
+        <div class="space-y-4">
+          <div class="bg-blue-900 w-96 bg-opacity-30 rounded-lg px-4 pt-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
+              <div class="border-b-2 flex items-center justify-center space-x-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="font-semibold  uppercase">Production Volume</span>
+              </div>
+              <div class="mt-4 text-cente">
+                <span class="text-5xl font-semibold">34,889</span>
+                <span>units</span><br>
+                <span class="text-2xl font-semibold">&#8226; Click here for more</span>
+              </div>
+              <div class="w-full h-64 pt-6" id="chartDaily"></div>
+          </div>
+          <div class="flex space-x-2 w-96">
+              <div class="bg-blue-900 w-1/2 bg-opacity-30 rounded-lg p-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
+                  <div class="border-b-2 flex items-center justify-center space-x-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                      </svg>
+                      <span class="font-semibold uppercase">Employees</span>
+                  </div>
+                  <div class="mt-4 text-center">
+                      <span class="text-5xl font-semibold">1,024</span>
+                  </div>
+              </div>
+              <div class="bg-blue-900 w-1/2 bg-opacity-30 rounded-lg p-4 text-white hover:bg-blue-800 hover:bg-opacity-80">
+                  <div class="border-b-2 flex items-center justify-center space-x-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                      </svg>
+                      <span class="font-semibold  uppercase">Another</span>
+                  </div>
+                  <div class="mt-4 text-center">
+                      <span class="text-5xl font-semibold">424</span>
+                  </div>
+              </div>
+
+          </div>
+        </div>
       </div>
     </div>
     <div class="burger-container ">

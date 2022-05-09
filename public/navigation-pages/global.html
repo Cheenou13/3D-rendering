@@ -17,7 +17,50 @@
           </h1>
       </div>
       <div class="absolute visible w-full text-center pt-2 px-4 z-50">
-          <div class="globe-nav flex justify-between w-8 h-8 rounded-md">
+          <div class="flex justify-between items-center">
+            <div class="globe-nav flex justify-between w-8 h-8 rounded-md">
+                <div>
+                    <button class=" bg-opacity-60 bg-blue-900 hover:text-white text-gray-400 w-8 h-8 text-center rounded flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="naviagtion-dropdown bg-opacity-90 bg-blue-900 rounded-lg py-1 text-white box-shadow ">
+                  <a class="block px-2 text text-left transition-all text-base" 
+                        id="back-to-soq" href="/index.html">L10</a>
+                  <a class="block px-2 text text-left transition-all text-base" 
+                        id="view-campus" href="./local-campus.html">Campus View</a>
+                  <a class="block px-2 text text-left transition-all text-base" 
+                        id="view-globe" href="https://showroom.littleworkshop.fr/" target="_blank">Future Implmentation</a>
+                </div>
+                <div class=" right-4 mt-1 text-white flex items-center rounded overflow-hidden">
+                    <div class="h-full text-sm bg-gray-200 text-blue-900 px-2">
+                        <span id="nowTime">13:30:01</span> <br>
+                        <span id="todayDate">3/27/2022</span>
+                    </div>
+                    <div class="bg-blue-900 h-10 flex items-center px-2">
+                        <div class="text-2xl pr-1 border-r" id="weatherTemp">
+                            31
+                        </div>
+                        <div class="space-y-1 pl-1">
+                            <div class="text-xs leading-none capitalize" id="weatherDescription">
+                                clear sky
+                            </div>
+                            <div class="text-xs leading-none flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                </svg>
+                                <div class="ml-1" id="weatherLocation">
+                                    Mount Pleasant
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- <div class="globe-nav flex justify-between w-8 h-8 rounded-md">
               <div>
                   <button class=" bg-opacity-60 bg-blue-900 hover:text-white text-gray-400 w-8 h-8 text-center rounded flex items-center justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -54,11 +97,10 @@
                                   Mount Pleasant
                               </div>
                           </div>
-
                       </div>
                   </div>
               </div>
-          </div>
+          </div> -->
       </div>
       <div class="absolute visible px-4 pt-16">
           <div class="space-y-4">
@@ -194,5 +236,50 @@
     
     <script type="module" src="/src/jsFiles/globe.js"></script>
     <script type="module" src="/src/jsFiles/minChart.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        
+        // get current date and time 
+        // https://tecadmin.net/get-current-date-time-javascript/
+        const todayDateEl = document.getElementById('todayDate')
+        const nowTimeEl = document.getElementById('nowTime')
+        let today, date, time
+
+        setInterval(function() {
+            today = new Date();
+            date = (today.getMonth()+1) + '/' + today.getDate() + '/' +today.getFullYear();
+            time = today.getHours() + ":" + today.getMinutes() + ":" + String(today.getSeconds()).padStart(2, '0');
+            //String(today.getMinutes()).padStart(2, ‘0’)
+            todayDateEl.innerHTML = date
+            nowTimeEl.innerHTML = time
+        }, 1000)
+
+        // get current weather
+        // https://bithacker.dev/fetch-weather-openweathermap-api-javascript
+        const API_URL       = 'https://api.openweathermap.org/data/2.5/weather';
+        const API_KEY       = 'bc68df12a27c22016078380f7fcfd14b';
+        const LOCATION_CODE = '5268249';
+        const FULL_API_URL  = `${API_URL}?id=${LOCATION_CODE}&appid=${API_KEY}`;
+    
+        let weatherData
+        const weatherTempEl = document.getElementById('weatherTemp')
+        const weatherDescriptionEl = document.getElementById('weatherDescription')
+        const weatherLocationEl = document.getElementById('weatherLocation')
+
+        setInterval(function() {
+            axios
+            .get(FULL_API_URL)
+            .then(response => {
+                console.log(response.data)
+                weatherData = response.data
+                weatherTempEl.innerHTML = Math.round((parseFloat(weatherData.main.temp)-273.15)*1.8+32) + '&deg;'
+                weatherDescriptionEl.innerHTML = weatherData.weather[0].description
+                weatherLocationEl.innerHTML = weatherData.name
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        }, 60000)
+    </script>
   </body>
 </html>
