@@ -921,8 +921,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .text-blue-900 {
+<<<<<<< HEAD
+=======
   --tw-text-opacity: 1;
   color: rgb(30 58 138 / var(--tw-text-opacity));
+}
+
+.text-gray-400 {
+>>>>>>> edit-branch
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .text-gray-400 {

@@ -1,0 +1,26 @@
+{
+    "global_location": [
+        {
+            "name": "United States",
+            "United_States": 3,
+            "location": ["Texas, California, Wisconsin"],
+            "employer": 10000,
+            "production": 3000000
+        },
+        {
+            "name": "China",
+            "China": " ",
+            "location":[],
+            "employer": 100000,
+            "production": 8000000
+        },
+        {
+            "name": "Taiwan",
+            "Taiwan": " ",
+            "location":[],
+            "employer": 60000,
+            "production": 4000000
+        }
+    ],
+    "originality": "China"
+}

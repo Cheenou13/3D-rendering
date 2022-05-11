@@ -161,6 +161,7 @@ export class DisplayModels {
         else target.position.set(position.x, position.y, position.z)
         target.rotation.set(Object3D.rotation.x, Object3D.rotation.y, Object3D.rotation.z)
     }
+    
     async #getData(url){
         const res = await axios.get(url);
         return res.data;
