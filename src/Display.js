@@ -162,6 +162,13 @@ export class DisplayModels {
         // tagGui.changeShape(testObject, "plane")
 
     }
+
+    #changePosition (target, Object3D, position){
+        if(!position) target.position.set(Object3D.position.x, Object3D.position.y, Object3D.position.z)
+        else target.position.set(position.x, position.y, position.z)
+        target.rotation.set(Object3D.rotation.x, Object3D.rotation.y, Object3D.rotation.z)
+    }
+    
     async #getData(url){
         const res = await axios.get(url);
         return res.data;
