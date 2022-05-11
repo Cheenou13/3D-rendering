@@ -154,7 +154,6 @@ export class DisplayModels {
      * @param {css3D} target the css 3D object dom element that will be map to 3D object 
      * @param {3DObject} Object3D threejs 3D object, usually plane
      */
-
     #changePosition (target, Object3D, position){
         if(!position) target.position.set(Object3D.position.x, Object3D.position.y, Object3D.position.z)
         else target.position.set(position.x, position.y, position.z)
@@ -168,9 +167,9 @@ export class DisplayModels {
 
     async int(){
         await this.#loadnig()
-        this.startAnime()
+        this.#startAnime()
     }
-    startAnime (){
+    #startAnime (){
         this.loop.start()
     }
 
