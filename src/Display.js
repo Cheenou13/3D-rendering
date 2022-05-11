@@ -167,14 +167,7 @@ export class DisplayModels {
 
     async int(){
         await this.#loadnig()
-<<<<<<< HEAD
         this.#startAnime()
-        // console.log("inside Display backend data is ", testingData)
-        // makeBackChart()
-        // makeSideChart()
-=======
-        this.startAnime()
->>>>>>> edit-branch
     }
     #startAnime (){
         this.loop.start()
