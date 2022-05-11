@@ -1,0 +1,56 @@
+{
+    "location": "Racine, WI",
+    "Area": "300 Acres",
+    "employee": 10000,
+    "dail_production": 20000,
+    "monthly_produced":[
+        {
+            "month": "January",
+            "data": 10
+        },
+        {
+            "month": "Febuary",
+            "data": 5
+        },
+        {
+            "month": "March",
+            "data": 28
+        },
+        {
+            "month": "April",
+            "data": 42
+        },
+        {
+            "month": "May",
+            "data": 30
+        },
+        {
+            "month": "June",
+            "data": 52
+        },
+        {
+            "month": "July",
+            "data": 55
+        },
+        {
+            "month": "August",
+            "data": 48
+        },
+        {
+            "month": "September",
+            "data": 90
+        },
+        {
+            "month": "October",
+            "data": 82
+        },
+        {
+            "month": "November",
+            "data": 66
+        },
+        {
+            "month": "December",
+            "data": 68
+        }
+    ]
+}

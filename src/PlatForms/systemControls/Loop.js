@@ -1,6 +1,9 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { ClickAndHold } from '../../jsFiles/clickandhold'
+import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
+import _GLOBAL_DATA from '../../../jasonFiles/GlobeData.json'
+import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
