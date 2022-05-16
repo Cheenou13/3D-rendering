@@ -15,7 +15,7 @@ const setSize = (camera, renderer) => {
     renderer.setPixelRatio(window.devicePixelRatio)
 }
 
-export class Resizer {
+export default class Resizer {
     constructor(camera, renderer) {
         setSize(camera, renderer)
 

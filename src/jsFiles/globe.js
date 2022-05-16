@@ -2,11 +2,12 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import factories from '../../jasonFiles/FoxconnFactories.json'
 import lighthouseFactories from '../../jasonFiles/FoxconnLighthouseFactories.json'
-console.log('gps:', lighthouseFactories)
+import _GLOBAL_DATA from '../../jasonFiles/GlobeData.json'
+// console.log('gps:', lighthouseFactories)
 
 
 let renderer, camera, scene, light, controls
-
+const _DATA = _GLOBAL_DATA.global_location[3]
 let loader = new THREE.TextureLoader()
 let globeGroup = new THREE.Group()
 var radius = 5
@@ -613,9 +614,10 @@ globeGroup.add(animateDot)
  * Responsive
  **/
 function onWindowResize() {
-    camera.aspect = width / height;
+    camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( width, height);
+    renderer.setSize( innerWidth, innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio)
     renders();
 }
 
@@ -672,6 +674,31 @@ function animate() {
     } );
 }
 
+function initData (){
+    var smc = document.getElementById("SMC")
+    var mpb = document.getElementById("MPB")
+    var area = document.getElementById("area")
+    var hpc_data = document.getElementById("hpc-data")
+    var hpc_devices = document.getElementById("hpc-devices")
+    var hpc_ai = document.getElementById("hpc-ai")
+    var official = document.getElementById("employees")
+    var others = document.getElementById("others")
+    var cost = document.getElementById("cost")
+    var consumption = document.getElementById("consumption")
+    var production_volume = document.getElementById("volume")
+    smc.innerHTML = _DATA.oee[0].smc +"%"
+    mpb.innerHTML = _DATA.oee[1].MPB +"%"
+    area.innerHTML = _DATA.total_area.toLocaleString()
+    hpc_ai.innerHTML = _DATA.hpc[1].ai_application.toLocaleString()
+    hpc_data.innerHTML = _DATA.hpc[0].data.toLocaleString()
+    hpc_devices.innerHTML = _DATA.hpc[2].edge_devices.toLocaleString()
+    official.innerHTML = _DATA.employees[0].official.toLocaleString()
+    others.innerHTML = _DATA.employees[1].others.toLocaleString()
+    cost.innerHTML = _DATA.energy[1].cost.toLocaleString()
+    consumption.innerHTML = _DATA.energy[0].consumption.toLocaleString()
+    production_volume.innerHTML = _DATA.production_volume.toLocaleString()
+}
+
 window.onload = () => {
     initRenderer();
     initCamera();
@@ -683,6 +710,7 @@ window.onload = () => {
     initSatelite()
     initTimer()
     animate();
-    window.addEventListener('resize', onWindowResize, false);
+    initData()
+    window.addEventListener('resize', onWindowResize);
 };
 

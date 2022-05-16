@@ -1,11 +1,13 @@
-//import './style.css'
-//import './dist/output.css'
 
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import * as dat from 'dat.gui';
+import createControl from '../../src/PlatForms/systemControls/Control.js'
 import gsap from 'gsap'
+import _CAMPUS_DATA from '../../jasonFiles/LocalCampusData.json'
+import Resizer from '../PlatForms/systemControls/Resizer'
+
+console.log(_CAMPUS_DATA)
+
 
 // Debug
 //const gui = new dat.GUI()
@@ -70,7 +72,8 @@ rendererEl.className = "";
 canvasEl.appendChild(rendererEl);
 
 // control
-const controls = new OrbitControls( camera, renderer.domElement );
+// const controls = new OrbitControls( camera, renderer.domElement );
+const controls = createControl(camera, renderer)
 controls.enableDamping = true
 
 
@@ -105,8 +108,6 @@ loader.load('/parkModel/park.gltf', function(gltf) {
   gltf.scene.rotation.set(0.15,2.5,0)
   gltf.scene.position.set(-.4,0,0)
 
-
-  console.log(gltf.scene.children);
   const mesh = gltf.scene.children[15]
   //mesh.material.map = dcTexture
   gltf.scene.children[15].material = dcMaterial
@@ -144,6 +145,36 @@ rectLight.position.set( 0, 5, 0 );
 rectLight.lookAt( 0, 0, 0 );
 scene.add( rectLight )
 
+function initData (){
+  var total = document.getElementById("total-production")
+  var employees, others, smc, mpb, total_area, energy_consumption, energy_cost, hpc_data, hpc_ai_application, hpc_devices
+  employees = document.getElementById("officials-employees")
+  others = document.getElementById("other-employees")
+  energy_cost = document.getElementById("energy-cost")
+  energy_consumption = document.getElementById("energy-consumption")
+  smc = document.getElementById("smc-oee")
+  mpb = document.getElementById("mpb-oee")
+  total_area = document.getElementById("total-area")
+  hpc_data = document.getElementById("hpc-data")
+  hpc_ai_application = document.getElementById("hpc-ai-application")
+  hpc_devices = document.getElementById("hpc-devices")
+  const sales = _CAMPUS_DATA.monthly_produced[0].data
+  var sum = 0
+  sales.forEach(sale => {sum += sale})
+
+  total.innerHTML = sum
+  employees.innerHTML = _CAMPUS_DATA.employment[0].officials.toLocaleString()
+  others.innerHTML = _CAMPUS_DATA.employment[1].others.toLocaleString()
+  energy_cost.innerHTML = _CAMPUS_DATA.energy[1].cost.toLocaleString()
+  energy_consumption.innerHTML = _CAMPUS_DATA.energy[0].consumption.toLocaleString()
+  smc.innerHTML = _CAMPUS_DATA.oee[0].SMC.toLocaleString()+"%"
+  mpb.innerHTML = _CAMPUS_DATA.oee[1].MPB.toLocaleString()+"%"
+  total_area.innerHTML = _CAMPUS_DATA.total_area.toLocaleString()
+  hpc_data.innerHTML = _CAMPUS_DATA.HPC[0].data.toLocaleString()
+  hpc_ai_application.innerHTML = _CAMPUS_DATA.HPC[1].ai_application.toLocaleString()
+  hpc_devices.innerHTML = _CAMPUS_DATA.HPC[2].devices.toLocaleString()
+}
+
 //gui.add(rectLight.position, 'x').min(0).max(9)
 
 
@@ -157,9 +188,7 @@ const colorCenterLine = 0xffffff;
 
 const gridHelper = new THREE.GridHelper( size, divisions, colorCenterLine );
 //scene.add( gridHelper );
-
-controls.update();
-
+new Resizer (camera, renderer)
 function animate() {
     requestAnimationFrame(animate);
     
@@ -168,3 +197,4 @@ function animate() {
     renderer.render(scene, camera);
 }
 animate();
+initData()
