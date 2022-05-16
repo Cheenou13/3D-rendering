@@ -11,7 +11,8 @@ import axios from "axios"
 import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
 import * as THREE from 'three'
 import { GuiController } from "../src/jsFiles/guiController"
-
+import _WORKER_DATA from "../jasonFiles/WorkersData.json"
+console.log(_WORKER_DATA)
 
 
 
@@ -22,6 +23,8 @@ const url2 = "http://10.20.199.77:5015/get_station_status/2"
 let camera, scene, orbit, texturePlane, glRenderer, cssRenderer, testObject
 const _SCALESIZE = 1/100
 export class DisplayModels {
+    #_NUMWORKERS
+    #_STATUS 
     constructor(document){
         camera = createCamera()
         this.renders = createRenderer()
@@ -33,6 +36,8 @@ export class DisplayModels {
         const {pointLight1, pointLight2, pointLight3, pointLight4, ambientLight, hemiLight, directLight} = createLights()
         texturePlane = ""
         this.loop.updatables.push(orbit)
+        this.#_NUMWORKERS = _WORKER_DATA.name.length
+        this.#_STATUS = _WORKER_DATA.station_status.length
         
         scene.add(hemiLight, directLight)
         
@@ -68,14 +73,15 @@ export class DisplayModels {
         var rightSideWall = this.#getPlane(13, 5.7)
         backsideWall.name = "backwall"
         rightSideWall.name = "rightwall"
-        var tagPlane1 = this.#getPlane( 1.968, 0.95)
-        var tagPlane2 = this.#getPlane( 1.968, 0.95)
-        var tagPlane3 = this.#getPlane( 1.968, 0.95)
-        var tagPlane4 = this.#getPlane( 1.968, 0.95)
-        var tagPlane5 = this.#getPlane( 1.968, 0.95)
-        var tagPlane6 = this.#getPlane( 1.968, 0.95)
-        var tagPlane7 = this.#getPlane( 1.968, 0.95)
-        var tagPlane8 = this.#getPlane( 1.968, 0.95)
+        // var tagPlane1 = this.#getPlane( 1.968, 0.95)
+        var tagPlane1 = this.#getPlane( 1.728, 0.95)
+        var tagPlane2 = this.#getPlane( 1.728, 0.95)
+        var tagPlane3 = this.#getPlane( 1.728, 0.95)
+        var tagPlane4 = this.#getPlane( 1.728, 0.95)
+        var tagPlane5 = this.#getPlane( 1.728, 0.95)
+        var tagPlane6 = this.#getPlane( 1.728, 0.95)
+        var tagPlane7 = this.#getPlane( 1.728, 0.95)
+        var tagPlane8 = this.#getPlane( 1.728, 0.95)
 
         walls.add(backsideWall, rightSideWall)
         backsideWall.position.set(1.34, 3.8, -6.6)
@@ -145,8 +151,8 @@ export class DisplayModels {
 
         const tagGui = new GuiController("Tags Folder")
 
-        // tagGui.addPosition(testObject)
-        // tagGui.changeShape(testObject, "plane")
+        tagGui.addPosition(tagPlane1)
+        tagGui.changeShape(tagPlane1, "plane")
 
     }
     /**
@@ -190,11 +196,11 @@ export class DisplayModels {
             colon2 = document.createElement('span')
             colon3 = document.createElement('span')
             colon4 = document.createElement('span')
-            colon1.innerText = " In Progress"
+            colon1.innerText = "ACTIVE"
             colon1.style.color = "#4ED6B2"
-            colon2.innerText = " Not Applicable"
-            colon3.innerText = " Not Applicable"
-            colon4.innerText = " Not Applicable"
+            colon2.innerText = _WORKER_DATA.name[this.#_randomNumGenerator(this.#_NUMWORKERS)]
+            colon3.innerText = _WORKER_DATA.ID[this.#_randomNumGenerator(this.#_NUMWORKERS)]
+            colon4.innerText = "Inspecting"
             stationStatus.innerText = "Station Status"
             operator.innerText = "Operator"
             operatorID.innerText = "Operator ID"
@@ -232,5 +238,8 @@ export class DisplayModels {
         planeMaterial.side = THREE.DoubleSide
 
         return new THREE.Mesh(planeGeometry, planeMaterial)
+    }
+    #_randomNumGenerator(value){
+        return Math.floor(Math.random() * value)
     }
 }

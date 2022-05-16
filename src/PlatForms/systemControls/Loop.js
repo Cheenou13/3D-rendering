@@ -1,10 +1,8 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { ClickAndHold } from '../../jsFiles/clickandhold'
-import _GLOBAL_DATA from '../../../jasonFiles/GlobeData.json'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
-import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
-console.log (_WORKER_DATA.ID[0])
+
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
@@ -25,7 +23,7 @@ export class Loop{
             if (object.children.length > 2 && object.type === 'Group') objects.push(object)
             if (object.type === 'Object3D' && object.name) workers.push(object)
         })
-        workers.forEach(worker => { visibility(worker, 0.5, false) })
+        workers.forEach(worker => { visibility(worker, 0.5, true) })
         /************** initiate variables */
         mouse = new THREE.Vector2()
         raycast = new THREE.Raycaster()
@@ -62,11 +60,12 @@ export class Loop{
             light.material.color = colors[index]
         }
 
+        /**
+         * 
+         * @param {value} value number that will be generated 
+         * @returns the random number between 0 to value not including value
+         */
         function randomNumGenerator(value) {
-            /**
-             * This generator will generate a radom value from 0 - value
-             * @value - is the max number desire but not included
-            */
             return Math.floor(Math.random() * value)
         }
 
