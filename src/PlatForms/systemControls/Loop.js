@@ -1,9 +1,10 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { ClickAndHold } from '../../jsFiles/clickandhold'
-import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
 import _GLOBAL_DATA from '../../../jasonFiles/GlobeData.json'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
+import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
+console.log (_WORKER_DATA.ID[0])
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
@@ -24,7 +25,7 @@ export class Loop{
             if (object.children.length > 2 && object.type === 'Group') objects.push(object)
             if (object.type === 'Object3D' && object.name) workers.push(object)
         })
-        workers.forEach(worker => { visibility(worker, 0.2, true) })
+        workers.forEach(worker => { visibility(worker, 0.5, false) })
         /************** initiate variables */
         mouse = new THREE.Vector2()
         raycast = new THREE.Raycaster()

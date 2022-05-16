@@ -1,6 +1,6 @@
 {
     "name": ["test1", "test2", "test3", "test4", "test5", "test6", "test7"],
-    "ID": ["DMCG03", "DR2C40", "CCD2A0", "D0231S", "20DFE0", "9093DS", "D3ROD1", "S@EDS0"],
-    "position": "Inspector",
+    "ID": ["DR2C40", "CCD2A0", "D0231S", "20DFE0", "9093DS", "D3ROD1", "S@EDS0"],
+    "task": ["Inspecting", "Sorting"],
     "work_station": ["AOI", "DIMM", "FAN", "LIFTER", "MANNUAL"]
 }
