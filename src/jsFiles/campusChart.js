@@ -1,22 +1,15 @@
 import * as echarts from 'echarts';
-import _GLOBAL_DATA from '../../jasonFiles/GlobeData.json'
-console.log(_GLOBAL_DATA.global_location)
+import _CAPMUS_DATA from '../../jasonFiles/LocalCampusData.json'
 
-const _PRODUCTIVITY = _GLOBAL_DATA.global_location[3].yearly_productivity
-const _SALES = _GLOBAL_DATA.global_location[3].sales
-const _PAST = _GLOBAL_DATA.global_location[3].past_year
+
+
+// const _SALES = _GLOBAL_DATA.global_location[3].sales
+const _MONTH = _CAPMUS_DATA.monthly_produced[0].months
+const _SALES = _CAPMUS_DATA.monthly_produced[0].data
+console.log("month: ", _MONTH, "sales: ", _SALES)
 // initialize the echarts instance
 var myChart = echarts.init(document.getElementById('chartDaily'));
-const option = {
-  xAxis: {
-    type: 'time',
-    name: 'sales time'
-  },
-  yAxis: {
-    type: 'y',
-    name: 'y axis'
-  }
-}
+
 // Draw the chart
 myChart.setOption({
   grid: {
@@ -36,13 +29,15 @@ myChart.setOption({
   },
   tooltip: {},
   xAxis: {
-    data: _PRODUCTIVITY,
-    // axisLabel: {
-      
-    //   formatter: '{value} kg',
-    //   align: 'center'
-    //   // ...
-    // }
+    // data: _PRODUCTIVITY,
+    type: 'category',
+    axisTick: {
+      alignWithLabel: true
+    },
+    axisLabel: {
+      rotate: 30
+    },
+    data: _MONTH
   },
   yAxis: {
   },
@@ -63,7 +58,7 @@ myChart.on('click', function(params) {
     console.log(params.name);
     myChart.setOption({
         series: [{
-            data: _PAST
+            data: _SALES
         }]
     })
 });
