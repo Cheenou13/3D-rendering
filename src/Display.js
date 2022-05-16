@@ -196,7 +196,7 @@ export class DisplayModels {
             colon2 = document.createElement('span')
             colon3 = document.createElement('span')
             colon4 = document.createElement('span')
-            colon1.innerText = "ACTIVE"
+            colon1.innerText = _WORKER_DATA.station_status[0]
             colon1.style.color = "#4ED6B2"
             colon2.innerText = _WORKER_DATA.name[this.#_randomNumGenerator(this.#_NUMWORKERS)]
             colon3.innerText = _WORKER_DATA.ID[this.#_randomNumGenerator(this.#_NUMWORKERS)]
