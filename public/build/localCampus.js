@@ -1,17 +1,17 @@
 
-import * as THREE from 'three'
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from '../../node_modules/three' 
+import {GLTFLoader} from "../../node_modules/three/examples/jsm/loaders/GLTFLoader.js"
+
+// import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import createControl from '../../src/PlatForms/systemControls/Control.js'
-import gsap from 'gsap'
-import _CAMPUS_DATA from '../../jasonFiles/LocalCampusData.json'
+import gsap from '../../node_modules/gsap'
+import _CAMPUS_DATA from '../../jasonFiles/LocalCampusData.json' assert {type: 'json'}
 // import Resizer from 'src/PlatForms/systemControls/Resizer.js'
 
 console.log(_CAMPUS_DATA)
-
-
 // Debug
 //const gui = new dat.GUI()
-
+// new THREE.Scene
 // const canvasEl = document.querySelector('.chart-sidewall');
 const canvasEl = document.getElementById("threeCanvas");
 var width = innerWidth;

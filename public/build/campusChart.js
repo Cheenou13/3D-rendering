@@ -1,5 +1,5 @@
-import * as echarts from 'echarts';
-import _CAPMUS_DATA from '../../jasonFiles/LocalCampusData.json'
+import * as echarts from '../../node_modules/echarts';
+import _CAPMUS_DATA from '../../jasonFiles/LocalCampusData.json' assert {type: 'json'}
 
 
 

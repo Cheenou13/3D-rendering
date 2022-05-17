@@ -1,9 +1,9 @@
-import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import factories from '../../jasonFiles/FoxconnFactories.json'
-import lighthouseFactories from '../../jasonFiles/FoxconnLighthouseFactories.json'
-import _GLOBAL_DATA from '../../jasonFiles/GlobeData.json'
-// console.log('gps:', lighthouseFactories)
+import * as THREE from '../../node_modules/three' 
+import {OrbitControls} from '../../node_modules/three/examples/jsm/controls/OrbitControls.js';
+import factories from '../../jasonFiles/FoxconnFactories.json' assert {type: 'json'}
+import lighthouseFactories from '../../jasonFiles/FoxconnLighthouseFactories.json' assert {type: 'json'}
+import _GLOBAL_DATA from '../../jasonFiles/GlobeData.json' assert {type: 'json'}
+// console.log('gps:', lighthouseFactories) 
 
 
 let renderer, camera, scene, light, controls

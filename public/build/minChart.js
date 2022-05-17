@@ -1,5 +1,5 @@
-import * as echarts from 'echarts';
-import _GLOBAL_DATA from '../../jasonFiles/GlobeData.json'
+import * as echarts from '../../node_modules/echarts';
+import _GLOBAL_DATA from '../../jasonFiles/GlobeData.json' assert {type: 'json'}
 console.log(_GLOBAL_DATA.global_location)
 
 const _PRODUCTIVITY = _GLOBAL_DATA.global_location[3].yearly_productivity
