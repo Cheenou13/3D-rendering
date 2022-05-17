@@ -1,0 +1,17 @@
+{
+    "location": "Racine, WI",
+    "Area": "300 Acres",
+    "employment": [{"officials": 1000}, {"others": 400}],
+    "volume": 24000,
+    "dail_production": 20000,
+    "monthly_produced":[
+        {
+            "months":["Jan", "Feb", "Mar", "Aprl", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Oct", "Dec"],
+            "data": [5, 20, 1, 30, 8, 35, 48, 27, 15, 22, 53, 58]
+        }
+    ],
+    "oee": [{"SMC": 95}, {"MPB": 78}],
+    "total_area": 15000,
+    "HPC": [{"data": 1000}, {"ai_application": 5}, {"devices": 200}],
+    "energy": [{"consumption": 2000}, {"cost": 4300}]
+}
