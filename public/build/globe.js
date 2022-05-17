@@ -707,7 +707,7 @@ window.onload = () => {
     initControls();
     initStars();
     initEarth()
-    initSatelite()
+    // initSatelite()
     initTimer()
     animate();
     initData()
