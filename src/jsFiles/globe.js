@@ -697,6 +697,7 @@ function initData (){
     cost.innerHTML = _DATA.energy[1].cost.toLocaleString()
     consumption.innerHTML = _DATA.energy[0].consumption.toLocaleString()
     production_volume.innerHTML = _DATA.production_volume.toLocaleString()
+    console.log("Volume: ",  _DATA.production_volume)
 }
 
 window.onload = () => {

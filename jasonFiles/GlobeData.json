@@ -28,7 +28,7 @@
             "past_year": [20, 36, 10, 10, 20, 5],
             "employees": [{"official": 500000}, {"others": 100000}],
             "oee": [{"smc":89}, {"MPB": 92}],
-            "total_area": 993460,
+            "total_area": 1993460,
             "hpc": [{"data": 3400}, {"ai_application": 300}, {"edge_devices": 5000}],
             "energy": [{"consumption": 20000}, {"cost": 40000}]
         }

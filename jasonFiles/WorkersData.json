@@ -1,7 +1,16 @@
 {
-    "name": ["test1", "test2", "test3", "test4", "test5", "test6", "test7"],
-    "ID": ["DR2C40", "CCD2A0", "D0231S", "20DFE0", "9093DS", "D3ROD1", "S@EDS0"],
-    "task": ["Inspecting", "Sorting"],
-    "work_station": ["AOI", "DIMM", "FAN", "LIFTER", "MANNUAL"],
-    "station_status": ["ACTIVE", "OFFLINE"]
+    "station_status": [{
+        "status": "ACTIVE",
+        "name":["test1", "test2", "test3", "test4", "test5", "test6", "test7"],
+        "ID": ["DR2C40", "CCD2A0", "D0231S", "20DFE0", "9093DS", "D3ROD1", "S@EDS0"],
+        "task": "Inspecting",
+        "work_station": ["AOI", "DIMM", "FAN", "LIFTER", "MANNUAL"]
+    },
+    {
+        "status": "INACTIVE",
+        "name":"Not Applicable",
+        "ID": "Not Applicabel",
+        "task": "None",
+        "work_station": ["AOI", "DIMM", "FAN", "LIFTER", "MANNUAL"]
+    }]
 }
