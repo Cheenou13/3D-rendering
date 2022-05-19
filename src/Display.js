@@ -12,7 +12,9 @@ import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRendere
 import * as THREE from 'three'
 import { GuiController } from "../src/jsFiles/guiController"
 import _WORKER_DATA from "../jasonFiles/WorkersData.json"
+import InitWorker from "../src/PlatForms/components/InitWorker"
 console.log(_WORKER_DATA)
+
 
 
 
@@ -36,8 +38,7 @@ export class DisplayModels {
         const {pointLight1, pointLight2, pointLight3, pointLight4, ambientLight, hemiLight, directLight} = createLights()
         texturePlane = ""
         this.loop.updatables.push(orbit)
-        this.#_NUMWORKERS = _WORKER_DATA.name.length
-        this.#_STATUS = _WORKER_DATA.station_status.length
+        this.#_NUMWORKERS = _WORKER_DATA.station_status[0].name.length
         
         scene.add(hemiLight, directLight)
         
@@ -196,10 +197,10 @@ export class DisplayModels {
             colon2 = document.createElement('span')
             colon3 = document.createElement('span')
             colon4 = document.createElement('span')
-            colon1.innerText = _WORKER_DATA.station_status[0]
+            colon1.innerText = _WORKER_DATA.station_status[0].status
             colon1.style.color = "#4ED6B2"
-            colon2.innerText = _WORKER_DATA.name[this.#_randomNumGenerator(this.#_NUMWORKERS)]
-            colon3.innerText = _WORKER_DATA.ID[this.#_randomNumGenerator(this.#_NUMWORKERS)]
+            colon2.innerText = _WORKER_DATA.station_status[0].name[this.#_randomNumGenerator(this.#_NUMWORKERS)]
+            colon3.innerText = _WORKER_DATA.station_status[0].ID[this.#_randomNumGenerator(this.#_NUMWORKERS)]
             colon4.innerText = "Inspecting"
             stationStatus.innerText = "Station Status"
             operator.innerText = "Operator"

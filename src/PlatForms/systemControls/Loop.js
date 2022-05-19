@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { ClickAndHold } from '../../jsFiles/clickandhold'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
+import { GuiController } from '../../jsFiles/guiController'
 
 
 const clock = new THREE.Clock()
@@ -24,6 +25,9 @@ export class Loop{
             if (object.type === 'Object3D' && object.name) workers.push(object)
         })
         workers.forEach(worker => { visibility(worker, 0.5, true) })
+        console.log(workers[0])
+
+        console.log(this.scene.children)
         /************** initiate variables */
         mouse = new THREE.Vector2()
         raycast = new THREE.Raycaster()
@@ -84,7 +88,6 @@ export class Loop{
         }
 
         function visibility(worker, opacity, transparency) {
-            
             for (let i = 1; i < worker.children.length; ++ i){
                 // save old uv map for new matching to new uv mapping
                 var oldTexture = worker.children[i].material.map
@@ -203,8 +206,6 @@ export class Loop{
             }, 2700)
     
         }
-        // this.camera.position.set(-10, 0, 0)
-        console.log('camera position: ', this.camera.position)
         function onHover() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
@@ -264,7 +265,6 @@ export class Loop{
         setInterval(lightFlickering, CLOCK_TICK)
         setInterval(workerDetected, CLOCK_TICK)
         
-        console.log(this.cssRenderer.domElement)
         ClickAndHold.apply(this.cssRenderer.domElement, onHold)
         ClickAndHold.apply(this.cssRenderer.domElement, findWalls, 0.5)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
