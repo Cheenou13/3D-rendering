@@ -177,6 +177,7 @@ export class Loop{
                     stationData.current_piece = FAN_DATA.current_serial
                     stationData.oee = FAN_DATA.oee_score+"%"
                     // moveTo(station, stationData)
+                    console.log(FAN_DATA)
                     toggleModal(stationData)
                     console.log("Fan", stationData)
                 }    
@@ -305,7 +306,8 @@ export class Loop{
         const color = {
             "Abnormal": "#FF6A6A",
             "Warning" : "#e5ba35",
-            "Normal"  : "#4ED6B2"
+            "Normal"  : "#4ED6B2",
+            "Unknown" : "#5d6960"
         }
         toggleModal.style.display = "block"
         doneBtn.addEventListener("click", () => {
