@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ClickAndHold } from '../../jsFiles/clickandhold'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
 import { GuiController } from '../../jsFiles/guiController'
-
+import endToEnd from '../components/endToEnd'
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
@@ -11,6 +11,7 @@ let CLOCK_TICK = 1000, index, randomizedIndex,
     raycast, mouse, displayWorker, light, colors
 
 export class Loop{
+    #_AOI_ID = 10; #_FAN_ID = 8; #_LIFTER_ID = 7; #_DIMM_ID = 9; #_MANUAL_ID =  Math.floor(Math.random() * (14 - 10)) + 11;
     constructor(camera, scene, renderer, cssRenderer) {
         this.camera = camera
         this.scene = scene
@@ -19,7 +20,8 @@ export class Loop{
         this.updatables = []
     }
     
-    start() {
+    async start() {
+
         this.scene.traverse((object) => {
             if (object.children.length > 2 && object.type === 'Group') objects.push(object)
             if (object.type === 'Object3D' && object.name) workers.push(object)
@@ -51,6 +53,10 @@ export class Loop{
             {status:'Normal', error_code: '4D0F2'}, 
             {status:'Warning', error_code:'5D0F2'}]
         const products = ['motherbord', 'LED Pannel', 'TFT board']
+        const AOI_DATA = await endToEnd(this.#_AOI_ID), DIMM_DATA = await endToEnd(this.#_DIMM_ID), FAN_DATA = await endToEnd(this.#_FAN_ID),
+        LIFTER_DATA = await endToEnd(this.#_LIFTER_ID), MANUAL_DATA = await endToEnd(this.#_MANUAL_ID)
+
+        // console.log(AOI_DATA)
         /********************************* */        
         for (let i = 1; i < objects.length; ++i) {
             objects[i].children[2].material = new THREE.MeshStandardMaterial({ color: new THREE.Color("green") })
@@ -116,18 +122,19 @@ export class Loop{
             // css.domElement.style.cursor = " "
           
         }
-        function onHold() {
+        async function onHold() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
-            stationData.oee = randomNumGenerator(101)+'%'
             var randLightIndicator = randomNumGenerator(lightIndicator.length)
             if (intersects.length > 0) {
                 const station = intersects[0].object
-                if (station.name === "AOI" || station.parent.name === "AOI") {  
+                if (station.name === "AOI" || station.parent.name === "AOI") { 
+                    console.log("AOI DATA ", AOI_DATA)
                     stationData.station_name = (station.name === "AOI") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randLightIndicator].status
-                    stationData.error_code = lightIndicator[randLightIndicator].error_code
-                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.station_status = AOI_DATA.machine_status
+                    stationData.error_code = AOI_DATA.error_code
+                    stationData.current_piece = AOI_DATA.current_serial
+                    stationData.oee = AOI_DATA.oee_score+"%"
                     console.log("AOI", stationData)
                     toggleModal(stationData)
                     // moveTo(station, stationData)
@@ -135,36 +142,40 @@ export class Loop{
                 }
                 if (intersects[0].object.name === "Manual" || intersects[0].object.parent.name === "Manual") {
                     stationData.station_name = (station.name === "Manual") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randLightIndicator].status
-                    stationData.error_code = lightIndicator[randLightIndicator].error_code
-                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.station_status = MANUAL_DATA.machine_status
+                    stationData.error_code = MANUAL_DATA.error_code
+                    stationData.current_piece = MANUAL_DATA.current_serial
+                    stationData.oee = MANUAL_DATA.oee_score+"%"
                     // moveTo(station, stationData)
                     toggleModal(stationData)
                     console.log("Manual", stationData)
                 }
                 if (intersects[0].object.name === "DIMM" || intersects[0].object.parent.name === "DIMM") {
                     stationData.station_name = (station.name === "DIMM") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randLightIndicator].status
-                    stationData.error_code = lightIndicator[randLightIndicator].error_code
-                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.station_status = DIMM_DATA.machine_status
+                    stationData.error_code = DIMM_DATA.error_code
+                    stationData.current_piece = DIMM_DATA.current_serial
+                    stationData.oee = DIMM_DATA.oee_score+"%"
                     // moveTo(station, stationData)
                     toggleModal(stationData)
                     console.log("DIMM", stationData)
                 }
                 if (intersects[0].object.name.includes("Lifter")  || intersects[0].object.parent.name.includes("Lifter") ) {
                     stationData.station_name = "Lifter"
-                    stationData.station_status = lightIndicator[randLightIndicator].status
-                    stationData.error_code = lightIndicator[randLightIndicator].error_code
-                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.station_status = LIFTER_DATA.machine_status
+                    stationData.error_code = LIFTER_DATA.error_code
+                    stationData.current_piece = LIFTER_DATA.current_serial
+                    stationData.oee = LIFTER_DATA.oee_score+"%"
                     // moveTo(station, stationData)
                     toggleModal(stationData)
                     console.log("Lifter", stationData)
                 }
                 if (intersects[0].object.name === "Fan" || intersects[0].object.parent.name === "Fan") {
                     stationData.station_name = (station.name === "Fan") ? station.name : station.parent.name
-                    stationData.station_status = lightIndicator[randLightIndicator].status
-                    stationData.error_code = lightIndicator[randLightIndicator].error_code
-                    stationData.current_piece = products[randomNumGenerator(products.length)]
+                    stationData.station_status = FAN_DATA.machine_status
+                    stationData.error_code = FAN_DATA.error_code
+                    stationData.current_piece = FAN_DATA.current_serial
+                    stationData.oee = FAN_DATA.oee_score+"%"
                     // moveTo(station, stationData)
                     toggleModal(stationData)
                     console.log("Fan", stationData)

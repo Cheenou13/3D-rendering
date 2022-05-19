@@ -13,7 +13,6 @@ import * as THREE from 'three'
 import { GuiController } from "../src/jsFiles/guiController"
 import _WORKER_DATA from "../jasonFiles/WorkersData.json"
 import InitWorker from "../src/PlatForms/components/InitWorker"
-console.log(_WORKER_DATA)
 
 
 
@@ -174,11 +173,11 @@ export class DisplayModels {
 
     async int(){
         await this.#loadnig()
-        this.#startAnime()
+        await this.loop.start()
     }
-    #startAnime (){
-        this.loop.start()
-    }
+    // async #startAnime (){
+        
+    // }
 
     #getDivElement(elementId){
         var container = undefined
