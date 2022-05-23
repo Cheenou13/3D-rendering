@@ -1,9 +1,10 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
-import { ClickAndHold } from '../../jsFiles/clickandhold'
+import { ClickAndHold } from '../../jsFiles/ClickAndHold'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
-import { GuiController } from '../../jsFiles/guiController'
+import { GuiController } from '../../jsFiles/GuiController'
 import endToEnd from '../components/endToEnd'
+import InitWorker from '../../../src/PlatForms/components/InitWorker'
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
@@ -18,6 +19,8 @@ export class Loop{
         this.renderer = renderer
         this.cssRenderer = cssRenderer
         this.updatables = []
+
+
     }
     
     async start() {
@@ -27,16 +30,13 @@ export class Loop{
             if (object.type === 'Object3D' && object.name) workers.push(object)
         })
         workers.forEach(worker => { visibility(worker, 0.5, true) })
-        console.log(workers[0])
-
-        console.log(this.scene.children)
+        new InitWorker(workers, this.scene)
         /************** initiate variables */
         mouse = new THREE.Vector2()
         raycast = new THREE.Raycaster()
         displayWorker = false
         colors = this.#makeColor()
         const toggleModal = (name) => this.#toggleModal(name)
-        var worker = null
         var control = this.updatables[0]
         const myCamera = this.camera
         const myscene = this.scene
@@ -48,11 +48,6 @@ export class Loop{
             error_code:"void",
             oee:"void"
         }
-        const lightIndicator = [
-            {status:'Abnormal', error_code: '3D0F2'}, 
-            {status:'Normal', error_code: '4D0F2'}, 
-            {status:'Warning', error_code:'5D0F2'}]
-        const products = ['motherbord', 'LED Pannel', 'TFT board']
         const AOI_DATA = await endToEnd(this.#_AOI_ID), DIMM_DATA = await endToEnd(this.#_DIMM_ID), FAN_DATA = await endToEnd(this.#_FAN_ID),
         LIFTER_DATA = await endToEnd(this.#_LIFTER_ID), MANUAL_DATA = await endToEnd(this.#_MANUAL_ID)
 
@@ -79,20 +74,6 @@ export class Loop{
             return Math.floor(Math.random() * value)
         }
 
-        function workerDetected() {
-            randomWorkerIndex = randomNumGenerator(workers.length)
-            worker = workers[randomWorkerIndex]
-
-            if (!displayWorker) {
-                visibility(worker, 0.5, true)
-                displayWorker = true
-            }
-            else {
-                visibility(worker, 1, false)
-                displayWorker = false
-            }
-        }
-
         function visibility(worker, opacity, transparency) {
             for (let i = 1; i < worker.children.length; ++ i){
                 // save old uv map for new matching to new uv mapping
@@ -110,22 +91,22 @@ export class Loop{
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1
             mouse.y = - (event.clientY / window.innerHeight) * 2 + 1
         }
-        // console.log(myscene.children[3])
+
         function findWalls (){
             raycast.setFromCamera(mouse, myCamera)
             const intersectObjects = raycast.intersectObjects(myscene.children[3].children)
-            // console.log(intersectObjects)
+
             if (intersectObjects.length > 0){
-                // css.domElement.style.cursor = "pointer"
+  
                 moveTo(intersectObjects[0].object)
             }
-            // css.domElement.style.cursor = " "
+
           
         }
         async function onHold() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
-            var randLightIndicator = randomNumGenerator(lightIndicator.length)
+
             if (intersects.length > 0) {
                 const station = intersects[0].object
                 if (station.name === "AOI" || station.parent.name === "AOI") { 
@@ -275,8 +256,6 @@ export class Loop{
             else css.domElement.style.cursor = ""
         }
         setInterval(lightFlickering, CLOCK_TICK)
-        setInterval(workerDetected, CLOCK_TICK)
-        
         ClickAndHold.apply(this.cssRenderer.domElement, onHold)
         ClickAndHold.apply(this.cssRenderer.domElement, findWalls, 0.5)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)

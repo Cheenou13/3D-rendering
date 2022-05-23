@@ -1,18 +1,17 @@
 
-import { createScene } from "./PlatForms/components/scene"
-import { createLights } from "./PlatForms/components/light"
-import { createCamera } from "./PlatForms/components/camera"
-import  createControl  from "./PlatForms/systemControls/Control"
-import { createRenderer } from "./PlatForms/systemControls/Renderer"
-import { loadModel } from "./PlatForms/models/model"
-import { Loop } from "./PlatForms/systemControls/Loop"
-import  Resizer  from "./PlatForms/systemControls/Resizer"
+import { createScene } from "./scene"
+import { createLights } from "./light"
+import { createCamera } from "./camera"
+import  createControl  from "../systemControls/Control"
+import { createRenderer } from "../systemControls/Renderer"
+import { loadModel } from "../models/model"
+import { Loop } from "../systemControls/Loop"
+import  Resizer  from "../systemControls/Resizer"
 import axios from "axios"
 import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
 import * as THREE from 'three'
-import { GuiController } from "../src/jsFiles/guiController"
-import _WORKER_DATA from "../jasonFiles/WorkersData.json"
-import InitWorker from "../src/PlatForms/components/InitWorker"
+import { GuiController } from "../../jsFiles/GuiController"
+import _WORKER_DATA from "../../../jasonFiles/WorkersData.json"
 
 
 
@@ -130,10 +129,11 @@ export class DisplayModels {
             tagElement5, tagElement6, tagElement7, tagElement8
             )
         // add mesh plane and css object to the same scene
+        // , tagPlane1, tagPlane2, tagPlane3,
+        //     tagPlane4, tagPlane5, tagPlane6, tagPlane7, tagPlane8
         scene.add(
-            walls, tagPlane1, tagPlane2, tagPlane3,
-            tagPlane4, tagPlane5, tagPlane6, tagPlane7, tagPlane8,
-            element, element2, tagElement1, workerTags, globeLabel, compusLabel
+            walls,
+            element, element2, globeLabel, compusLabel
             )
         // set css object position and rotation the same as the plane mesh so when we move the plane the css object moves
         globeLabel.position.set(-5.302, 3.8,-6.6)
@@ -149,10 +149,10 @@ export class DisplayModels {
         this.#changePosition(tagElement7, tagPlane7) 
         this.#changePosition(tagElement8, tagPlane8) 
 
-        const tagGui = new GuiController("Tags Folder")
+        // const tagGui = new GuiController("Tags Folder")
 
-        tagGui.addPosition(tagPlane1)
-        tagGui.changeShape(tagPlane1, "plane")
+        // tagGui.addPosition(tagPlane1)
+        // tagGui.changeShape(tagPlane1, "plane")
 
     }
     /**
@@ -173,7 +173,7 @@ export class DisplayModels {
 
     async int(){
         await this.#loadnig()
-        await this.loop.start()
+        this.loop.start()
     }
     // async #startAnime (){
         

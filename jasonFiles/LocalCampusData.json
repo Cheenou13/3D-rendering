@@ -6,7 +6,7 @@
     "dail_production": 20000,
     "monthly_produced":[
         {
-            "months":["Jan", "Feb", "Mar", "Aprl", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Oct", "Dec"],
+            "months":["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Oct", "Dec"],
             "data": [5, 20, 1, 30, 8, 35, 48, 27, 15, 22, 53, 58]
         }
     ],
