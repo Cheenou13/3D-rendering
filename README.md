@@ -117,9 +117,6 @@ Install with npm
   cd <project-name>
   npm install
   npm run dev
-  in <project-name>
-    - npm install --save three
-    - npm install --save dat
 ```
 ## clone repo
 ```sh

@@ -8,8 +8,8 @@
     },
     {
         "status": "INACTIVE",
-        "name":"Not Applicable",
-        "ID": "Not Applicabel",
+        "name":"N/A",
+        "ID": "N/A",
         "task": "None",
         "work_station": ["AOI", "DIMM", "FAN", "LIFTER", "MANNUAL"]
     }]

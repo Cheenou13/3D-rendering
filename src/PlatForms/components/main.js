@@ -1,6 +1,6 @@
-import { DisplayModels } from "./Display"
+import { DisplayModels } from "./Display.js"
 
-async function main() {
+export default async function main() {
   const device = new DisplayModels(document)
   await device.int()
 
