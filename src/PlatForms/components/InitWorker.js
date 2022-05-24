@@ -1,7 +1,7 @@
 import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
 import * as THREE from 'three'
 import {CSS3DObject}from "three/examples/jsm/renderers/CSS3DRenderer"
-
+// import GuiController from '../../jsFiles/GuiController'
 
 /**
  * This class does not have many public methods, all of the methods are to help the class to process the 3D object (workers)
@@ -255,8 +255,8 @@ export default class InitWorker {
         var plane_9 = this.#_allPlanes[8]
         
         plane_1.position.set(-3.65, 0.9, -4.332)
-        plane_2.position.set(1.8, 0.9, -4.332)
-        plane_3.position.set(4.7, 0.9, -4.332)
+        plane_2.position.set(4.7, 0.9, -4.332) //1.8
+        plane_3.position.set(1.8, 0.9, -4.332)
         plane_4.position.set(-3.1, 0.9, -1)
         plane_5.position.set(2.35, 0.9, -1)
         plane_6.position.set(-5.3, 0.9, -1)
@@ -283,8 +283,8 @@ export default class InitWorker {
         workerTag_7.add(worker_7, tag_7, plane_7)
         workerTag_8.add(worker_8, tag_8, plane_8)
         workerTag_9.add(worker_9, tag_9, plane_9)
-
-        // gui.addPosition(plane_9)
+        // const gui = new GuiController("plane")
+        // gui.addPosition(plane_3)
 
         workerTag_1.name = "workertag-1"
         workerTag_2.name = "workertag-2"

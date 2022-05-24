@@ -4,7 +4,7 @@ import * as THREE from 'three'
 This class intends for using the feature of GUI objects and modified it to work with
 this project, DO NOT use it any where outside of this project
 */
-export class GuiController extends GUI {
+export default class GuiController extends GUI {
     // object
     // folderName
     #_MIN 
