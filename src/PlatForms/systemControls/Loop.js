@@ -20,7 +20,6 @@ export class Loop{
         this.cssRenderer = cssRenderer
         this.updatables = []
 
-
     }
     
     async start() {
@@ -51,7 +50,6 @@ export class Loop{
         const AOI_DATA = await endToEnd(this.#_AOI_ID), DIMM_DATA = await endToEnd(this.#_DIMM_ID), FAN_DATA = await endToEnd(this.#_FAN_ID),
         LIFTER_DATA = await endToEnd(this.#_LIFTER_ID), MANUAL_DATA = await endToEnd(this.#_MANUAL_ID)
 
-        // console.log(AOI_DATA)
         /********************************* */        
         for (let i = 1; i < objects.length; ++i) {
             objects[i].children[2].material = new THREE.MeshStandardMaterial({ color: new THREE.Color("green") })
@@ -372,10 +370,6 @@ export class Loop{
         var colors = []
         colors.push(red, green, yellow)
         return colors
-    }
-    async #getData(url){
-        const res = await axios.get(url);
-        return res.data;
     }
 
     tick() {

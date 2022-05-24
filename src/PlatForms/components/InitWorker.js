@@ -1,12 +1,12 @@
 import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
 import * as THREE from 'three'
-import {CSS3DObject, CSS3DSprite}from "three/examples/jsm/renderers/CSS3DRenderer"
+import {CSS3DObject}from "three/examples/jsm/renderers/CSS3DRenderer"
 import { GuiController } from '../../jsFiles/GuiController'
 
 var colon1, colon2, colon3, colon4
 var container, stationStatus, operator, operatorID, task
 const _TAG_NAME = "worker-tag-group"
-const _SCALESIZE = 1/100
+const _SCALE_SIZE = 1/100
 const _ACTIVE_WIDTH = 1.728
 const _INACTIVE_WIDTH = 1.675
 const _HEIGHT = 0.95
@@ -74,7 +74,6 @@ export default class InitWorker {
         container.appendChild(colon3)
         container.appendChild(colon4)
         container.classList.add("tag-container")
-
         return new CSS3DObject(container)
     }
 
@@ -83,8 +82,7 @@ export default class InitWorker {
      * this method is prefer when working is registered to work at the mechine otherwise it won't work
      */
     #_updateWorker(){
-        // if (!this.#_isTransparent) {
-        // console.log("worker inside updateWorker: ", this.#_scene.getObjectByName("worker-tag-grouping"))
+
         var length = this.#_workers.length
         var randIndex = this.#_randomNumGenerator(length)
         var group = this.#_scene.getObjectByName(_TAG_NAME)
@@ -97,7 +95,7 @@ export default class InitWorker {
         var myColon_2 = tag.element.querySelector(".colon-2")
         var myColon_3 = tag.element.querySelector(".colon-3")
         var myColon_4 = tag.element.querySelector(".colon-4")
-        console.log("worker data: ", _WORKER_DATA)
+
         for (let i = 1; i < worker.children.length; ++ i){
 
             worker.children[i].material.transparent = this.#_isTransparent
@@ -123,15 +121,15 @@ export default class InitWorker {
         }
     }
     #_detectWorker(){
-        var length = this.#_workers.length
-        var randIndex = this.#_randomNumGenerator(length)
-        var worker = this.#_workers[randIndex]
+        // var length = this.#_workers.length
+        // var randIndex = this.#_randomNumGenerator(length)
+        // var worker = this.#_workers[randIndex]
         if (this.#_isTransparent){
-            this.#_updateWorker(worker)
+            this.#_updateWorker()
             this.#_isTransparent = false
         }
         else {
-            this.#_updateWorker(worker)
+            this.#_updateWorker()
             this.#_isTransparent = true
         }
     }
@@ -190,7 +188,7 @@ export default class InitWorker {
     }
 
     #_processingWorkers () {
-        var gui = new GuiController("worker position")
+        // var gui = new GuiController("worker position")
         this.#_workers.forEach(worker => {
             worker.traverse(piece =>{
                 piece.frustumCulled = false
@@ -267,7 +265,7 @@ export default class InitWorker {
         workerTag_8.add(worker_8, tag_8, plane_8)
         workerTag_9.add(worker_9, tag_9, plane_9)
 
-        gui.addPosition(plane_9)
+        // gui.addPosition(plane_9)
 
         workerTag_1.name = "workertag-1"
         workerTag_2.name = "workertag-2"
@@ -300,7 +298,7 @@ export default class InitWorker {
         worker_8.rotation.set(-Math.PI, -Math.PI, -Math.PI)
         worker_9.rotation.set(-Math.PI, -Math.PI, -Math.PI)
         /*********************************************4th Line */
-        var planeGUI = new GuiController("plane size")
+        // var planeGUI = new GuiController("plane size")
 
         worker_1.position.set(-3.142, -1.3, -4.6)
         worker_2.position.set(4.75, -1.3, -5.0)
@@ -312,7 +310,7 @@ export default class InitWorker {
         /*********************************************2rd Line */
         worker_7.position.set(2.845, -1.3, 1.6)
         worker_8.position.set(6.725, -1.3, 1.6)
-        /*********************************************1rd Line */
+        /*********************************************1st Line */
         worker_9.position.set(2.845, -1.3, 4.73)
 
 
@@ -328,7 +326,7 @@ export default class InitWorker {
 
         target.position.set(position.x, position.y, position.z)
         target.rotation.set(rotation.x, rotation.y, rotation.z)
-        target.scale.multiplyScalar(_SCALESIZE)
+        target.scale.multiplyScalar(_SCALE_SIZE)
     
     }
     /**
@@ -337,9 +335,7 @@ export default class InitWorker {
      */
     #_initAll (){
         this.#_processingWorkers()
-        // this.#_processingTags()
         this.#_setInterval()
-
     }
 
     /**
