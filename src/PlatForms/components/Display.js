@@ -100,7 +100,7 @@ export class DisplayModels {
     
     async int(){
         await this.#loadnig()
-        this.loop.start()
+        await this.loop.start()
     }
 
     #getDivElement(elementId){
