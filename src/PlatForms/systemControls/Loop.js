@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ClickAndHold } from './ClickAndHold'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
 import endToEnd from '../components/endToEnd'
-import InitWorker from '../../../src/PlatForms/components/InitWorker'
+import InitWorker from '../components/InitWorker'
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
