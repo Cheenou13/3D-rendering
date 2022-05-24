@@ -20,8 +20,8 @@ var colon1, colon2, colon3, colon4
 var container, stationStatus, operator, operatorID, task
 const _TAG_NAME = "worker-tag-group"
 const _SCALE_SIZE = 1/100
-const _ACTIVE_WIDTH = 1.728
-const _INACTIVE_WIDTH = 1.675
+const _ACTIVE_WIDTH = 1.6
+const _INACTIVE_WIDTH = 1.57
 const _HEIGHT = 0.95
 export default class InitWorker {
     #_workers
