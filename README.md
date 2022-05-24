@@ -14,7 +14,7 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 
 ## webserver should look like
 
-![App Screenshot](examples/lookLike.png)
+![App Screenshot](project-images/project-renderer.png)
 
 
 ## Build Structure
@@ -24,25 +24,13 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 ├── README.md
 ├── css
 │   └── style.css
-├── examples
-│   └── lookLike.png
-├── favicon.svg
 ├── index.html
 ├── jasonFiles
 │   ├── FoxconnFactories.json
-│   └── FoxconnLighthouseFactories.json
-├── jsFiles
-│   ├── backChart.js
-│   ├── globe.js
-│   ├── localCampus.js
-│   ├── minChart.js
-│   ├── sideChart.js
-│   ├── testDisplay.js
-│   └── testMain.js
-├── navigation-pages
-│   ├── global.html
-│   ├── local-campus.html
-│   └── test-page.html
+│   ├── FoxconnLighthouseFactories.json
+│   ├── GlobeData.json
+│   ├── LocalCampusData.json
+│   └── WorkersData.json
 ├── package-lock.json
 ├── package.json
 ├── public
@@ -63,11 +51,71 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │   │       ├── productiobLines-withWorkersV2.glb
 │   │       └── production-lines.glb
 │   ├── assets
+│   │   ├── img
+│   │   │   ├── 1c45465e.png
+│   │   │   ├── 280f82f7.png
+│   │   │   ├── 50c63ef1.png
+│   │   │   ├── 5a75c5cc.png
+│   │   │   ├── 6d032c97.png
+│   │   │   ├── 8efea0d6.png
+│   │   │   ├── 920fe7ee.png
+│   │   │   ├── 9717559b.png
+│   │   │   ├── 97ab87cd.png
+│   │   │   ├── 9abf1803.png
+│   │   │   ├── a3b7a86f.png
+│   │   │   ├── earth-blue-marble.jpg
+│   │   │   ├── earth-dark.jpg
+│   │   │   ├── earth-day.jpg
+│   │   │   ├── earth-night.jpg
+│   │   │   ├── earth-topology.png
+│   │   │   ├── earth-water.png
+│   │   │   ├── earth_aperture.png
+│   │   │   ├── earth_texture_map.jpg
+│   │   │   ├── fc3626a1.png
+│   │   │   ├── globalView.png
+│   │   │   ├── lineView.png
+│   │   │   ├── marker.png
+│   │   │   ├── marker.svg
+│   │   │   ├── markerWhite.png
+│   │   │   ├── markerWhite.svg
+│   │   │   ├── night-sky.png
+│   │   │   ├── parkView.png
+│   │   │   ├── satelite-orbit.png
+│   │   │   ├── satelite-orbit.svg
+│   │   │   ├── sp2.png
+│   │   │   ├── wave.png
+│   │   │   ├── wave.png.svg
+│   │   │   └── world.svg
+│   │   ├── sky
+│   │   │   ├── back.jpeg
+│   │   │   ├── bottom.jpeg
+│   │   │   ├── front.jpeg
+│   │   │   ├── left.jpeg
+│   │   │   ├── right.jpeg
+│   │   │   └── top.jpeg
 │   │   └── stations
 │   │       ├── AOI.svg
 │   │       ├── dimm-fan.svg
 │   │       ├── lift.svg
 │   │       └── manual.svg
+│   ├── build
+│   │   ├── campusChart.js
+│   │   ├── css
+│   │   │   └── style.css
+│   │   ├── globe.js
+│   │   ├── localCampus.js
+│   │   └── minChart.js
+│   ├── jasonFiles
+│   │   ├── FoxconnFactories.json
+│   │   ├── FoxconnLighthouseFactories.json
+│   │   ├── GlobeData.json
+│   │   ├── LocalCampusData.json
+│   │   └── WorkersData.json
+│   ├── navigation-pages
+│   │   ├── global.html
+│   │   ├── local-campus.html
+│   │   ├── test-page-2.html
+│   │   └── test-page.html
 │   ├── parkModel
 │   │   ├── 868.png
 │   │   ├── Cube_001_png.png
@@ -85,26 +133,34 @@ This project uses both Object Oriented Programming (OOP) and Functional Programm
 │       ├── draco_encoder.js
 │       └── draco_wasm_wrapper.js
 ├── src
-│   ├── Display.js
 │   ├── PlatForms
 │   │   ├── components
-│   │   │   ├── CreatePlanets.js
+│   │   │   ├── Display.js
+│   │   │   ├── InitWorker.js
 │   │   │   ├── camera.js
+│   │   │   ├── endToEnd.js
 │   │   │   ├── light.js
+│   │   │   ├── main.js
 │   │   │   └── scene.js
 │   │   ├── models
 │   │   │   ├── model.js
-│   │   │   ├── plane.js
 │   │   │   └── setUp.js
 │   │   └── systemControls
 │   │       ├── Control.js
 │   │       ├── Loop.js
 │   │       ├── Renderer.js
 │   │       └── Resizer.js
-│   └── main.js
+│   └── jsFiles
+│       ├── ClickAndHold.js
+│       ├── GuiController.js
+│       ├── backWallGlobe.js
+│       ├── campusChart.js
+│       ├── globe.js
+│       ├── localCampus.js
+│       ├── minChart.js
+│       └── sideWallCampus.js
 ├── style.css
 └── tailwind.config.js
-
 
 ```
 ## Environment setup with new project
