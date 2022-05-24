@@ -101,7 +101,7 @@ export class Loop{
 
           
         }
-        async function onHold() {
+        function onHold() {
             raycast.setFromCamera(mouse, myCamera)
             const intersects = raycast.intersectObjects(myscene.children[2].children)
 
@@ -254,8 +254,9 @@ export class Loop{
             else css.domElement.style.cursor = ""
         }
         setInterval(lightFlickering, CLOCK_TICK)
-        ClickAndHold.apply(this.cssRenderer.domElement, onHold)
+        ClickAndHold.apply(this.cssRenderer.domElement, onHold, 500)
         ClickAndHold.apply(this.cssRenderer.domElement, findWalls, 0.5)
+        // this.cssRenderer.domElement.addEventListener('click', onHold, false)
         this.cssRenderer.domElement.addEventListener('mousemove', onMouseMove, false)
 
 

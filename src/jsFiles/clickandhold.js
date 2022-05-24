@@ -17,16 +17,16 @@ export class ClickAndHold {
         this.callback = callback
         this.isHeld = false
         this.activeHoldTimeoutId = null
-        this.delayTime = delay || 1000
+        this.delayTime = delay 
 
-        const start = ["mousedown", "touchstart"]
+        const start = ["touchstart", 'mousedown']
         const end = ["mouseup", "mouseleave", "mouseout", "touchend", "touchcancel"]
         start.forEach(type =>{
-            this.tartget.addEventListener(type, this.#_onHoldStart.bind(this), false)
+            this.tartget.addEventListener(type, this.#_onHoldStart.bind(this))
         })
 
         end.forEach(type =>{
-            this.tartget.addEventListener(type, this.#_onHoldEnd.bind(this), false)
+            this.tartget.addEventListener(type, this.#_onHoldEnd.bind(this))
         })
         
 
