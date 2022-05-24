@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { ClickAndHold } from './ClickAndHold'
 import _CAMPUS_DATA from '../../../jasonFiles/LocalCampusData.json'
-import { GuiController } from '../../jsFiles/GuiController'
 import endToEnd from '../components/endToEnd'
 import InitWorker from '../../../src/PlatForms/components/InitWorker'
 
