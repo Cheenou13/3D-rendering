@@ -3,6 +3,19 @@ import * as THREE from 'three'
 import {CSS3DObject}from "three/examples/jsm/renderers/CSS3DRenderer"
 import { GuiController } from '../../jsFiles/GuiController'
 
+/**
+ * This class does not have many public methods, all of the methods are to help the class to process the 3D object (workers)
+ * to function as required:
+ * REQUIREMENTS:
+ *  1. when worker detected, worker status indicator will signal the worker is currently using the station
+ *  2. All of the display data on the display tag must give out the correct information on "ACTIVE" and "INACTIVE" respectively
+ *      Tag labels:
+ *          "Station Status"
+ *          "Operator"
+ *          "Operator ID"
+ *          "Task"
+ */
+
 var colon1, colon2, colon3, colon4
 var container, stationStatus, operator, operatorID, task
 const _TAG_NAME = "worker-tag-group"
@@ -18,6 +31,11 @@ export default class InitWorker {
     #_NUMWORKERS = _WORKER_DATA.station_status[0].name.length
     #_scene
     #_TIMER = 1000
+    /**
+     * This constructor take in a collection of workers (in general a collection of 3D object), and will process the object
+     * @param {workers} workers - the worker that in the same scene as this renderer
+     * @param {scene} scene - the scene that hold the workers
+     */
     constructor (workers, scene){
         this.#_isTransparent = false
         this.#_workers = workers
