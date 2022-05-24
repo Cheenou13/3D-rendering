@@ -1,7 +1,7 @@
 
 
 
-export default class ClickAndHold {
+export class ClickAndHold {
     tartget
     callback
     activeHoldTimeoutId

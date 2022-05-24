@@ -8,7 +8,7 @@ import InitWorker from '../../../src/PlatForms/components/InitWorker'
 
 const clock = new THREE.Clock()
 let CLOCK_TICK = 1000, index, randomizedIndex,
-    objects = [], workers = [], randomWorkerIndex,
+    objects = [], workers = [],
     raycast, mouse, displayWorker, light, colors
 
 export class Loop{
