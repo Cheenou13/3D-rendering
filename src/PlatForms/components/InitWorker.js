@@ -1,7 +1,7 @@
 import _WORKER_DATA from '../../../jasonFiles/WorkersData.json'
 import * as THREE from 'three'
 import {CSS3DObject}from "three/examples/jsm/renderers/CSS3DRenderer"
-import { GuiController } from '../../jsFiles/GuiController'
+
 
 /**
  * This class does not have many public methods, all of the methods are to help the class to process the 3D object (workers)
@@ -108,6 +108,7 @@ export default class InitWorker {
         var worker = workers.children[0]
         var tag = workers.children[1]
         var plane = workers.children[2]
+        // if (worker.name === "worker3") worker.removeFromParent()
         plane.geometry.dispose()
         var myColon_1 = tag.element.querySelector(".colon-1")
         var myColon_2 = tag.element.querySelector(".colon-2")
@@ -206,7 +207,7 @@ export default class InitWorker {
     }
 
     #_processingWorkers () {
-        // var gui = new GuiController("worker position")
+
         this.#_workers.forEach(worker => {
             worker.traverse(piece =>{
                 piece.frustumCulled = false
@@ -316,7 +317,7 @@ export default class InitWorker {
         worker_8.rotation.set(-Math.PI, -Math.PI, -Math.PI)
         worker_9.rotation.set(-Math.PI, -Math.PI, -Math.PI)
         /*********************************************4th Line */
-        // var planeGUI = new GuiController("plane size")
+
 
         worker_1.position.set(-3.142, -1.3, -4.6)
         worker_2.position.set(4.75, -1.3, -5.0)
