@@ -32,7 +32,7 @@ export default class InitWorker {
     #_scene
     #_TIMER = 1000
     /**
-     * This constructor take in a collection of workers (in general a collection of 3D object), and will process the object
+     * This constructor take in a collection of workers (in general a collection of 3D objects), and will process the object
      * @param {workers} workers - the worker that in the same scene as this renderer
      * @param {scene} scene - the scene that hold the workers
      */
