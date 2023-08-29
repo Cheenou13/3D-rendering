@@ -46,8 +46,10 @@ export class Loop{
             error_code:"void",
             oee:"void"
         }
-        const AOI_DATA = await endToEnd(this.#_AOI_ID), DIMM_DATA = await endToEnd(this.#_DIMM_ID), FAN_DATA = await endToEnd(this.#_FAN_ID),
-        LIFTER_DATA = await endToEnd(this.#_LIFTER_ID), MANUAL_DATA = await endToEnd(this.#_MANUAL_ID)
+        // await endToEnd(this.#_AOI_ID), DIMM_DATA = await endToEnd(this.#_DIMM_ID), FAN_DATA = await endToEnd(this.#_FAN_ID)
+        // await endToEnd(this.#_LIFTER_ID), MANUAL_DATA = await endToEnd(this.#_MANUAL_ID)
+        const AOI_DATA = "none",
+        LIFTER_DATA = "None"
 
         /********************************* */        
         for (let i = 1; i < objects.length; ++i) {

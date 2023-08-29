@@ -33,7 +33,7 @@ export class DisplayModels {
         // adjust resize when screen size change so does the objects
         new Resizer(camera, glRenderer)
         new Resizer(camera, cssRenderer)
-        const container = document.body
+        const container = document.getElementById('threeD-screen')
         //apend css renderer dom element to the parent dom
         container.appendChild(cssRenderer.domElement)
         // put webgl renderer in front of css renderer

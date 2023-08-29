@@ -14,6 +14,7 @@ export async function loadModel() {
         loadingScreen.addEventListener('transitionend', onTransitionEnd)
     })
     const loader = new GLTFLoader(loadingManager)
+    console.log("loading", loader)
     const dracoLoader = new DRACOLoader()
     dracoLoader.setDecoderPath('/static/')
     loader.setDRACOLoader(dracoLoader)
